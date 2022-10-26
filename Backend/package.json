@@ -1,0 +1,33 @@
+{
+  "name": "optum-stratethon",
+  "version": "1.0.0",
+  "description": "Project for OPTUM STRATETHON SEASON 4 ",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Apoorv Singh Chauhan - Joyeeta Dey",
+  "license": "ISC",
+  "dependencies": {
+    "axios": "^1.1.3",
+    "body-parser": "^1.20.1",
+    "config": "^3.3.8",
+    "cors": "^2.8.5",
+    "ejs": "^3.1.8",
+    "express": "^4.18.2",
+    "express-session": "^1.17.3",
+    "fetch": "^1.1.0",
+    "googleapis": "^108.0.0",
+    "http": "0.0.1-security",
+    "mongoose": "^6.6.5",
+    "nodemon": "^2.0.20",
+    "passport": "^0.6.0",
+    "passport-local": "^1.0.0",
+    "passport-local-mongoose": "^7.1.2",
+    "query-string": "^7.1.1",
+    "request": "^2.88.2",
+    "socket.io": "^4.5.3",
+    "url-parse": "^1.5.10",
+    "uuid": "^9.0.0"
+  }
+}

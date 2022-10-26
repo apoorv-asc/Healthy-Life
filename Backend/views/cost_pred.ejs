@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+<body>
+    <form method="post" action="/ml/cost_pred">
+
+        <h5>Encounters</h5>
+        <select name="enc">
+            <% encounters.forEach((enc)=>{ %>
+                <option value="<%= enc %>"><%= enc %></option>
+            <% }) %>
+        </select>
+        <h5>Hospitals</h5>
+        <select name="hosp">
+            <% hospitals.forEach((hosp)=>{ %>
+                <option value="<%= hosp %>"><%= hosp %></option>
+            <% }) %>
+        </select>
+        <h5>Description</h5>
+        <select name="desc">
+            <% description.forEach((desc)=>{ %>
+                <option value="<%= desc %>"><%= desc %></option>
+            <% }) %>
+        </select>
+        <h5>Reason</h5>
+        <select name="rsn">
+            <% reason.forEach((rsn)=>{ %>
+                <option value="<%= rsn %>"><%= rsn %></option>
+            <% }) %>
+        </select>
+        <h5>Diagnosis</h5>
+        <select name="diag">
+            <% diagnosis.forEach((diag)=>{ %>
+                <option value="<%= diag %>"><%= diag %></option>
+            <% }) %>
+        </select>
+        <h5>Days</h5>
+        <input type="number" name="days" />
+        <input type="submit" value="Submit">
+    </form>
+    
+    </form>
+    </form>
+</body>
+</html>

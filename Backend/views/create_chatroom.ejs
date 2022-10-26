@@ -1,0 +1,61 @@
+<html>
+    <head>
+        <link rel="stylesheet" type="text/css" href="semantic/dist/semantic.min.css">
+        <script
+          src="https://code.jquery.com/jquery-3.1.1.min.js"
+          integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8="
+          crossorigin="anonymous">
+        </script>
+        <script src="semantic/dist/semantic.min.js"></script>
+    </head>
+    <body>
+        <h2>Optum Stratethon</h2>
+        <a href="/user/home">Home</a>
+        <h3>Create chat room</h3>
+
+        <form method="post" action="\user\create_room">
+            <h5 style="margin: 0">Room's Name</h5>
+            <input name="name" type="text" placeholder="Room's Name"/>
+            <br><br>
+
+            <h5 style="margin: 0">Caregiver's Email</h5>
+            <input name="fam1" type="text" placeholder="Caregiver 1" />
+            <input name="fam1" type="text" placeholder="Caregiver 2" />
+            <br><br>
+
+            <h5 style="margin: 0">General Physician</h5>
+            <select name="genphy" multiple>
+                <% (ge).forEach((genphy)=>{ %>
+                    <option value="<%= genphy.email %>"><%= genphy.name %></option>
+                <% }) %>
+            </select>
+            <br><br>
+
+            <h5 style="margin: 0">Cardiologist</h5>
+            <select name="cardio" multiple>
+                <% (cardio).forEach((genphy)=>{ %>
+                    <option value="<%= genphy.email %>"><%= genphy.name %></option>
+                <% }) %>
+            </select>
+            <br><br>
+
+            <h5 style="margin: 0">Dermatologists</h5>
+            <select name="derma" multiple>
+                <% (derma).forEach((genphy)=>{ %>
+                    <option value="<%= genphy.email %>"><%= genphy.name %></option>
+                <% }) %>
+            </select>
+            <br><br>
+
+            <h5 style="margin: 0">Orthopedic</h5>
+            <select name="ortho" multiple>
+                <% (ortho).forEach((genphy)=>{ %>
+                    <option value="<%= genphy.email %>"><%= genphy.name %></option>
+                <% }) %>
+            </select>
+            <br><br>
+            <button type="submit">Create Room</button>
+        </form>
+        
+    </body>
+</html>

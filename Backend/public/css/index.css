@@ -1,0 +1,11 @@
+.me-2{
+    width: 40px;
+    height: 40px;
+    border-radius:50%;
+}
+.tag-btn{
+    height: 30px;
+}
+.chat-card{
+    height:80vh;
+}

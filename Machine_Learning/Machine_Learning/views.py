@@ -1,0 +1,45 @@
+from django.http import HttpResponse
+from django.shortcuts import render
+import os
+from django.http import JsonResponse
+from django.views.decorators.csrf import csrf_exempt
+import joblib
+import json
+import numpy as np
+
+regressor = joblib.load("regressor_cost_prediction.sav")
+RFClassifier_disease_predict = joblib.load("RFClassifier_disease_predict.pkl")
+RFClassifier = joblib.load("RFClassifier.pkl")
+
+def home(request):
+    return render(request,"home.html")
+
+@csrf_exempt
+def cost_pred(request):
+    try:
+        encounters = {'ambulatory': 0, 'emergency': 1, 'inpatient': 2, 'outpatient': 3, 'wellness': 4}
+        hospitals = {'ADAMS PHYSICAL THERAPY  LLC': 0, 'ADCARE HOSPITAL OF WORCESTER INC': 1, 'ANNA JAQUES HOSPITAL': 2, 'AT CARE PLLC': 3, 'ATHOL MEMORIAL HOSPITAL': 4, 'BAYSTATE FRANKLIN MEDICAL CENTER': 5, 'BAYSTATE MEDICAL CENTER': 6, 'BAYSTATE WING HOSPITAL AND MEDICAL CENTERS': 7, 'BERKSHIRE MEDICAL CENTER INC - 1': 8, 'BETH ISRAEL DEACONESS HOSPITAL - NEEDHAM': 9, 'BETH ISRAEL DEACONESS HOSPITAL - PLYMOUTH': 10, 'BETH ISRAEL DEACONESS HOSPITAL-MILTON INC': 11, 'BETH ISRAEL DEACONESS MEDICAL CENTER': 12, 'BEVERLY HOSPITAL CORPORATION': 13, "BOSTON CHILDREN'S HOSPITAL": 14, 'BOSTON MEDICAL CENTER CORPORATION-': 15, "BRIGHAM AND WOMEN'S FAULKNER HOSPITAL": 16, "BRIGHAM AND WOMEN'S HOSPITAL": 17, 'BROCKTON AREA MULTI-SERVICES  INC.': 18, 'Boston Vet Center': 19, 'CAMBRIDGE HEALTH ALLIANCE': 20, 'CAMBRIDGE PUBLIC HEALTH COMMISSION': 21, 'CAPE COD HOSPITAL': 22, 'CAREWELL URGENT CARE CENTERS OF MA  PC': 23, 'CARNEY HOSPITAL': 24, 'CLINTON HOSPITAL ASSOCIATION': 25, 'COOLEY DICKINSON HOSPITAL INC THE': 26, 'COUNSELING ASSOCIATES OF DRACUT AND METHUEN': 27, 'DENTAL SURGEONS OF FALL RIVER PC': 28, 'EMERSON HOSPITAL -': 29, 'Edith Nourse Rogers Memorial Veterans Hospital (Bedford VA)': 30, 'FAIRVIEW HOSPITAL': 31, 'FALMOUTH HOSPITAL': 32, "FRANCISCAN CHILDREN'S HOSPITAL & REHAB CENTER": 33, 'Fitchburg Outpatient Clinic': 34, 'Framingham Outpatient Clinic': 35, 'GOOD SAMARITAN MEDICAL CENTER': 36, 'Gloucester Community Based Outpatient Clinic (CBOC)': 37, 'HALLMARK HEALTH MEDICAL ASSOCIATES INC': 38, 'HALLMARK HEALTH SYSTEM': 39, 'HAMPDEN PODIATRY ASSOCIATES': 40, 'HARRINGTON MEMORIAL HOSPITAL-1': 41, 'HEALTHALLIANCE HOSPITALS  INC': 42, 'HEBREW REHABILITATION CENTER': 43, 'HEYWOOD HOSPITAL -': 44, 'HOLY FAMILY HOSPITAL': 45, 'HOLYOKE MEDICAL CENTER': 46, 'Haverhill Community Based Outpatient Clinic (CBOC)': 47, 'Hyannis Outpatient Clinic': 48, 'LAHEY HOSPITAL & MEDICAL CENTER  BURLINGTON': 49, 'LAWRENCE GENERAL HOSPITAL': 50, 'LOWELL GENERAL HOSPITAL': 51, 'Lowell Outpatient Clinic': 52, 'MARLBOROUGH HOSPITAL': 53, "MARTHA'S VINEYARD HOSPITAL INC": 54, 'MASSACHUSETTS EYE AND EAR INFIRMARY -': 55, 'MASSACHUSETTS GENERAL HOSPITAL': 56, 'MERCY MEDICAL CTR': 57, 'MERRIMACK VALLEY PHYSICAL THERAPY': 58, 'METROWEST MEDICAL CENTER': 59, 'MILFORD REGIONAL MEDICAL CENTER': 60, 'MILTON CHIROPRACTIC AND REHABILITATION INC': 61, 'MORTON HOSPITAL': 62, 'MOUNT AUBURN HOSPITAL': 63, 'NANTUCKET COTTAGE HOSPITAL': 64, 'NASHOBA VALLEY MEDICAL CENTER': 65, 'NEW ENGLAND BAPTIST HOSPITAL': 66, 'NEW ENGLAND ORAL SURGERY ASSOCIATES LLC': 67, 'NEWTON-WELLESLEY HOSPITAL': 68, 'NOBLE HOSPITAL': 69, 'NORTH SHORE MEDICAL CENTER -': 70, 'NORWOOD HOSPITAL': 71, 'New Bedford Outpatient Clinic': 72, 'New Bedford Vet Center': 73, 'ORTHOPEDIC AND SPORTS PHYSICAL THERAPY  LLP': 74, 'PCP10127': 75, 'PCP118611': 76, 'PCP128586': 77, 'PCP136067': 78, 'PCP13802': 79, 'PCP139219': 80, 'PCP166697': 81, 'PCP191696': 82, 'PCP205980': 83, 'PCP26077': 84, 'PCP26110': 85, 'PCP3184': 86, 'PCP44465': 87, 'PCP4453': 88, 'PCP52699': 89, 'PCP67787': 90, 'PCP77608': 91, 'PCP89345': 92, 'PCP9047': 93, 'Plymouth Outreach Clinic': 94, 'Quincy Outpatient Clinic': 95, 'REHAB RESOLUTIONS INC': 96, 'RIVERSIDE RADIOLOGY MEDICAL GROUP INC': 97, "SAINT ANNE'S HOSPITAL": 98, "SHRINERS' HOSPITAL FOR CHILDREN (THE)": 99, "SHRINERS' HOSPITAL FOR CHILDREN - BOSTON  THE": 100, 'SIGNATURE HEALTHCARE BROCKTON HOSPITAL': 101, 'SOUTH BAY MENTAL HEALTH CENTER  INC.': 102, 'SOUTH SHORE HOSPITAL': 103, 'SOUTH SHORE RADIOLOGICAL ASSOCIATES  INC.': 104, 'SOUTHCOAST HOSPITAL GROUP  INC': 105, "ST ELIZABETH'S MEDICAL CENTER": 106, 'ST VINCENT HOSPITAL': 107, 'STURDY MEMORIAL HOSPITAL': 108, 'Springfield Vet Center': 109, 'TUFTS MEDICAL CENTER': 110, 'UHS OF WESTWOOD PEMBROKE INC': 111, 'UMASS MEMORIAL MEDICAL CENTER INC': 112, 'VA Boston Healthcare System  Brockton Campus': 113, 'VA Boston Healthcare System  Jamaica Plain Campus': 114, 'WINCHESTER HOSPITAL': 115, 'Worcester Outpatient Clinic': 116, 'Worcester Vet Center': 117}
+        description = {'Asthma self management': 0, 'Cancer care plan': 1, 'Chronic obstructive pulmonary disease clinical management plan': 2, 'Demential management': 3, 'Diabetes self management plan': 4, 'Fracture care': 5, 'Head injury rehabilitation': 6, 'Hyperlipidemia clinical management plan': 7, 'Lifestyle education regarding hypertension': 8, 'Physical therapy procedure': 9, 'Psychiatry care plan': 10, 'Respiratory therapy': 11, 'Routine antenatal care': 12, 'Urinary tract infection care': 13, 'Wound care': 14}
+        reason = {'Acute bronchitis (disorder)': 0, "Alzheimer's disease (disorder)": 1, 'Bullet wound': 2, 'Childhood asthma': 3, 'Chronic obstructive bronchitis (disorder)': 4, 'Closed fracture of hip': 5, 'Concussion with no loss of consciousness': 6, 'Cystitis': 7, 'Diabetes': 8, 'Escherichia coli urinary tract infection': 9, 'Facial laceration': 10, "Familial Alzheimer's disease of early onset (disorder)": 11, 'Fracture of ankle': 12, 'Fracture of clavicle': 13, 'Fracture of forearm': 14, 'Fracture of rib': 15, 'Fracture subluxation of wrist': 16, 'Hyperlipidemia': 17, 'Hypertension': 18, 'Injury of anterior cruciate ligament': 19, 'Injury of medial collateral ligament of knee': 20, 'Laceration of foot': 21, 'Laceration of forearm': 22, 'Laceration of hand': 23, 'Laceration of thigh': 24, 'Major depression disorder': 25, 'Malignant tumor of colon': 26, 'Neoplasm of prostate': 27, 'Normal pregnancy': 28, 'Prediabetes': 29, 'Pulmonary emphysema (disorder)': 30, 'Rupture of patellar tendon': 31, 'Sprain of ankle': 32, 'Tear of meniscus of knee': 33}
+        diagnosis = {'Admission to orthopedic department': 0, 'Admission to trauma surgery department': 1, 'Alpha-fetoprotein test': 2, 'Ankle X-ray': 3, 'Asthma screening': 4, 'Augmentation of labor': 5, 'Auscultation of the fetal heart': 6, 'Blood typing  RH typing': 7, 'Bone density scan (procedure)': 8, 'Bone immobilization': 9, 'Chest X-ray': 10, 'Childbirth': 11, 'Chlamydia antigen test': 12, 'Clavicle X-ray': 13, 'Combined chemotherapy and radiation therapy (procedure)': 14, 'Cytopathology procedure  preparation of smear  genital source': 15, 'Digital examination of rectum': 16, 'Electrical cardioversion': 17, 'Evaluation of uterine fundal height': 18, 'Extraction of wisdom tooth': 19, 'Fetal anatomy study': 20, 'Gonorrhea infection test': 21, 'Hearing examination (procedure)': 22, 'Hemoglobin / Hematocrit / Platelet count': 23, 'Hepatitis B Surface Antigen Measurement': 24, 'Hepatitis C antibody test': 25, 'High resolution computed tomography of chest without contrast (procedure)': 26, 'Human immunodeficiency virus antigen test': 27, 'Injection of tetanus antitoxin': 28, 'Intramuscular injection': 29, 'Knee X-ray': 30, 'Measurement of Varicella-zoster virus antibody': 31, 'Measurement of respiratory function (procedure)': 32, 'Medication Reconciliation (procedure)': 33, 'Pelvis X-ray': 34, 'Physical examination of mother': 35, 'Plain chest X-ray (procedure)': 36, 'Prostatectomy': 37, 'Pulmonary rehabilitation (regime/therapy)': 38, 'Rubella screening': 39, 'Skin test for tuberculosis': 40, 'Spirometry (procedure)': 41, 'Sputum examination (procedure)': 42, 'Standard pregnancy test': 43, 'Suture open wound': 44, 'Syphilis infection test': 45, 'Ultrasound scan for fetal viability': 46, 'Upper arm X-ray': 47, 'Urine culture': 48, 'Urine protein test': 49, 'Urine screening test for diabetes': 50, 'X-ray or wrist': 51, 'positive screening for PHQ-9': 52}
+        lis = []
+        data = json.loads(request.body.decode("utf-8"))
+        print(data)
+        lis.append(encounters[data['enc']])
+        lis.append(hospitals[data['hosp']]/117)
+        lis.append(description[data['desc']]/14)
+        lis.append(reason[data['rsn']]/33)
+        lis.append(diagnosis[data['diag']]/52)
+        lis.append((int(data['days'])-7)/(840-7))
+        
+        res = regressor.predict([lis])
+        return JsonResponse({"res":res[0]})
+    except:
+        return JsonResponse({"res":"Error"})
+
+
+# def result(request):
+#     search = request.GET.getlist("sym")
+#     sample = np.zeros((len(features),), dtype=np.int)
+#     print(sym)
+#     return render(request,"result.html",{"res":sym})
