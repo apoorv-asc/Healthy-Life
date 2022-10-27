@@ -1,0 +1,425 @@
+Hospital,Disease
+CAMBRIDGE HEALTH ALLIANCE,Acute bronchitis (disorder)
+CAMBRIDGE HEALTH ALLIANCE,Facial laceration
+CAMBRIDGE HEALTH ALLIANCE,Fracture of ankle
+CAMBRIDGE HEALTH ALLIANCE,Laceration of foot
+CAMBRIDGE HEALTH ALLIANCE,Childhood asthma
+CAMBRIDGE HEALTH ALLIANCE,Laceration of forearm
+CAMBRIDGE HEALTH ALLIANCE,Tear of meniscus of knee
+CAMBRIDGE HEALTH ALLIANCE,Fracture of forearm
+CAMBRIDGE HEALTH ALLIANCE,Laceration of thigh
+HOLYOKE MEDICAL CENTER,Laceration of foot
+HOLYOKE MEDICAL CENTER,Acute bronchitis (disorder)
+HOLYOKE MEDICAL CENTER,Injury of medial collateral ligament of knee
+HOLYOKE MEDICAL CENTER,Facial laceration
+HOLYOKE MEDICAL CENTER,Normal pregnancy
+HOLYOKE MEDICAL CENTER,Fracture of forearm
+HOLYOKE MEDICAL CENTER,Childhood asthma
+HOLYOKE MEDICAL CENTER,Fracture of ankle
+HOLYOKE MEDICAL CENTER,Injury of anterior cruciate ligament
+LOWELL GENERAL HOSPITAL,Fracture subluxation of wrist
+LOWELL GENERAL HOSPITAL,Laceration of thigh
+LOWELL GENERAL HOSPITAL,Laceration of hand
+LOWELL GENERAL HOSPITAL,Laceration of forearm
+LOWELL GENERAL HOSPITAL,Acute bronchitis (disorder)
+LOWELL GENERAL HOSPITAL,Fracture of forearm
+LOWELL GENERAL HOSPITAL,Facial laceration
+BRIGHAM AND WOMEN'S HOSPITAL,Acute bronchitis (disorder)
+BRIGHAM AND WOMEN'S HOSPITAL,Laceration of hand
+BRIGHAM AND WOMEN'S HOSPITAL,Fracture of clavicle
+BRIGHAM AND WOMEN'S HOSPITAL,Laceration of forearm
+BRIGHAM AND WOMEN'S HOSPITAL,Fracture subluxation of wrist
+BRIGHAM AND WOMEN'S HOSPITAL,Fracture of rib
+ST ELIZABETH'S MEDICAL CENTER,Acute bronchitis (disorder)
+ST ELIZABETH'S MEDICAL CENTER,Fracture of forearm
+MOUNT AUBURN HOSPITAL,Acute bronchitis (disorder)
+MOUNT AUBURN HOSPITAL,Fracture of forearm
+MOUNT AUBURN HOSPITAL,Laceration of hand
+MOUNT AUBURN HOSPITAL,Laceration of forearm
+MOUNT AUBURN HOSPITAL,Laceration of foot
+MOUNT AUBURN HOSPITAL,Fracture of ankle
+MOUNT AUBURN HOSPITAL,Injury of medial collateral ligament of knee
+BETH ISRAEL DEACONESS HOSPITAL - PLYMOUTH,Acute bronchitis (disorder)
+BETH ISRAEL DEACONESS HOSPITAL - PLYMOUTH,Laceration of hand
+BETH ISRAEL DEACONESS HOSPITAL - PLYMOUTH,Laceration of forearm
+BETH ISRAEL DEACONESS HOSPITAL - PLYMOUTH,Childhood asthma
+BETH ISRAEL DEACONESS HOSPITAL - PLYMOUTH,Fracture of rib
+BETH ISRAEL DEACONESS HOSPITAL - PLYMOUTH,Laceration of foot
+BETH ISRAEL DEACONESS HOSPITAL - PLYMOUTH,Fracture of clavicle
+BAYSTATE MEDICAL CENTER,Tear of meniscus of knee
+BAYSTATE MEDICAL CENTER,Closed fracture of hip
+BAYSTATE MEDICAL CENTER,Fracture of clavicle
+BAYSTATE MEDICAL CENTER,Facial laceration
+BAYSTATE MEDICAL CENTER,Acute bronchitis (disorder)
+BAYSTATE MEDICAL CENTER,Escherichia coli urinary tract infection
+BAYSTATE MEDICAL CENTER,Fracture subluxation of wrist
+SHRINERS' HOSPITAL FOR CHILDREN (THE),Acute bronchitis (disorder)
+SAINT ANNE'S HOSPITAL,Fracture of forearm
+SAINT ANNE'S HOSPITAL,Acute bronchitis (disorder)
+SAINT ANNE'S HOSPITAL,Fracture subluxation of wrist
+SAINT ANNE'S HOSPITAL,Laceration of hand
+SAINT ANNE'S HOSPITAL,Laceration of thigh
+SAINT ANNE'S HOSPITAL,Laceration of foot
+SAINT ANNE'S HOSPITAL,Fracture of rib
+SAINT ANNE'S HOSPITAL,Laceration of forearm
+SAINT ANNE'S HOSPITAL,Facial laceration
+SAINT ANNE'S HOSPITAL,Fracture of clavicle
+SOUTHCOAST HOSPITAL GROUP  INC,Facial laceration
+SOUTHCOAST HOSPITAL GROUP  INC,Fracture of ankle
+SOUTHCOAST HOSPITAL GROUP  INC,Laceration of hand
+SOUTHCOAST HOSPITAL GROUP  INC,Laceration of foot
+SOUTHCOAST HOSPITAL GROUP  INC,Acute bronchitis (disorder)
+SOUTHCOAST HOSPITAL GROUP  INC,Laceration of forearm
+SOUTHCOAST HOSPITAL GROUP  INC,Tear of meniscus of knee
+SOUTHCOAST HOSPITAL GROUP  INC,Fracture subluxation of wrist
+NORWOOD HOSPITAL,Fracture of forearm
+NORWOOD HOSPITAL,Laceration of foot
+NORWOOD HOSPITAL,Acute bronchitis (disorder)
+NORWOOD HOSPITAL,Laceration of forearm
+NORWOOD HOSPITAL,Injury of medial collateral ligament of knee
+NORWOOD HOSPITAL,Laceration of thigh
+NORWOOD HOSPITAL,Fracture of rib
+NORWOOD HOSPITAL,Fracture subluxation of wrist
+NORWOOD HOSPITAL,Fracture of clavicle
+NORWOOD HOSPITAL,Alzheimer's disease (disorder)
+NEWTON-WELLESLEY HOSPITAL,Fracture of clavicle
+NEWTON-WELLESLEY HOSPITAL,Acute bronchitis (disorder)
+NEWTON-WELLESLEY HOSPITAL,Prediabetes
+NEWTON-WELLESLEY HOSPITAL,Fracture of ankle
+NEWTON-WELLESLEY HOSPITAL,Fracture of forearm
+NEWTON-WELLESLEY HOSPITAL,Laceration of hand
+NEWTON-WELLESLEY HOSPITAL,Fracture subluxation of wrist
+NEWTON-WELLESLEY HOSPITAL,Facial laceration
+NEWTON-WELLESLEY HOSPITAL,Bullet wound
+NEWTON-WELLESLEY HOSPITAL,Closed fracture of hip
+NEWTON-WELLESLEY HOSPITAL,Fracture of rib
+NEWTON-WELLESLEY HOSPITAL,Laceration of forearm
+SOUTH SHORE HOSPITAL,Acute bronchitis (disorder)
+SOUTH SHORE HOSPITAL,Tear of meniscus of knee
+SOUTH SHORE HOSPITAL,Childhood asthma
+SOUTH SHORE HOSPITAL,Laceration of thigh
+SOUTH SHORE HOSPITAL,Laceration of foot
+SOUTH SHORE HOSPITAL,Fracture of clavicle
+SOUTH SHORE HOSPITAL,Fracture of forearm
+SOUTH SHORE HOSPITAL,Facial laceration
+BETH ISRAEL DEACONESS HOSPITAL-MILTON INC,Laceration of forearm
+BETH ISRAEL DEACONESS HOSPITAL-MILTON INC,Acute bronchitis (disorder)
+BETH ISRAEL DEACONESS HOSPITAL-MILTON INC,Fracture of ankle
+BETH ISRAEL DEACONESS HOSPITAL-MILTON INC,Cystitis
+BETH ISRAEL DEACONESS HOSPITAL-MILTON INC,Laceration of foot
+NEW ENGLAND BAPTIST HOSPITAL,Acute bronchitis (disorder)
+CARNEY HOSPITAL,Laceration of forearm
+CARNEY HOSPITAL,Injury of medial collateral ligament of knee
+CARNEY HOSPITAL,Acute bronchitis (disorder)
+CARNEY HOSPITAL,Fracture subluxation of wrist
+CARNEY HOSPITAL,Facial laceration
+CARNEY HOSPITAL,Laceration of hand
+LAHEY HOSPITAL & MEDICAL CENTER  BURLINGTON,Laceration of thigh
+LAHEY HOSPITAL & MEDICAL CENTER  BURLINGTON,Acute bronchitis (disorder)
+LAHEY HOSPITAL & MEDICAL CENTER  BURLINGTON,Childhood asthma
+LAHEY HOSPITAL & MEDICAL CENTER  BURLINGTON,Escherichia coli urinary tract infection
+LAHEY HOSPITAL & MEDICAL CENTER  BURLINGTON,Injury of medial collateral ligament of knee
+LAHEY HOSPITAL & MEDICAL CENTER  BURLINGTON,Fracture of ankle
+SIGNATURE HEALTHCARE BROCKTON HOSPITAL,Acute bronchitis (disorder)
+SIGNATURE HEALTHCARE BROCKTON HOSPITAL,Injury of anterior cruciate ligament
+SIGNATURE HEALTHCARE BROCKTON HOSPITAL,Closed fracture of hip
+SIGNATURE HEALTHCARE BROCKTON HOSPITAL,Fracture of ankle
+SIGNATURE HEALTHCARE BROCKTON HOSPITAL,Injury of medial collateral ligament of knee
+METROWEST MEDICAL CENTER,Fracture of clavicle
+METROWEST MEDICAL CENTER,Childhood asthma
+METROWEST MEDICAL CENTER,Facial laceration
+METROWEST MEDICAL CENTER,Fracture of ankle
+METROWEST MEDICAL CENTER,Acute bronchitis (disorder)
+METROWEST MEDICAL CENTER,Fracture of forearm
+METROWEST MEDICAL CENTER,Escherichia coli urinary tract infection
+METROWEST MEDICAL CENTER,Laceration of hand
+METROWEST MEDICAL CENTER,Laceration of foot
+METROWEST MEDICAL CENTER,Rupture of patellar tendon
+METROWEST MEDICAL CENTER,Tear of meniscus of knee
+HALLMARK HEALTH SYSTEM,Normal pregnancy
+HALLMARK HEALTH SYSTEM,Acute bronchitis (disorder)
+HALLMARK HEALTH SYSTEM,Laceration of forearm
+HALLMARK HEALTH SYSTEM,Fracture subluxation of wrist
+HALLMARK HEALTH SYSTEM,Laceration of thigh
+HALLMARK HEALTH SYSTEM,Fracture of rib
+HALLMARK HEALTH SYSTEM,Fracture of forearm
+HALLMARK HEALTH SYSTEM,Facial laceration
+HALLMARK HEALTH SYSTEM,Sprain of ankle
+HALLMARK HEALTH SYSTEM,Concussion with no loss of consciousness
+HALLMARK HEALTH SYSTEM,Hypertension
+HALLMARK HEALTH SYSTEM,Injury of medial collateral ligament of knee
+HALLMARK HEALTH SYSTEM,Laceration of foot
+HALLMARK HEALTH SYSTEM,Fracture of ankle
+HALLMARK HEALTH SYSTEM,Fracture of clavicle
+HALLMARK HEALTH SYSTEM,Childhood asthma
+NORTH SHORE MEDICAL CENTER -,Acute bronchitis (disorder)
+NORTH SHORE MEDICAL CENTER -,Fracture subluxation of wrist
+NORTH SHORE MEDICAL CENTER -,Facial laceration
+NORTH SHORE MEDICAL CENTER -,Laceration of hand
+NORTH SHORE MEDICAL CENTER -,Laceration of foot
+NORTH SHORE MEDICAL CENTER -,Closed fracture of hip
+NORTH SHORE MEDICAL CENTER -,Fracture of forearm
+NORTH SHORE MEDICAL CENTER -,Laceration of forearm
+HALLMARK HEALTH MEDICAL ASSOCIATES INC,Prediabetes
+BROCKTON AREA MULTI-SERVICES  INC.,Prediabetes
+GOOD SAMARITAN MEDICAL CENTER,Facial laceration
+GOOD SAMARITAN MEDICAL CENTER,Acute bronchitis (disorder)
+GOOD SAMARITAN MEDICAL CENTER,Fracture of forearm
+GOOD SAMARITAN MEDICAL CENTER,Laceration of forearm
+GOOD SAMARITAN MEDICAL CENTER,Cystitis
+MILFORD REGIONAL MEDICAL CENTER,Acute bronchitis (disorder)
+MILFORD REGIONAL MEDICAL CENTER,Fracture of clavicle
+MILFORD REGIONAL MEDICAL CENTER,Laceration of foot
+MILFORD REGIONAL MEDICAL CENTER,Fracture of forearm
+MILFORD REGIONAL MEDICAL CENTER,Laceration of forearm
+MILFORD REGIONAL MEDICAL CENTER,Laceration of hand
+MILFORD REGIONAL MEDICAL CENTER,Facial laceration
+MILFORD REGIONAL MEDICAL CENTER,Fracture of ankle
+MILFORD REGIONAL MEDICAL CENTER,Fracture subluxation of wrist
+HEALTHALLIANCE HOSPITALS  INC,Acute bronchitis (disorder)
+HEALTHALLIANCE HOSPITALS  INC,Laceration of thigh
+HEALTHALLIANCE HOSPITALS  INC,Fracture of rib
+HEALTHALLIANCE HOSPITALS  INC,Laceration of forearm
+HEALTHALLIANCE HOSPITALS  INC,Fracture of clavicle
+HEALTHALLIANCE HOSPITALS  INC,Fracture of forearm
+HEALTHALLIANCE HOSPITALS  INC,Closed fracture of hip
+HEALTHALLIANCE HOSPITALS  INC,Facial laceration
+BAYSTATE FRANKLIN MEDICAL CENTER,Acute bronchitis (disorder)
+BAYSTATE FRANKLIN MEDICAL CENTER,Laceration of thigh
+BAYSTATE FRANKLIN MEDICAL CENTER,Fracture of clavicle
+BAYSTATE FRANKLIN MEDICAL CENTER,Fracture of rib
+MASSACHUSETTS GENERAL HOSPITAL,Laceration of forearm
+MASSACHUSETTS GENERAL HOSPITAL,Acute bronchitis (disorder)
+WINCHESTER HOSPITAL,Escherichia coli urinary tract infection
+WINCHESTER HOSPITAL,Acute bronchitis (disorder)
+WINCHESTER HOSPITAL,Fracture subluxation of wrist
+WINCHESTER HOSPITAL,Laceration of thigh
+WINCHESTER HOSPITAL,Laceration of hand
+WINCHESTER HOSPITAL,Facial laceration
+WINCHESTER HOSPITAL,Laceration of foot
+ANNA JAQUES HOSPITAL,Acute bronchitis (disorder)
+ANNA JAQUES HOSPITAL,Fracture of ankle
+ANNA JAQUES HOSPITAL,Laceration of hand
+ANNA JAQUES HOSPITAL,Familial Alzheimer's disease of early onset (disorder)
+ANNA JAQUES HOSPITAL,Malignant tumor of colon
+BETH ISRAEL DEACONESS HOSPITAL - NEEDHAM,Facial laceration
+BETH ISRAEL DEACONESS HOSPITAL - NEEDHAM,Acute bronchitis (disorder)
+BETH ISRAEL DEACONESS HOSPITAL - NEEDHAM,Rupture of patellar tendon
+BETH ISRAEL DEACONESS HOSPITAL - NEEDHAM,Laceration of foot
+BETH ISRAEL DEACONESS HOSPITAL - NEEDHAM,Laceration of thigh
+BETH ISRAEL DEACONESS HOSPITAL - NEEDHAM,Laceration of forearm
+COOLEY DICKINSON HOSPITAL INC THE,Fracture of rib
+COOLEY DICKINSON HOSPITAL INC THE,Facial laceration
+COOLEY DICKINSON HOSPITAL INC THE,Acute bronchitis (disorder)
+COOLEY DICKINSON HOSPITAL INC THE,Fracture of ankle
+COOLEY DICKINSON HOSPITAL INC THE,Laceration of forearm
+BOSTON CHILDREN'S HOSPITAL,Fracture subluxation of wrist
+BOSTON CHILDREN'S HOSPITAL,Acute bronchitis (disorder)
+BOSTON MEDICAL CENTER CORPORATION-,Acute bronchitis (disorder)
+MORTON HOSPITAL,Acute bronchitis (disorder)
+MORTON HOSPITAL,Laceration of foot
+MORTON HOSPITAL,Laceration of thigh
+MORTON HOSPITAL,Rupture of patellar tendon
+MORTON HOSPITAL,Facial laceration
+MARLBOROUGH HOSPITAL,Facial laceration
+MARLBOROUGH HOSPITAL,Acute bronchitis (disorder)
+MARLBOROUGH HOSPITAL,Fracture subluxation of wrist
+MARLBOROUGH HOSPITAL,Laceration of thigh
+MARLBOROUGH HOSPITAL,Fracture of rib
+MARLBOROUGH HOSPITAL,Laceration of hand
+MARLBOROUGH HOSPITAL,Fracture of ankle
+MARLBOROUGH HOSPITAL,Fracture of forearm
+MERCY MEDICAL CTR,Acute bronchitis (disorder)
+MERCY MEDICAL CTR,Fracture subluxation of wrist
+MERCY MEDICAL CTR,Fracture of forearm
+MERCY MEDICAL CTR,Laceration of forearm
+MERCY MEDICAL CTR,Tear of meniscus of knee
+CAPE COD HOSPITAL,Laceration of hand
+CAPE COD HOSPITAL,Acute bronchitis (disorder)
+CAPE COD HOSPITAL,Fracture of ankle
+CAPE COD HOSPITAL,Laceration of thigh
+CAPE COD HOSPITAL,Fracture of clavicle
+CAPE COD HOSPITAL,Closed fracture of hip
+CAPE COD HOSPITAL,Injury of anterior cruciate ligament
+BEVERLY HOSPITAL CORPORATION,Acute bronchitis (disorder)
+BEVERLY HOSPITAL CORPORATION,Laceration of forearm
+BEVERLY HOSPITAL CORPORATION,Fracture of clavicle
+BEVERLY HOSPITAL CORPORATION,Fracture of forearm
+NOBLE HOSPITAL,Acute bronchitis (disorder)
+NOBLE HOSPITAL,Cystitis
+NOBLE HOSPITAL,Fracture of rib
+NOBLE HOSPITAL,Injury of anterior cruciate ligament
+PCP89345,Hypertension
+PCP128586,Hypertension
+HARRINGTON MEMORIAL HOSPITAL-1,Acute bronchitis (disorder)
+HARRINGTON MEMORIAL HOSPITAL-1,Cystitis
+HARRINGTON MEMORIAL HOSPITAL-1,Fracture subluxation of wrist
+HARRINGTON MEMORIAL HOSPITAL-1,Fracture of clavicle
+HARRINGTON MEMORIAL HOSPITAL-1,Laceration of thigh
+Plymouth Outreach Clinic,Acute bronchitis (disorder)
+AT CARE PLLC,Hypertension
+AT CARE PLLC,Pulmonary emphysema (disorder)
+Edith Nourse Rogers Memorial Veterans Hospital (Bedford VA),Acute bronchitis (disorder)
+HEYWOOD HOSPITAL -,Acute bronchitis (disorder)
+HEYWOOD HOSPITAL -,Laceration of thigh
+HEYWOOD HOSPITAL -,Fracture of forearm
+HEYWOOD HOSPITAL -,Facial laceration
+UMASS MEMORIAL MEDICAL CENTER INC,Facial laceration
+UMASS MEMORIAL MEDICAL CENTER INC,Laceration of hand
+UMASS MEMORIAL MEDICAL CENTER INC,Laceration of forearm
+UMASS MEMORIAL MEDICAL CENTER INC,Acute bronchitis (disorder)
+UMASS MEMORIAL MEDICAL CENTER INC,Fracture of forearm
+UMASS MEMORIAL MEDICAL CENTER INC,Fracture of clavicle
+UMASS MEMORIAL MEDICAL CENTER INC,Fracture subluxation of wrist
+ST VINCENT HOSPITAL,Rupture of patellar tendon
+ST VINCENT HOSPITAL,Fracture of forearm
+ST VINCENT HOSPITAL,Acute bronchitis (disorder)
+ST VINCENT HOSPITAL,Laceration of thigh
+ADCARE HOSPITAL OF WORCESTER INC,Acute bronchitis (disorder)
+PCP205980,Alzheimer's disease (disorder)
+STURDY MEMORIAL HOSPITAL,Acute bronchitis (disorder)
+STURDY MEMORIAL HOSPITAL,Childhood asthma
+STURDY MEMORIAL HOSPITAL,Fracture subluxation of wrist
+STURDY MEMORIAL HOSPITAL,Closed fracture of hip
+STURDY MEMORIAL HOSPITAL,Fracture of forearm
+STURDY MEMORIAL HOSPITAL,Laceration of thigh
+STURDY MEMORIAL HOSPITAL,Injury of medial collateral ligament of knee
+STURDY MEMORIAL HOSPITAL,Fracture of rib
+STURDY MEMORIAL HOSPITAL,Laceration of forearm
+NANTUCKET COTTAGE HOSPITAL,Fracture subluxation of wrist
+NANTUCKET COTTAGE HOSPITAL,Laceration of forearm
+NANTUCKET COTTAGE HOSPITAL,Familial Alzheimer's disease of early onset (disorder)
+NANTUCKET COTTAGE HOSPITAL,Acute bronchitis (disorder)
+NANTUCKET COTTAGE HOSPITAL,Fracture of ankle
+MASSACHUSETTS EYE AND EAR INFIRMARY -,Acute bronchitis (disorder)
+BRIGHAM AND WOMEN'S FAULKNER HOSPITAL,Sprain of ankle
+BRIGHAM AND WOMEN'S FAULKNER HOSPITAL,Fracture of clavicle
+BRIGHAM AND WOMEN'S FAULKNER HOSPITAL,Laceration of foot
+BRIGHAM AND WOMEN'S FAULKNER HOSPITAL,Laceration of thigh
+BRIGHAM AND WOMEN'S FAULKNER HOSPITAL,Facial laceration
+LAWRENCE GENERAL HOSPITAL,Laceration of thigh
+LAWRENCE GENERAL HOSPITAL,Acute bronchitis (disorder)
+LAWRENCE GENERAL HOSPITAL,Fracture subluxation of wrist
+LAWRENCE GENERAL HOSPITAL,Fracture of rib
+LAWRENCE GENERAL HOSPITAL,Rupture of patellar tendon
+LAWRENCE GENERAL HOSPITAL,Major depression disorder
+LAWRENCE GENERAL HOSPITAL,Laceration of hand
+BETH ISRAEL DEACONESS MEDICAL CENTER,Fracture of forearm
+BETH ISRAEL DEACONESS MEDICAL CENTER,Fracture of clavicle
+BETH ISRAEL DEACONESS MEDICAL CENTER,Laceration of forearm
+TUFTS MEDICAL CENTER,Acute bronchitis (disorder)
+TUFTS MEDICAL CENTER,Fracture of ankle
+EMERSON HOSPITAL -,Laceration of hand
+EMERSON HOSPITAL -,Acute bronchitis (disorder)
+EMERSON HOSPITAL -,Fracture of ankle
+Hyannis Outpatient Clinic,Acute bronchitis (disorder)
+Hyannis Outpatient Clinic,Prediabetes
+Hyannis Outpatient Clinic,
+Hyannis Outpatient Clinic,Chronic obstructive bronchitis (disorder)
+Hyannis Outpatient Clinic,Neoplasm of prostate
+COUNSELING ASSOCIATES OF DRACUT AND METHUEN,Hypertension
+COUNSELING ASSOCIATES OF DRACUT AND METHUEN,Diabetes
+CLINTON HOSPITAL ASSOCIATION,Acute bronchitis (disorder)
+CLINTON HOSPITAL ASSOCIATION,Fracture of clavicle
+CLINTON HOSPITAL ASSOCIATION,Fracture subluxation of wrist
+CLINTON HOSPITAL ASSOCIATION,Facial laceration
+CLINTON HOSPITAL ASSOCIATION,Laceration of hand
+CLINTON HOSPITAL ASSOCIATION,Laceration of forearm
+Quincy Outpatient Clinic,Acute bronchitis (disorder)
+Quincy Outpatient Clinic,Neoplasm of prostate
+ORTHOPEDIC AND SPORTS PHYSICAL THERAPY  LLP,Hypertension
+FRANCISCAN CHILDREN'S HOSPITAL & REHAB CENTER,Acute bronchitis (disorder)
+FALMOUTH HOSPITAL,Acute bronchitis (disorder)
+FALMOUTH HOSPITAL,Fracture subluxation of wrist
+FALMOUTH HOSPITAL,Facial laceration
+FALMOUTH HOSPITAL,Laceration of thigh
+FALMOUTH HOSPITAL,Laceration of forearm
+FALMOUTH HOSPITAL,Normal pregnancy
+PCP26110,Pulmonary emphysema (disorder)
+HOLY FAMILY HOSPITAL,Laceration of thigh
+HOLY FAMILY HOSPITAL,Laceration of foot
+HOLY FAMILY HOSPITAL,Acute bronchitis (disorder)
+HOLY FAMILY HOSPITAL,Fracture of ankle
+HOLY FAMILY HOSPITAL,Closed fracture of hip
+UHS OF WESTWOOD PEMBROKE INC,Hypertension
+BERKSHIRE MEDICAL CENTER INC - 1,Acute bronchitis (disorder)
+BERKSHIRE MEDICAL CENTER INC - 1,Closed fracture of hip
+BERKSHIRE MEDICAL CENTER INC - 1,Fracture of ankle
+BERKSHIRE MEDICAL CENTER INC - 1,Childhood asthma
+BERKSHIRE MEDICAL CENTER INC - 1,Fracture of clavicle
+BERKSHIRE MEDICAL CENTER INC - 1,Laceration of forearm
+BERKSHIRE MEDICAL CENTER INC - 1,Fracture of forearm
+BERKSHIRE MEDICAL CENTER INC - 1,Rupture of patellar tendon
+Framingham Outpatient Clinic,Acute bronchitis (disorder)
+Framingham Outpatient Clinic,Alzheimer's disease (disorder)
+Framingham Outpatient Clinic,Neoplasm of prostate
+REHAB RESOLUTIONS INC,Hypertension
+NEW ENGLAND ORAL SURGERY ASSOCIATES LLC,Hypertension
+BAYSTATE WING HOSPITAL AND MEDICAL CENTERS,Laceration of foot
+BAYSTATE WING HOSPITAL AND MEDICAL CENTERS,Acute bronchitis (disorder)
+BAYSTATE WING HOSPITAL AND MEDICAL CENTERS,Laceration of hand
+BAYSTATE WING HOSPITAL AND MEDICAL CENTERS,Facial laceration
+BAYSTATE WING HOSPITAL AND MEDICAL CENTERS,Fracture of forearm
+PCP44465,Escherichia coli urinary tract infection
+PCP136067,Familial Alzheimer's disease of early onset (disorder)
+SOUTH BAY MENTAL HEALTH CENTER  INC.,Escherichia coli urinary tract infection
+PCP10127,Hypertension
+VA Boston Healthcare System  Jamaica Plain Campus,Neoplasm of prostate
+VA Boston Healthcare System  Jamaica Plain Campus,Acute bronchitis (disorder)
+Worcester Outpatient Clinic,Acute bronchitis (disorder)
+Worcester Outpatient Clinic,Neoplasm of prostate
+Worcester Outpatient Clinic,Hyperlipidemia
+PCP166697,Prediabetes
+CAREWELL URGENT CARE CENTERS OF MA  PC,Prediabetes
+Worcester Vet Center,Acute bronchitis (disorder)
+FAIRVIEW HOSPITAL,Fracture of ankle
+FAIRVIEW HOSPITAL,Laceration of hand
+FAIRVIEW HOSPITAL,Acute bronchitis (disorder)
+Gloucester Community Based Outpatient Clinic (CBOC),Acute bronchitis (disorder)
+Gloucester Community Based Outpatient Clinic (CBOC),Neoplasm of prostate
+Gloucester Community Based Outpatient Clinic (CBOC),Escherichia coli urinary tract infection
+Lowell Outpatient Clinic,Acute bronchitis (disorder)
+PCP191696,Hypertension
+PCP67787,Alzheimer's disease (disorder)
+PCP139219,Hypertension
+Boston Vet Center,Acute bronchitis (disorder)
+Boston Vet Center,Alzheimer's disease (disorder)
+Haverhill Community Based Outpatient Clinic (CBOC),Acute bronchitis (disorder)
+NASHOBA VALLEY MEDICAL CENTER,Acute bronchitis (disorder)
+NASHOBA VALLEY MEDICAL CENTER,Laceration of hand
+NASHOBA VALLEY MEDICAL CENTER,Laceration of foot
+NASHOBA VALLEY MEDICAL CENTER,Fracture subluxation of wrist
+SHRINERS' HOSPITAL FOR CHILDREN - BOSTON  THE,Acute bronchitis (disorder)
+RIVERSIDE RADIOLOGY MEDICAL GROUP INC,Hypertension
+ADAMS PHYSICAL THERAPY  LLC,Prediabetes
+DENTAL SURGEONS OF FALL RIVER PC,Diabetes
+DENTAL SURGEONS OF FALL RIVER PC,Hypertension
+Fitchburg Outpatient Clinic,Neoplasm of prostate
+Fitchburg Outpatient Clinic,Acute bronchitis (disorder)
+PCP4453,Hypertension
+PCP9047,Escherichia coli urinary tract infection
+New Bedford Outpatient Clinic,Acute bronchitis (disorder)
+New Bedford Outpatient Clinic,Neoplasm of prostate
+Springfield Vet Center,Acute bronchitis (disorder)
+MARTHA'S VINEYARD HOSPITAL INC,Fracture of ankle
+MARTHA'S VINEYARD HOSPITAL INC,Laceration of forearm
+MARTHA'S VINEYARD HOSPITAL INC,Fracture of forearm
+PCP13802,Prediabetes
+New Bedford Vet Center,Neoplasm of prostate
+ATHOL MEMORIAL HOSPITAL,Acute bronchitis (disorder)
+ATHOL MEMORIAL HOSPITAL,Injury of medial collateral ligament of knee
+ATHOL MEMORIAL HOSPITAL,Facial laceration
+ATHOL MEMORIAL HOSPITAL,Laceration of forearm
+PCP52699,Hypertension
+PCP77608,Alzheimer's disease (disorder)
+VA Boston Healthcare System  Brockton Campus,Acute bronchitis (disorder)
+PCP3184,Prediabetes
+PCP26077,Prediabetes
+PCP118611,Cystitis
+CAMBRIDGE PUBLIC HEALTH COMMISSION,Hypertension
+HAMPDEN PODIATRY ASSOCIATES,Hypertension
+SOUTH SHORE RADIOLOGICAL ASSOCIATES  INC.,Hypertension
+HEBREW REHABILITATION CENTER,Prediabetes
+MILTON CHIROPRACTIC AND REHABILITATION INC,Alzheimer's disease (disorder)
+MERRIMACK VALLEY PHYSICAL THERAPY,Diabetes
+MERRIMACK VALLEY PHYSICAL THERAPY,Hypertension
