@@ -1,3 +1,4 @@
 node_modules/
 config/default.json
-Machine_Learning_Models/regressor_cost_prediction.sav
+assets/
+CPages/
