@@ -81,7 +81,7 @@
             <div class="collapse" id="ui-basic">
               <ul class="nav flex-column sub-menu">
                 <li class="nav-item">
-                  <a class="nav-link" href="/fitness/fitness_para">Fitness Parameters</a>
+                  <a class="nav-link" href="/fitbit/fitness_para">Fitness Parameters</a>
                 </li>
                 <li class="nav-item">
                   <a class="nav-link" href="#">Physiotherapy</a>
@@ -180,41 +180,24 @@
           <div class="content-wrapper pb-0" >
             <div class="row">
               <div class="col-md-9">
-                <div class="card" style="border-radius:20px;">
-                  <div class="card-headern" style="background-color: #FF704F;color:white; padding: 15px;border-radius:20px">
-                    <h4>Check Symptoms</h4>
-                  </div>
-                  <div class="card-body">
-                    <form method="POST" action="/ml/diseases_pred">
-                      <div class="form-group">
-                        <label for="exampleFormControlSelect1">Symptoms</label>
-                        <select name="sym" class="ui fluid search dropdown" multiple="">
-                            <% sym.forEach((symptom)=>{ %>
-                                <option value="<%= symptom %>"><%= symptom %></option>
-                            <% }) %>
-                        </select>
-                      </div>
-                      <div class="form-group">
-                        <label for="bodyTemp">Enter body temperature</label>
-                        <input type="number" class="form-control" id="bodyTemp" placeholder="Temperature in degree F" />
-                      </div>
-                      <div class="form-group">
-                        <label for="duration">Duration</label>
-                        <input type="number" class="form-control" id="duration" placeholder="Duration (days)" />
-                      </div>
-                      <div class="form-group">
-                        <label for="duration">Severity</label>
-                        <select class="form-control form-control-lg" id="severity">
-                          <option>Mild</option>
-                          <option>Moderate</option>
-                          <option>Extreme</option>
-                        </select>
-                      </div>
-                      <button type="submit" class="btn btn-primary">Submit</button>
-                    </form>
-                  </div>
-                </div>
-              </div>
+                <h4>Conditions that match your symptoms <button type="submit" class="btn btn-warning"><a href="/ml/diseases_pred" style="color: white; text-decoration: none">Back</a></button></h4><br>
+                <% let x = 0; %>
+                <% for(x=0;x< diseases.length;x++){ %>
+                    <div class="row">
+                        <div class="col-sm-12 stretch-card" style="height: 120px">
+                            <div class="card">
+                                <div class="card-body">
+                                <h5><%= diseases[x] %> &nbsp; <span style="color: #EE5B5A"><%= chances[x]%></span></h5>
+                                <div class="progress">
+                                    <div class="progress-bar" role="progressbar" style="width: <%= chances[x] %>%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    </div>
+                    <br>
+                <% } %>
+            </div>
               <div class="col-md-3">
                 <div class="human-body">
                   <svg data-position="head" class="head" xmlns="http://www.w3.org/2000/svg" width="56.594" height="95.031" viewBox="0 0 56.594 95.031"><path d="M15.92 68.5l8.8 12.546 3.97 13.984-9.254-7.38-4.622-15.848zm27.1 0l-8.8 12.546-3.976 13.988 9.254-7.38 4.622-15.848zm6.11-27.775l.108-11.775-21.16-14.742L8.123 26.133 8.09 40.19l-3.24.215 1.462 9.732 5.208 1.81 2.36 11.63 9.72 11.018 10.856-.324 9.56-10.37 1.918-11.952 5.207-1.81 1.342-9.517zm-43.085-1.84l-.257-13.82L28.226 11.9l23.618 15.755-.216 10.37 4.976-17.085L42.556 2.376 25.49 0 10.803 3.673.002 24.415z"/></svg>

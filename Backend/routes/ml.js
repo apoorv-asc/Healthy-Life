@@ -69,8 +69,11 @@ router.post('/diseases_pred',async (req,res)=>{
                 'Content-Type': 'application/json',
             }
         })
-        console.log(result.data)
-        res.send(result.data);
+        res.render("disease_pred_result",
+        {
+            "diseases":result.data.Diseases,
+            "chances":result.data.Probabilities
+        });
     }catch(err){
         res.send(err);
     }

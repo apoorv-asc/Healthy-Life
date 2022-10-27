@@ -24,12 +24,6 @@
     <script src="./charts.js"></script>
     <!-- End layout styles -->
     <link rel="shortcut icon" href="/assets/images/favicon.png" />
-    <script>
-        const cal = "<%= Calories %>"
-        var move_mins = "<%= Move_Mins %>"
-        var distance = "<%= Distance %>"
-        var Dates = ("<%= Dates %>".replace(/(^,)|(,$)/g, "")).split(",");
-    </script>
   </head>
   <body>
     <div class="container-scroller">
@@ -172,98 +166,146 @@
         <!-- partial -->
         <div class="main-panel">
           <div class="content-wrapper pb-0">
-            <!-- basic user info -->
-            <div class="row">
-              <div class="col-lg-3 grid-margin stretch-card">
-                <div class="card usrInfo">
-                  <div class="card-body">
-                    <h6 class="heading">Height</h6>
-                    167 cm
-                  </div>
+            <div class="card" style="border-radius:20px">
+                <div class="card-headern" style="background-color: #FF704F;color:white; padding: 15px;border-radius:20px">
+                    <h4>Enter Patient and Surgical Information</h4>
                 </div>
-              </div>
-              <div class="col-lg-3 grid-margin stretch-card">
-                <div class="card usrInfo">
-                  <div class="card-body">
-                    <h6 class="heading">Weight</h6>
-                    56 kg
-                  </div>
+                <div class="card-body">
+                    <form action="/user/health_risk" method="post">
+                        <label for="exampleFormControlSelect1">Procedure (CPT Code)</label>
+                        <select class="form-control form-control-lg" id="exampleFormControlSelect1">
+                            <option>78272	Vit B-12 absorp combined</option>
+                            <option>95831	Limb muscle testing manual</option>
+                            <option>95832	Hand muscle testing manual</option>
+                            <option>95833	Body muscle testing manual</option>
+                            <option>95834	Body muscle testing manual</option>
+                            <option>95851	Range of motion measurements</option>
+                            <option>95852	Range of motion measurements</option>
+                            <option>21243 Arthroplasty, temporomandibular joint, with prosthetic joint replacement</option>
+                            <option>26535 Arthroplasty, interphalangeal joint; each joint</option>
+                            <option>72170	X-ray exam of pelvis</option>
+                            <option>73560	X-ray exam of knee 1 or 2</option>
+                        </select><br>
+                        Are there other potential appropriate treatment options?
+                        <div class="row">
+                            <div class="col-md-4">
+                                <div class="form-check form-check-flat form-check-primary">
+                                    <label class="form-check-label">
+                                        <input type="checkbox" class="form-check-input" /> Other Surgical Options </label>
+                                  </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="form-check form-check-flat form-check-primary">
+                                    <label class="form-check-label">
+                                        <input type="checkbox" class="form-check-input" /> Other Non-operative options </label>
+                                  </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="form-check form-check-flat form-check-primary">
+                                    <label class="form-check-label">
+                                        <input type="checkbox" class="form-check-input" /> None </label>
+                                  </div>
+                            </div>
+                        </div><br>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <label for="ageGroup">Age Group</label>
+                                <select class="form-control form-control-lg" id="ageGroup">
+                                    <option>Under 65 years</option>
+                                    <option>Under 65-74 years</option>
+                                    <option>Under 75-84 years</option>
+                                    <option>85 years or older</option>
+                                </select><br>
+                                <label for="sex">Sex</label>
+                                <select class="form-control form-control-lg" id="sex">
+                                    <option>Male</option>
+                                    <option>Female</option>
+                                    <option>Other</option>
+                                </select><br>
+                                <label for="emergencyCase">Emergency Case</label>
+                                <select class="form-control form-control-lg" id="emergencyCase">
+                                    <option>No</option>
+                                    <option>Yes</option>
+                                </select><br>
+                                <label for="patientClass">ASA Patient Class</label>
+                                <select class="form-control form-control-lg" id="patientClass">
+                                    <option>Healthy Patient</option>
+                                    <option>Mild Systemic disease</option>
+                                    <option>Severe Systemic disease</option>
+                                    <option>Constant threat to life</option>
+                                    <option>Moribund / not expected to survive surgery</option>
+                                </select><br>
+                                <label for="steroid">Steroid use for chronic condition</label>
+                                <select class="form-control form-control-lg" id="steroid">
+                                    <option>No</option>
+                                    <option>Yes</option>
+                                </select><br>
+                                <label for="ventilator">Ventilator Dependent</label>
+                                <select class="form-control form-control-lg" id="ventilator">
+                                    <option>No</option>
+                                    <option>Yes</option>
+                                </select><br>
+                                <label for="cancer">Disseminated Cancer</label>
+                                <select class="form-control form-control-lg" id="cancer">
+                                    <option>No</option>
+                                    <option>Yes</option>
+                                </select><br>
+                            </div>
+                            <div class="col-md-6">
+                                <label for="diabetes">Has Diabetes</label>
+                                <select class="form-control form-control-lg" id="diabetes">
+                                    <option>No</option>
+                                    <option>Oral</option>
+                                    <option>Insulin</option>
+                                </select><br>
+                                <label for="hypertension">Hypertension requiring medication </label>
+                                <select class="form-control form-control-lg" id="hypertension">
+                                    <option>No</option>
+                                    <option>Yes</option>
+                                </select><br>
+                                <label for="heartFailure">Heart Failure in 30 days prior to surgery </label>
+                                <select class="form-control form-control-lg" id="heartFailure">
+                                    <option>No</option>
+                                    <option>Yes</option>
+                                </select><br>
+                                <label for="currentSmoker">Current Smoker within 1 Year </label>
+                                <select class="form-control form-control-lg" id="currentSmoker">
+                                    <option>No</option>
+                                    <option>Yes</option>
+                                </select><br>
+                                <label for="dialysis">Dialysis</label>
+                                <select class="form-control form-control-lg" id="dialysis">
+                                    <option>No</option>
+                                    <option>Yes</option>
+                                </select><br>
+                                <label for="renalFailure">Acute Renal Failure</label>
+                                <select class="form-control form-control-lg" id="renalFailure">
+                                    <option>No</option>
+                                    <option>Yes</option>
+                                </select><br>
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label for="weight">Weight (kg)</label>
+                                            <input type="text" class="form-control" id="weight" placeholder="weight" />
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label for="height">Height (cm)</label>
+                                            <input type="text" class="form-control" id="height" placeholder="height" />
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <button type="submit" class="btn btn-primary"><a style="color: white; text-decoration: none">Calculate</a></button>
+                        
+                    </form>
                 </div>
-              </div>
-              <div class="col-lg-3 grid-margin stretch-card">
-                <div class="card usrInfo">
-                  <div class="card-body">
-                    <h6 class="heading">Blood Group</h6>
-                    B+
-                  </div>
-                </div>
-              </div>
-              <div class="col-lg-3 grid-margin stretch-card">
-                <div class="card usrInfo">
-                  <div class="card-body">
-                    <h6 class="heading">Blood Pressure</h6>
-                    117 systolic <br>
-                    67 diastolic
-                  </div>
-                </div>
-              </div>
             </div>
 
-            <!-- user activities info -->
-            <!-- basic user info -->
-            <div class="row">
-              <div class="col-lg-4 grid-margin stretch-card">
-                <div class="card healthInfo">
-                  <div class="card-body">
-                    <h6 class="heading">Calories Burnt</h6>
-                    <canvas id="caloriesBurnt" height="200px"></canvas>
-                  </div>
-                </div>
-              </div>
-              <div class="col-lg-4 grid-margin stretch-card">
-                <div class="card">
-                  <div class="card-body healthInfo">
-                    <h6 class="heading">Distance Covered</h6>
-                    <canvas id="distanceCovered" height="200px"></canvas>
-                  </div>
-                </div>
-              </div>
-              <div class="col-lg-4 grid-margin stretch-card">
-                <div class="card">
-                  <div class="card-body healthInfo">
-                    <h6 class="heading">Move Mins</h6>
-                    <canvas id="moveMins" height="200px"></canvas>
-                  </div>
-                </div>
-              </div>
-            </div>
-            
-            <!-- set goal -->
-            <div class="row">
-              <div class="col-lg-12 grid-margin stretch-card">
-                <div class="card">
-                  <div class="card-body">
-                    <div class="row">
-                      <div class="col-lg-3 stretch-card"  class="setGoal">
-                        <img src="/assets/images/fitbit/goal.png" height="200px" width="200px">
-                      </div>
-                      <div class="col-lg-9 stretch-card"  class="setGoal">
-                        Set goal
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
           </div>
-          <!-- content-wrapper ends -->
-          <!-- partial:partials/_footer.html -->
-          <footer class="footer">
-            <div class="d-sm-flex justify-content-center justify-content-sm-between">
-              <span class="text-muted text-center text-sm-left d-block d-sm-inline-block">Copyright © 2021 <a href="https://www.bootstrapdash.com/" target="_blank">BootstrapDash</a>. All rights reserved.</span>
-              <span class="float-none float-sm-right d-block mt-1 mt-sm-0 text-center">Hand-crafted & made with <i class="mdi mdi-heart text-danger"></i></span>
-            </div>
-          </footer>
           <!-- partial -->
         </div>
         <!-- main-panel ends -->
@@ -294,94 +336,5 @@
     <!-- Custom js for this page -->
     <script src="/assets/js/dashboard.js"></script>
     <!-- End custom js for this page -->
-
-
-
-    <!-- charts data -->
-    <script>
-      var myChart = new Chart("caloriesBurnt", {
-        type: 'bar',
-        data: {
-            labels: Dates,
-            datasets: [{
-                label: 'Calories Burnt in kcal',
-                data: cal.split(",").map(Number),
-                backgroundColor: '#fce2dc',
-                borderColor: '#FF704F',
-                borderRadius: 5,
-                borderWidth: 1
-            },
-          ]
-        },
-        options: {
-            scales: {
-                y: {
-                    beginAtZero: true
-                }
-            },
-            animation: {
-              animateScale: true,
-              animateRotate: true
-            }
-        }
-      });
-
-      var xValues = Dates;
-      var yValues = distance.split(",").map(Number)
-      var myChart = new Chart("distanceCovered", {
-      type: "line",
-      
-      data: {
-          labels: xValues,
-          legend: {
-            display: true,
-            legendText : ['xyz']
-          }, 
-          datasets: [{
-            backgroundColor: '#fce2dc',
-            borderColor: '#FF704F',
-            label: 'Distance Covered',
-            data: yValues,
-            fill: false,
-            tension: 0.2,
-          }]
-      },
-      //   fill: false,
-      options: {
-          scales: {
-                  y: {
-                      beginAtZero: true
-                  }
-              }
-      }
-    });
-    var myChart = new Chart("moveMins", {
-        type: 'bar',
-        data: {
-            labels: Dates,
-            datasets: [{
-                label: 'move mins per day',
-                data: move_mins.split(",").map(Number),
-                backgroundColor: '#fce2dc',
-                borderColor: '#FF704F',
-                borderRadius: 5,
-                borderWidth: 1
-            },
-          ]
-        },
-        options: {
-            scales: {
-                y: {
-                    beginAtZero: true
-                }
-            },
-            animation: {
-              animateScale: true,
-              animateRotate: true
-            }
-        }
-      });
-
-  </script>
   </body>
 </html>

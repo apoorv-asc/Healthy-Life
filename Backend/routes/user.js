@@ -38,6 +38,13 @@ router.get('/dashboard',isLoggedIn,async (req,res)=>{
     let BucketData = [];
     let heart_points = [];
     let steps = [];
+    let Dates = [];
+
+    for(let x=start_time;x<=end_time;x=x+86400000){
+        let q = new Date(x);
+        Dates.push(q.getDate());
+
+    }
 
     var result = await axios({
         method:"POST",
@@ -93,8 +100,9 @@ router.get('/dashboard',isLoggedIn,async (req,res)=>{
     })
 
     let heart_score = heart_points.reduce((partialSum, a) => partialSum + a, 0);
+    let total_steps = steps.reduce((partialSum, a) => partialSum + a, 0);
 
-    res.render("dashboard",{heart_points,heart_score,steps,person});
+    res.render("dashboard",{heart_points,heart_score,steps,total_steps,Dates,person});
 })
 
 // @route   GET user/create_room
@@ -236,7 +244,7 @@ router.get('/chat',isLoggedIn, async (req,res)=>{
 
     const LoggedInUser = await UserData.findOne({email:res.locals.user.username});
     const Chat = null;
-    res.render('chat_rooms',{rooms:LoggedInUser.chatrooms,prevChat:Chat,username:LoggedInUser.name,id:-1});
+    res.render('Untitled-1',{rooms:LoggedInUser.chatrooms,prevChat:Chat,username:LoggedInUser.name,id:-1});
 })
 
 
@@ -244,9 +252,21 @@ router.get('/chat/:id',isLoggedIn, async (req,res)=>{
 
     const LoggedInUser = await UserData.findOne({email:res.locals.user.username});
     const chat = await Chat.findOne({ChatID:req.params.id});
-    res.render('chat_rooms',{rooms:LoggedInUser.chatrooms,prevChat:chat,id:req.params.id,username:LoggedInUser.name});
+    res.render('Untitled-1',{rooms:LoggedInUser.chatrooms,prevChat:chat,id:req.params.id,username:LoggedInUser.name});
 })
 
+router.get('/health_risk',async (req,res)=>{
+    res.render("health_risk");
+})
+
+router.post('/health_risk',async (req,res)=>{
+    res.render("health_risk_res");
+})
+
+router.get('/review',async (req,res)=>{
+    const user = await UserData.findOne({email:res.locals.user.username});
+    res.render('review.ejs',{user});
+})
 
 
 

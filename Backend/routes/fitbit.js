@@ -72,10 +72,10 @@ router.get('/connect',isLoggedIn,async (req,res)=>{
         {$set:{token:tokens.tokens.access_token,token_time:(new Date(tokens.tokens.expiry_date)).getTime()}}
     )
 
-    res.redirect('/fitbit/home');
+    res.redirect('/fitbit/fitness_para');
 })
 
-router.get('/home',isLoggedIn,async (req,res)=>{
+router.get('/fitness_para',isLoggedIn,async (req,res)=>{
     var today = new Date();
     var start_time = new Date(today.getFullYear(),today.getMonth(),today.getDate()-6).getTime();
     var end_time = new Date(today.getFullYear(),today.getMonth(),today.getDate()+1).getTime();
@@ -83,7 +83,6 @@ router.get('/home',isLoggedIn,async (req,res)=>{
 
     const person = await UserData.findOne({email:res.locals.user.username});
     if(person.token_time == undefined || person.token_time<(new Date()).getTime()){
-        console.log("Going to connect");
         res.redirect("https://accounts.google.com/o/oauth2/v2/auth?access_type=offline&scope=https%3A%2F%2Fwww.googleapis.com%2Fauth%2Ffitness.activity.read%20profile%20email%20openid%20https%3A%2F%2Fwww.googleapis.com%2Fauth%2Ffitness.activity.write%20profile%20email%20openid%20https%3A%2F%2Fwww.googleapis.com%2Fauth%2Ffitness.location.read%20https%3A%2F%2Fwww.googleapis.com%2Fauth%2Ffitness.location.write%20https%3A%2F%2Fwww.googleapis.com%2Fauth%2Ffitness.body.read%20profile%20email%20openid%20https%3A%2F%2Fwww.googleapis.com%2Fauth%2Ffitness.body.write%20profile%20email%20openid%20https%3A%2F%2Fwww.googleapis.com%2Fauth%2Ffitness.blood_glucose.read&state=%7B%7D&response_type=code&client_id=385413997223-482vhtj4oucaaidu10jvgu018cdh88cf.apps.googleusercontent.com&redirect_uri=http%3A%2F%2Flocalhost%3A3001%2Ffitbit%2Fconnect");
     }
         

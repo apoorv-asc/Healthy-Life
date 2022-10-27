@@ -13,10 +13,9 @@
     <!-- Plugin css for this page -->
     <link rel="stylesheet" href="/assets/vendors/jquery-bar-rating/css-stars.css" />
     <link rel="stylesheet" href="/assets/vendors/font-awesome/css/font-awesome.min.css" />
-    <script src="https://code.jquery.com/jquery-1.10.2.min.js"></script>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.0/dist/css/bootstrap.min.css" rel="stylesheet">
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.0/dist/js/bootstrap.bundle.min.js"></script>
+    
     <!-- End plugin css for this page -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@3.9.1/dist/chart.min.js"></script>
     <!-- inject:css -->
     <!-- endinject -->
     <!-- Layout styles -->
@@ -24,6 +23,11 @@
     <link rel="stylesheet" href="/css/index.css">
     <!-- End layout styles -->
     <link rel="shortcut icon" href="/assets/images/favicon.png" />
+    <script>
+      var heart_points = "<%= heart_points %>"
+      var steps = "<%= steps %>"
+      var Dates = ("<%= Dates %>".replace(/(^,)|(,$)/g, "")).split(",");
+    </script>
   </head>
   <body>
     <div class="container-scroller">
@@ -64,7 +68,7 @@
             </a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="pages/icons/mdi.html">
+            <a class="nav-link" href="#">
               <i class="mdi mdi-pill menu-icon"></i>
               <span class="menu-title">Medications</span>
             </a>
@@ -78,33 +82,33 @@
             <div class="collapse" id="ui-basic">
               <ul class="nav flex-column sub-menu">
                 <li class="nav-item">
-                  <a class="nav-link" href="pages/ui-features/buttons.html">Fitness Parameters</a>
+                  <a class="nav-link" href="/fitbit/fitness_para">Fitness Parameters</a>
                 </li>
                 <li class="nav-item">
-                  <a class="nav-link" href="pages/ui-features/dropdowns.html">Physiotherapy</a>
+                  <a class="nav-link" href="#">Physiotherapy</a>
                 </li>
                 <li class="nav-item">
-                  <a class="nav-link" href="pages/ui-features/typography.html">Health Risk</a>
+                  <a class="nav-link" href="/user/health_risk">Health Risk</a>
                 </li>
               </ul>
             </div>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="pages/forms/basic_elements.html">
+            <a class="nav-link" href="/ml/cost_pred">
               <i class="mdi mdi-format-list-bulleted menu-icon"></i>
-              <span class="menu-title">Patient Archives</span>
+              <span class="menu-title">Cost Evaluation</span>
             </a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="pages/charts/chartjs.html">
+            <a class="nav-link" href="#">
               <i class="mdi mdi-account menu-icon"></i>
               <span class="menu-title">Profile</span>
             </a>
           </li>
           <li class="nav-item pt-3">
-            <a class="nav-link" href="http://bootstrapdash.com/demo/plus-free/documentation/documentation.html" target="_blank">
+            <a class="nav-link" href="/user/review">
               <i class="mdi mdi mdi-comment-question-outline menu-icon"></i>
-              <span class="menu-title">FAQ</span>
+              <span class="menu-title">Patient Review</span>
             </a>
           </li>
         </ul>
@@ -239,7 +243,7 @@
                     <div class="text-white">
                       <h1 class="font-20 font-weight-semibold mb-0"> AI Health Checkup </h1>
                       <p class="font-10 font-weight-semibold"> Pre Medical Diagnosis </p>
-                      <button class="btn bg-white font-12">Check Now</button>
+                      <button class="btn bg-white font-12"><a href = "/ml/diseases_pred">Check Now</a></button>
                     </div>
                   </div>
                 </div>
@@ -254,10 +258,10 @@
                       <div class="card-title"><span style="color:orangered">Heart Points</span> <small class="d-block text-muted">Last 7 Days</small>
                       </div>
                     </div>
-                    <h3 class="font-weight-bold mb-0"><span class="text-success h5"><i class="mdi mdi-heart-outline"></i>211 pts</span>
+                    <h3 class="font-weight-bold mb-0"><span class="text-success h5"><i class="mdi mdi-heart-outline"></i><%= heart_score%></span>
                     </h3>
                     <div class="line-chart-wrapper">
-                      <canvas id="linechart" height="80"></canvas>
+                      <canvas id="caloriesBurnt" height="150px"></canvas>
                     </div>
                   </div>
                 </div>
@@ -272,7 +276,7 @@
                     <h3 class="font-weight-bold mb-0"><span class="text-success h5"><i class="mdi mdi-walk"></i>54,462 steps</span>
                     </h3>
                     <div class="bar-chart-wrapper">
-                      <canvas id="barchart" height="80"></canvas>
+                      <canvas id="distanceCovered" height="150px"></canvas>
                     </div>
                   </div>
                 </div>
@@ -456,6 +460,63 @@
     </div>
     <!-- container-scroller -->
     <!-- plugins:js -->
+    <script>
+      var myChart = new Chart("caloriesBurnt", {
+        type: 'bar',
+        data: {
+            labels: Dates,
+            datasets: [{
+                label: 'Heart Points',
+                data: heart_points.split(",").map(Number),
+                backgroundColor: '#fce2dc',
+                borderColor: '#FF704F',
+                borderRadius: 5,
+                borderWidth: 1
+            },
+          ]
+        },
+        options: {
+            scales: {
+                y: {
+                    beginAtZero: true
+                }
+            },
+            animation: {
+              animateScale: true,
+              animateRotate: true
+            }
+        }
+      });
+      var xValues = Dates;
+      var yValues = steps.split(",").map(Number);
+      var myChart = new Chart("distanceCovered", {
+      type: "line",
+      
+      data: {
+          labels: xValues,
+          legend: {
+            display: true,
+            legendText : ['xyz']
+          }, 
+          datasets: [{
+            backgroundColor: '#fce2dc',
+            borderColor: '#FF704F',
+            label: 'Steps Covered',
+            data: yValues,
+            fill: false,
+            tension: 0.2,
+          }]
+      },
+      //   fill: false,
+      options: {
+          scales: {
+                  y: {
+                      beginAtZero: true
+                  }
+              }
+      }
+    });
+    </script>
     <script src="/assets/vendors/js/vendor.bundle.base.js"></script>
     <!-- endinject -->
     <!-- Plugin js for this page -->

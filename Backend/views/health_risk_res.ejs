@@ -43,19 +43,19 @@
             </a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="./index.html">
+            <a class="nav-link" href="/user/dashboard">
               <i class="mdi mdi-compass-outline menu-icon"></i>
               <span class="menu-title">Dashboard</span>
             </a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="./chat.html">
+            <a class="nav-link" href="/user/chat">
               <i class="mdi mdi-account-multiple menu-icon"></i>
               <span class="menu-title">Health Groups</span>
             </a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="./medication.html">
+            <a class="nav-link" href="#">
               <i class="mdi mdi-pill menu-icon"></i>
               <span class="menu-title">Medications</span>
             </a>
@@ -69,31 +69,31 @@
             <div class="collapse" id="ui-basic">
               <ul class="nav flex-column sub-menu">
                 <li class="nav-item">
-                  <a class="nav-link" href="./fitbit.html">Fitness Parameters</a>
+                  <a class="nav-link" href="/fitbit/fitness_para">Fitness Parameters</a>
                 </li>
                 <li class="nav-item">
-                  <a class="nav-link" href="./physiotherapy.html">Physiotherapy</a>
+                  <a class="nav-link" href="#">Physiotherapy</a>
                 </li>
                 <li class="nav-item">
-                  <a class="nav-link" href="./health-risk-form.html">Health Risk</a>
+                  <a class="nav-link" href="/user/health_risk">Health Risk</a>
                 </li>
               </ul>
             </div>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="./cost-predictor.html">
+            <a class="nav-link" href="/ml/cost_pred">
               <i class="mdi mdi-format-list-bulleted menu-icon"></i>
               <span class="menu-title">Cost Evaluation</span>
             </a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="./profile.html">
+            <a class="nav-link" href="#">
               <i class="mdi mdi-account menu-icon"></i>
               <span class="menu-title">Profile</span>
             </a>
           </li>
           <li class="nav-item pt-3">
-            <a class="nav-link" href="./patient-review.html" target="_blank">
+            <a class="nav-link" href="/user/review" target="_blank">
               <i class="mdi mdi mdi-comment-question-outline menu-icon"></i>
               <span class="menu-title">Patient Review</span>
             </a>
@@ -107,7 +107,7 @@
               <span class="mdi mdi-chevron-double-left"></span>
             </button>
             <div class="text-center navbar-brand-wrapper d-flex align-items-center justify-content-center">
-              <a class="navbar-brand brand-logo-mini" href="index.html"><img src="/assets/images/logo-mini.svg" alt="logo" /></a>
+              <a class="navbar-brand brand-logo-mini" href="/user/dashboard"><img src="/assets/images/logo-mini.svg" alt="logo" /></a>
             </div>
             <ul class="navbar-nav">
               <li class="nav-item dropdown">
@@ -153,7 +153,7 @@
             </ul>
             <ul class="navbar-nav navbar-nav-right">
               <li class="nav-item nav-logout d-none d-lg-block">
-                <a class="nav-link" href="index.html">
+                <a class="nav-link" href="/user/dashboard">
                   <i class="mdi mdi-home-circle"></i>
                 </a>
               </li>
@@ -166,73 +166,122 @@
         <!-- partial -->
         <div class="main-panel">
           <div class="content-wrapper pb-0">
-            <div class="card" style="border-radius:20px">
-                <div class="card-headern" style="background-color: #FF704F;color:white; padding: 15px;border-radius:20px">
-                    <h4>Inpatient Cost Prediction</h4>
+            <div class="col-lg-12 grid-margin stretch-card">
+                <div class="card">
+                  <div class="card-header"><h3>Surgical Risk Analysis</h3></div>
+                  <div class="card-body">
+                    <p class="card-description"> Procedure: 26535 - Arthroplasty, interphalangeal joint; each joint <br>
+                        Risk Factors: Mild systemic disease, Diabetes (Oral), Smoker
+                    </p>
+                    <div class="table-responsive">
+                      <table class="table table-bordered">
+                        <thead>
+                          <tr>
+                            <th><strong>Outcomes</strong></th>
+                            <th><strong>Outcomes Average Scale</strong></th>
+                            <th><strong>Your Risk</strong></th>
+                            <th><strong>Average Risk</strong></th>
+                            <th><strong>Chances of Outcome</strong></th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                          <tr>
+                            <td>Serious Complication</td>
+                            <td>
+                                <div class="progress" style="background-color: rgb(255, 251, 213)">
+                                    <div class="progress-bar bg-warning" role="progressbar" style="width: 1.4%;" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
+                                </div>
+                            </td>
+                            <td>1.4%</td>
+                            <td>1.5%</td>
+                            <td>Average</td>
+                          </tr>
+                          <tr>
+                            <td>Any Complication</td>
+                            <td>
+                                <div class="progress" style="background-color: rgb(255, 251, 213)">
+                                    <div class="progress-bar bg-warning" role="progressbar" style="width: 1.8%;" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
+                                </div>
+                            </td>
+                            <td>1.8%</td>
+                            <td>1.5%</td>
+                            <td>Average</td>
+                          </tr>
+                          <tr>
+                            <td>Cardiac Complication</td>
+                            <td>
+                                <div class="progress" style="background-color: rgb(218, 243, 217)">
+                                    <div class="progress-bar bg-success" role="progressbar" style="width: 0.1%;" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
+                                </div>
+                            </td>
+                            <td>0.1%</td>
+                            <td>0.1%</td>
+                            <td>Below Average</td>
+                          </tr>
+                          <tr>
+                            <td>Surgical Site Infection</td>
+                            <td>
+                                <div class="progress" style="background-color: rgb(255, 228, 226)">
+                                    <div class="progress-bar bg-danger" role="progressbar" style="width: 1.6%;" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
+                                </div>
+                            </td>
+                            <td>1.6%</td>
+                            <td>1.4%</td>
+                            <td>Above Average</td>
+                          </tr>
+                          <tr>
+                            <td>Renal Failure</td>
+                            <td>
+                                <div class="progress" style="background-color: rgb(218, 243, 217)">
+                                    <div class="progress-bar bg-success" role="progressbar" style="width: 0.1%;" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
+                                </div>
+                            </td>
+                            <td>0.1%</td>
+                            <td>0.1%</td>
+                            <td>Below Average</td>
+                          </tr>
+                          <tr>
+                            <td>Readmission</td>
+                            <td>
+                                <div class="progress" style="background-color: rgb(218, 243, 217)">
+                                    <div class="progress-bar bg-success" role="progressbar" style="width: 0.4%;" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
+                                </div>
+                            </td>
+                            <td>0.4%</td>
+                            <td>0.5%</td>
+                            <td>Below Average</td>
+                          </tr>
+                          <tr>
+                            <td>Return to OR</td>
+                            <td>
+                                <div class="progress" style="background-color: rgb(255, 228, 226)">
+                                    <div class="progress-bar bg-danger" role="progressbar" style="width: 0.7%;" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
+                                </div>
+                            </td>
+                            <td>0.7%</td>
+                            <td>0.6%</td>
+                            <td>Above Average</td>
+                          </tr>
+                          <tr>
+                            <td>Readmission</td>
+                            <td>
+                                <div class="progress" style="background-color: rgb(218, 243, 217)">
+                                    <div class="progress-bar bg-success" role="progressbar" style="width: 0.3%;" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
+                                </div>
+                            </td>
+                            <td>0.3%</td>
+                            <td>0.8%</td>
+                            <td>Below Average</td>
+                          </tr>
+                        </tbody>
+                      </table>
+                    </div><br>
+                    <h4 style="color: #EE5B5A;">Predicted Length of Hospital Stay: 2 days</h4>
+                    <button class="btn btn-primary"><a href="/user/health_risk" style="color: white; text-decoration: none">Back</a></button>
+                  </div>
                 </div>
-                <div class="card-body">
-                    <form method="post" action="/ml/cost_pred">
-                        <div class="form-group row">
-                          <div class="col-md-6">
-                            <label for="encounter">Encounters</label>
-                            <select name="enc" class="form-control form-control-lg" id="encounter">
-                                <% encounters.forEach((enc)=>{ %>
-                                    <option value="<%= enc %>"><%= enc %></option>
-                                <% }) %>
-                            </select>
-                          </div>
-                          <div class="col-md-6">
-                            <!-- TODO :add hospitals -->
-                            <label for="hospitals">Hospitals</label>
-                            <select name="hosp" class="form-control form-control-lg" id="hospitals">
-                                <% hospitals.forEach((hosp)=>{ %>
-                                    <option value="<%= hosp %>"><%= hosp %></option>
-                                <% }) %>
-                            </select>
-                          </div>
-                        </div>
-                        <div class="form-group row">
-                          <div class="col-md-6">
-                            <label for="description">Description</label>
-                            <select name="desc" class="form-control form-control-lg" id="description">
-                                <% description.forEach((desc)=>{ %>
-                                    <option value="<%= desc %>"><%= desc %></option>
-                                <% }) %>
-                            </select>
-                          </div>
-                          <div class="col-md-6">
-                            <label for="reason">Reason for Admission</label>
-                            <select name="rsn" class="form-control form-control-lg" id="reason">
-                                <% reason.forEach((rsn)=>{ %>
-                                    <option value="<%= rsn %>"><%= rsn %></option>
-                                <% }) %>
-                            </select>
-                          </div>
-                        </div>
-                        <div class="form-group">
-                          <!-- TODO :add diagnosis -->
-                          <label for="diagnosis">Diagnosis</label>
-                          <select name="diag" class="form-control form-control-lg" id="diagnosis">
-                            <% diagnosis.forEach((diag)=>{ %>
-                                <option value="<%= diag %>"><%= diag %></option>
-                            <% }) %>
-                          </select>
-                        </div>
-                        <div class="form-group">
-                          <label for="days">Number of days</label>
-                          <input type="number" name="days" class="form-control" id="days" placeholder="Number of Days admitted" />
-                        </div>
-                        <button type="submit" class="btn btn-primary">
-                            Submit
-                        </button>
-                    </form>
-                    
-                </div>
-            </div>
-            <br>
-          <br>
+              </div>
           </div>
-          
           <!-- partial -->
         </div>
         <!-- main-panel ends -->
