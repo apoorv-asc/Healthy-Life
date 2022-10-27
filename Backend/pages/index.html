@@ -89,10 +89,24 @@
             </div>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="./cost-predictor.html">
+            <a class="nav-link" data-bs-toggle="collapse" href="#ui-basic2" aria-expanded="false" aria-controls="ui-basic">
               <i class="mdi mdi-format-list-bulleted menu-icon"></i>
-              <span class="menu-title">Cost Evaluation</span>
+              <span class="menu-title">Value-Cost Analysis</span>
+              <i class="menu-arrow"></i>
             </a>
+            <div class="collapse" id="ui-basic2">
+              <ul class="nav flex-column sub-menu">
+                <li class="nav-item">
+                  <a class="nav-link" href="./cost-predictor.html">Inpatient Cost</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="./treatment-cost.html">Treatment Cost</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="./outpatient-cost.html">Outpatient Cost</a>
+                </li>
+              </ul>
+            </div>
           </li>
           <li class="nav-item">
             <a class="nav-link" href="./profile.html">
@@ -196,7 +210,7 @@
                         </div>
                       </div>
                       <div class="ps-4">
-                        <h4 class="font-weight-bold text-warning mb-0">4/10</h4>
+                        <h4 class="font-weight-bold text-warning mb-0">4/10 <button type="button" class="btn" onclick="changeText()"><i class="mdi mdi-arrow-right-drop-circle"></i></button></h4>
                         <h6 class="text-muted">Heart Score</h6>
                       </div>
                     </div>
@@ -207,7 +221,7 @@
                         </div>
                       </div>
                       <div class="ps-4">
-                        <h4 class="font-weight-bold text-danger mb-0">3/10</h4>
+                        <h4 class="font-weight-bold text-danger mb-0">3/10 <button type="button" class="btn" onclick="changeText2()"><i class="mdi mdi-arrow-right-drop-circle"></i></button></h4>
                         <h6 class="text-muted">CHA2DS2_VASc Score</h6>
                       </div>
                     </div>
@@ -218,7 +232,7 @@
                         </div>
                       </div>
                       <div class="ps-4">
-                        <h4 class="font-weight-bold text-success mb-0">0.5%</h4>
+                        <h4 class="font-weight-bold text-success mb-0">0.5% <button type="button" class="btn" onclick="changeText3()"><i class="mdi mdi-arrow-right-drop-circle"></i></button></h4>
                         <h6 class="text-muted">Framingham Score</h6>
                       </div>
                     </div>
@@ -227,8 +241,8 @@
               </div>
               <div class="col-sm-5 col-l-5 stretch-card grid-margin">
                 <div class="card">
-                  <div class="card-body">
-                    <h1>TODO</h1>
+                  <div class="card-body" id="showGraph">
+                    nhi ho rha h
                   </div>
                 </div>
               </div>
@@ -255,7 +269,7 @@
                     </div>
                     <h3 class="font-weight-bold mb-0"><span class="text-success h5"><i class="mdi mdi-heart-outline"></i>211 pts</span>
                     </h3>
-                    <div class="line-chart-wrapper">
+                    <div class="line-chart-wrapper" id="showGraph">
                       <canvas id="caloriesBurnt" height="150px"></canvas>
                     </div>
                   </div>
@@ -456,6 +470,21 @@
     <!-- container-scroller -->
     <!-- plugins:js -->
     <script>
+      function changeText(){
+          var element = document.getElementById("showGraph");
+          element.innerHTML = '<canvas id="heartScore" height="250px"></canvas>';
+      }
+      function changeText2(){
+          var element = document.getElementById("showGraph");
+          element.innerHTML = '<h1>hii</h1>';
+      }
+      function changeText3(){
+          var element = document.getElementById("showGraph");
+          element.innerHTML = '<h1>hii 3</h1>';
+      }
+      </script>
+
+    <script>
       var myChart = new Chart("caloriesBurnt", {
         type: 'bar',
         data: {
@@ -511,6 +540,33 @@
               }
       }
     });
+
+    var myChart = new Chart("heartScore", {
+        type: 'bar',
+        data: {
+            labels: ['23rd','24th','25th','26th','27th','28th','29th'],
+            datasets: [{
+                label: 'Heart Points',
+                data: [1399, 1489,1489,1594,1657,1564,1403],
+                backgroundColor: '#fce2dc',
+                borderColor: '#FF704F',
+                borderRadius: 5,
+                borderWidth: 1
+            },
+          ]
+        },
+        options: {
+            scales: {
+                y: {
+                    beginAtZero: true
+                }
+            },
+            animation: {
+              animateScale: true,
+              animateRotate: true
+            }
+        }
+      });
     </script>
     <script src="../assets/vendors/js/vendor.bundle.base.js"></script>
     <!-- endinject -->

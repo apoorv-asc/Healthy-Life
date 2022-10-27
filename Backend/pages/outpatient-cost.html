@@ -5,6 +5,9 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
     <title>Plus Admin</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.4.1/semantic.min.css" rel="stylesheet" />
+    <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.4.1/semantic.min.js"></script>
     <!-- plugins:css -->
     <link rel="stylesheet" href="../assets/vendors/mdi/css/materialdesignicons.min.css">
     <link rel="stylesheet" href="../assets/vendors/flag-icon-css/css/flag-icon.min.css">
@@ -15,10 +18,13 @@
     <link rel="stylesheet" href="../assets/vendors/font-awesome/css/font-awesome.min.css" />
     <!-- End plugin css for this page -->
     <!-- inject:css -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@3.9.1/dist/chart.min.js"></script>
     <!-- endinject -->
     <!-- Layout styles -->
     <link rel="stylesheet" href="../assets/css/demo_1/style.css" />
     <link rel="stylesheet" href="./index.css">
+    <link rel="stylesheet" href="./symptom-checker.css">
+    <script src="./charts.js"></script>
     <!-- End layout styles -->
     <link rel="shortcut icon" href="../assets/images/favicon.png" />
   </head>
@@ -49,19 +55,19 @@
             <span class="nav-item-head">services offered</span>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="index.html">
+            <a class="nav-link" href="./index.html">
               <i class="mdi mdi-compass-outline menu-icon"></i>
               <span class="menu-title">Dashboard</span>
             </a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="pages/icons/mdi.html">
+            <a class="nav-link" href="./chat.html">
               <i class="mdi mdi-account-multiple menu-icon"></i>
               <span class="menu-title">Health Groups</span>
             </a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="pages/icons/mdi.html">
+            <a class="nav-link" href="./medication.html">
               <i class="mdi mdi-pill menu-icon"></i>
               <span class="menu-title">Medications</span>
             </a>
@@ -75,33 +81,47 @@
             <div class="collapse" id="ui-basic">
               <ul class="nav flex-column sub-menu">
                 <li class="nav-item">
-                  <a class="nav-link" href="pages/ui-features/buttons.html">Fitness Parameters</a>
+                  <a class="nav-link" href="./fitbit.html">Fitness Parameters</a>
                 </li>
                 <li class="nav-item">
-                  <a class="nav-link" href="pages/ui-features/dropdowns.html">Physiotherapy</a>
+                  <a class="nav-link" href="./physiotherapy.html">Physiotherapy</a>
                 </li>
                 <li class="nav-item">
-                  <a class="nav-link" href="pages/ui-features/typography.html">Health Risk</a>
+                  <a class="nav-link" href="./health-risk-form.html">Health Risk</a>
                 </li>
               </ul>
             </div>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="pages/forms/basic_elements.html">
+            <a class="nav-link" data-bs-toggle="collapse" href="#ui-basic2" aria-expanded="false" aria-controls="ui-basic">
               <i class="mdi mdi-format-list-bulleted menu-icon"></i>
-              <span class="menu-title">Patient Archives</span>
+              <span class="menu-title">Value-Cost Analysis</span>
+              <i class="menu-arrow"></i>
             </a>
+            <div class="collapse" id="ui-basic2">
+              <ul class="nav flex-column sub-menu">
+                <li class="nav-item">
+                  <a class="nav-link" href="./cost-predictor.html">Inpatient Cost</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="./treatment-cost.html">Treatment Cost</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="./outpatient-cost.html">Outpatient Cost</a>
+                </li>
+              </ul>
+            </div>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="pages/charts/chartjs.html">
+            <a class="nav-link" href="./profile.html">
               <i class="mdi mdi-account menu-icon"></i>
               <span class="menu-title">Profile</span>
             </a>
           </li>
           <li class="nav-item pt-3">
-            <a class="nav-link" href="http://bootstrapdash.com/demo/plus-free/documentation/documentation.html" target="_blank">
+            <a class="nav-link" href="./patient-review.html" target="_blank">
               <i class="mdi mdi mdi-comment-question-outline menu-icon"></i>
-              <span class="menu-title">FAQ</span>
+              <span class="menu-title">Patient Review</span>
             </a>
           </li>
         </ul>
@@ -171,18 +191,13 @@
         </nav>
         <!-- partial -->
         <div class="main-panel">
-          <div class="content-wrapper pb-0">
-
-            
-          </div>
-          <!-- content-wrapper ends -->
-          <!-- partial:partials/_footer.html -->
-          <footer class="footer">
-            <div class="d-sm-flex justify-content-center justify-content-sm-between">
-              <span class="text-muted text-center text-sm-left d-block d-sm-inline-block">Copyright © 2021 <a href="https://www.bootstrapdash.com/" target="_blank">BootstrapDash</a>. All rights reserved.</span>
-              <span class="float-none float-sm-right d-block mt-1 mt-sm-0 text-center">Hand-crafted & made with <i class="mdi mdi-heart text-danger"></i></span>
+          <div class="content-wrapper pb-0" >
+            <div class="card">
+                <div class="card-body">
+                    <div class='tableauPlaceholder' id='viz1666898452221' style='position: relative'><noscript><a href='#'><img alt='medicine-cost ' src='https:&#47;&#47;public.tableau.com&#47;static&#47;images&#47;ou&#47;outpatientcare&#47;medicine-cost&#47;1_rss.png' style='border: none' /></a></noscript><object class='tableauViz'  style='display:none;'><param name='host_url' value='https%3A%2F%2Fpublic.tableau.com%2F' /> <param name='embed_code_version' value='3' /> <param name='site_root' value='' /><param name='name' value='outpatientcare&#47;medicine-cost' /><param name='tabs' value='no' /><param name='toolbar' value='yes' /><param name='static_image' value='https:&#47;&#47;public.tableau.com&#47;static&#47;images&#47;ou&#47;outpatientcare&#47;medicine-cost&#47;1.png' /> <param name='animate_transition' value='yes' /><param name='display_static_image' value='yes' /><param name='display_spinner' value='yes' /><param name='display_overlay' value='yes' /><param name='display_count' value='yes' /><param name='language' value='en-US' /><param name='filter' value='publish=yes' /></object></div>                <script type='text/javascript'>                    var divElement = document.getElementById('viz1666898452221');                    var vizElement = divElement.getElementsByTagName('object')[0];                    if ( divElement.offsetWidth > 800 ) { vizElement.style.width='1000px';vizElement.style.height='627px';} else if ( divElement.offsetWidth > 500 ) { vizElement.style.width='1000px';vizElement.style.height='627px';} else { vizElement.style.width='100%';vizElement.style.height='727px';}                     var scriptElement = document.createElement('script');                    scriptElement.src = 'https://public.tableau.com/javascripts/api/viz_v1.js';                    vizElement.parentNode.insertBefore(scriptElement, vizElement);                </script>
+                </div>
             </div>
-          </footer>
+          </div>
           <!-- partial -->
         </div>
         <!-- main-panel ends -->
@@ -190,6 +205,9 @@
       <!-- page-body-wrapper ends -->
     </div>
     <!-- container-scroller -->
+    <script>
+      $('.ui.dropdown').dropdown();
+    </script>
     <!-- plugins:js -->
     <script src="../assets/vendors/js/vendor.bundle.base.js"></script>
     <!-- endinject -->

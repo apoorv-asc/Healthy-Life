@@ -42,6 +42,15 @@
               </div>
             </a>
           </li>
+          <li class="nav-item pt-3">
+            <a class="nav-link d-block" href="index.html">
+              <img class="sidebar-brand-logo" src="../assets/images/logo.svg" alt="" />
+              <img class="sidebar-brand-logomini" src="../assets/images/logo-mini.svg" alt="" />
+            </a>
+          </li>
+          <li class="pt-2 pb-1">
+            <span class="nav-item-head">services offered</span>
+          </li>
           <li class="nav-item">
             <a class="nav-link" href="./index.html">
               <i class="mdi mdi-compass-outline menu-icon"></i>
@@ -81,10 +90,24 @@
             </div>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="./cost-predictor.html">
+            <a class="nav-link" data-bs-toggle="collapse" href="#ui-basic2" aria-expanded="false" aria-controls="ui-basic">
               <i class="mdi mdi-format-list-bulleted menu-icon"></i>
-              <span class="menu-title">Cost Evaluation</span>
+              <span class="menu-title">Value-Cost Analysis</span>
+              <i class="menu-arrow"></i>
             </a>
+            <div class="collapse" id="ui-basic2">
+              <ul class="nav flex-column sub-menu">
+                <li class="nav-item">
+                  <a class="nav-link" href="./cost-predictor.html">Inpatient Cost</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="./treatment-cost.html">Treatment Cost</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="./outpatient-cost.html">Outpatient Cost</a>
+                </li>
+              </ul>
+            </div>
           </li>
           <li class="nav-item">
             <a class="nav-link" href="./profile.html">
@@ -176,9 +199,9 @@
                           <div class="col-md-6">
                             <label for="encounter">Encounters</label>
                             <select class="form-control form-control-lg" id="encounter">
-                                <option>Ambulatory</option>
-                                <option>Emergency</option>
-                                <option>Other</option>
+                              <option>Ambulatory</option>
+                              <option>Emergency</option>
+                              <option>Other</option>
                             </select>
                           </div>
                           <div class="col-md-6">
@@ -224,7 +247,6 @@
                         </div>
                         <button type="submit" class="btn btn-primary"><a href="cost-predictor-result.html" style="color: white; text-decoration: none">Submit</a></button>
                     </form>
-                    
                 </div>
             </div>
             <br>
