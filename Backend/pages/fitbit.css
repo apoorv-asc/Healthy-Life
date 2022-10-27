@@ -1,0 +1,32 @@
+.usrInfo{
+    border-bottom: 2px solid #FF9925;
+    color: #FF9925;
+    font-size: 20px;
+    padding: -20px;
+}
+.usrInfo .heading{
+    color: black;
+    font-size:14px;
+}
+
+.healthInfo{
+    border-bottom: 2px solid #FF704F;
+    color: #FF704F;
+    font-size: 20px;
+}
+.healthInfo .heading{
+    color: black;
+    font-size:14px;
+
+}
+
+.setGoal{
+    border-bottom: 2px solid #EE5B5A;
+    color: #EE5B5A;
+    font-size: 20px;
+}
+.setGoal .heading{
+    color: black;
+    font-size:14px;
+
+}
