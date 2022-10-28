@@ -9,3 +9,9 @@
 .chat-card{
     height:80vh;
 }
+.hospitalScore{
+    background-color: #00D284;
+}
+.scores{
+    border-right: 1px solid rgb(52, 52, 52);
+}

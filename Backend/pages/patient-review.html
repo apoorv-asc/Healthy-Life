@@ -195,22 +195,69 @@
                 </div>
                 <div class="card-body">
                     <form>
-                      patient name here<br><br>
-                      <label>Rating</label>
-                      <div class="rating" style="font-size:40px">
-                        <input id="star5" name="star" type="radio" value="5" class="radio-btn hide" />
-                        <label for="star5" >☆</label>
-                        <input id="star4" name="star" type="radio" value="4" class="radio-btn hide" />
-                        <label for="star4" >☆</label>
-                        <input id="star3" name="star" type="radio" value="3" class="radio-btn hide" />
-                        <label for="star3">☆</label>
-                        <input id="star2" name="star" type="radio" value="2" class="radio-btn hide" />
-                        <label for="star2" >☆</label>
-                        <input id="star1" name="star" type="radio" value="1" class="radio-btn hide" />
-                        <label for="star1" >☆</label>
-                        <div class="clear"></div>
+                      <div class="form-group">
+                        <label for="reviewtext">Hospital Name</label>
+                        <select class="form-control form-control-lg" id="ageGroup">
+                          <option>Under 65 years</option>
+                          <option>Under 65-74 years</option>
+                          <option>Under 75-84 years</option>
+                          <option>85 years or older</option>
+                        </select>
                       </div>
-                      <br>
+                      <div class="row">
+                        <div class="col-md-4">
+                          <label>Inpatient Care</label>
+                          <div class="rating" style="font-size:40px">
+                            <input id="star5" name="star" type="radio" value="5" class="radio-btn hide" />
+                            <label for="star5" >☆</label>
+                            <input id="star4" name="star" type="radio" value="4" class="radio-btn hide" />
+                            <label for="star4" >☆</label>
+                            <input id="star3" name="star" type="radio" value="3" class="radio-btn hide" />
+                            <label for="star3">☆</label>
+                            <input id="star3" name="star" type="radio" value="3" class="radio-btn hide" />
+                            <label for="star3">☆</label>
+                            <input id="star3" name="star" type="radio" value="3" class="radio-btn hide" />
+                            <label for="star3">☆</label>
+                            <div class="clear"></div>
+                          </div>
+                        </div>
+                        <div class="col-md-4">
+                          <label>Outpatient Care</label>
+                          <div class="rating" style="font-size:40px">
+                            <input id="star5" name="star" type="radio" value="5" class="radio-btn hide" />
+                            <label for="star5" >☆</label>
+                            <input id="star4" name="star" type="radio" value="4" class="radio-btn hide" />
+                            <label for="star4" >☆</label>
+                            <input id="star3" name="star" type="radio" value="3" class="radio-btn hide" />
+                            <label for="star3">☆</label>
+                            <input id="star3" name="star" type="radio" value="3" class="radio-btn hide" />
+                            <label for="star3">☆</label>
+                            <input id="star3" name="star" type="radio" value="3" class="radio-btn hide" />
+                            <label for="star3">☆</label>
+                            <div class="clear"></div>
+                          </div>
+                        </div>
+                        <div class="col-md-4">
+                          <label>Treatment Efficiency</label>
+                          <div class="rating" style="font-size:40px">
+                            <input id="star5" name="star" type="radio" value="5" class="radio-btn hide" />
+                            <label for="star5" >☆</label>
+                            <input id="star4" name="star" type="radio" value="4" class="radio-btn hide" />
+                            <label for="star4" >☆</label>
+                            <input id="star3" name="star" type="radio" value="3" class="radio-btn hide" />
+                            <label for="star3">☆</label>
+                            <input id="star3" name="star" type="radio" value="3" class="radio-btn hide" />
+                            <label for="star3">☆</label>
+                            <input id="star3" name="star" type="radio" value="3" class="radio-btn hide" />
+                            <label for="star3">☆</label>
+                            <div class="clear"></div>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="form-group">
+                        <label for="reviewtext">Days of Recovery</label>
+                        <input type="number" class="form-control" id="reviewtext" placeholder="Number of days"/>
+                      </div>
                       <div class="form-group">
                         <label for="reviewtext">Review</label>
                         <textarea type="text" class="form-control" id="reviewtext" placeholder="Type your review here..."></textarea>

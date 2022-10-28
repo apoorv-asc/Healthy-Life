@@ -57,15 +57,35 @@
             </a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="./chat.html">
+            <a class="nav-link" href="./chat-home.html">
               <i class="mdi mdi-account-multiple menu-icon"></i>
               <span class="menu-title">Health Groups</span>
             </a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="./medication.html">
-              <i class="mdi mdi-pill menu-icon"></i>
-              <span class="menu-title">Medications</span>
+            <a class="nav-link" data-bs-toggle="collapse" href="#ui-basic2" aria-expanded="false" aria-controls="ui-basic">
+              <i class="mdi mdi-chart-bubble menu-icon"></i>
+              <span class="menu-title">Value-Cost Analysis</span>
+              <i class="menu-arrow"></i>
+            </a>
+            <div class="collapse" id="ui-basic2">
+              <ul class="nav flex-column sub-menu">
+                <li class="nav-item">
+                  <a class="nav-link" href="./cost-predictor.html">Inpatient Cost</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="./treatment-cost.html">Treatment Cost</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="./outpatient-cost.html">Outpatient Cost</a>
+                </li>
+              </ul>
+            </div>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="./health-risk-form.html">
+              <i class="mdi mdi-alert-octagon menu-icon"></i>
+              <span class="menu-title">Surgical Risk</span>
             </a>
           </li>
           <li class="nav-item">
@@ -81,29 +101,6 @@
                 </li>
                 <li class="nav-item">
                   <a class="nav-link" href="./physiotherapy.html">Physiotherapy</a>
-                </li>
-                <li class="nav-item">
-                  <a class="nav-link" href="./health-risk-form.html">Health Risk</a>
-                </li>
-              </ul>
-            </div>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" data-bs-toggle="collapse" href="#ui-basic2" aria-expanded="false" aria-controls="ui-basic">
-              <i class="mdi mdi-format-list-bulleted menu-icon"></i>
-              <span class="menu-title">Value-Cost Analysis</span>
-              <i class="menu-arrow"></i>
-            </a>
-            <div class="collapse" id="ui-basic2">
-              <ul class="nav flex-column sub-menu">
-                <li class="nav-item">
-                  <a class="nav-link" href="./cost-predictor.html">Inpatient Cost</a>
-                </li>
-                <li class="nav-item">
-                  <a class="nav-link" href="./treatment-cost.html">Treatment Cost</a>
-                </li>
-                <li class="nav-item">
-                  <a class="nav-link" href="./outpatient-cost.html">Outpatient Cost</a>
                 </li>
               </ul>
             </div>
@@ -241,8 +238,31 @@
               </div>
               <div class="col-sm-5 col-l-5 stretch-card grid-margin">
                 <div class="card">
-                  <div class="card-body" id="showGraph">
-                    nhi ho rha h
+                  <div class="card-header" style="background-color:#003049; padding-top: 10px; color:white">
+                    <h3>HOSPITAL Score</h3>
+                  </div>
+                  <div class="card-body hospitalScore">
+                    <div class="row">
+                      <div class="col-md-4 scores">
+                        <h2>3 <span style="font-size:18px">points</span></h2>
+                        <p>Hospital Score</p>
+                      </div>
+                      <div class="col-md-4 scores">
+                        <h2>Low</h2>
+                        <p>Risk group</p>
+                      </div>
+                      <div class="col-md-4">
+                        <h2>5.8%</h2>
+                        <p>Readmission chances</p>
+                      </div>
+                      
+                    </div>
+                  </div>
+                  <div class="card-footer">
+                    <h5>WHO Recommended</h5>
+                    0–4 : low <br>
+                    5-6 : intermediate <br>
+                    7-10: high <br>
                   </div>
                 </div>
               </div>
@@ -385,73 +405,8 @@
             </div>
             </div>
             <!-- doughnut chart row starts -->
-            <div class="row">
-              <div class="col-sm-12 stretch-card grid-margin">
-                <div class="card">
-                  <div class="row">
-                    <div class="col-md-4">
-                      <div class="card border-0">
-                        <div class="card-body">
-                          <div class="card-title">Channel Sessions</div>
-                          <div class="d-flex flex-wrap">
-                            <div class="doughnut-wrapper w-50">
-                              <canvas id="doughnutChart1" width="100" height="100"></canvas>
-                            </div>
-                            <div id="doughnut-chart-legend" class="pl-lg-3 rounded-legend align-self-center flex-grow legend-vertical legend-bottom-left"></div>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                    <div class="col-md-4">
-                      <div class="card border-0">
-                        <div class="card-body">
-                          <div class="card-title">News Sessions</div>
-                          <div class="d-flex flex-wrap">
-                            <div class="doughnut-wrapper w-50">
-                              <canvas id="doughnutChart2" width="100" height="100"></canvas>
-                            </div>
-                            <div id="doughnut-chart-legend2" class="pl-lg-3 rounded-legend align-self-center flex-grow legend-vertical legend-bottom-left"></div>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                    <div class="col-md-4">
-                      <div class="card border-0">
-                        <div class="card-body">
-                          <div class="card-title">Device Sessions</div>
-                          <div class="d-flex flex-wrap">
-                            <div class="doughnut-wrapper w-50">
-                              <canvas id="doughnutChart3" width="100" height="100"></canvas>
-                            </div>
-                            <div id="doughnut-chart-legend3" class="pl-lg-3 rounded-legend align-self-center flex-grow legend-vertical legend-bottom-left"></div>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
+            
             <!-- last row starts here -->
-          </div>
-          <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-            <div class="modal-dialog" role="document">
-              <div class="modal-content">
-                <div class="modal-header">
-                  <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
-                  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                  </button>
-                </div>
-                <div class="modal-body">
-                  ...
-                </div>
-                <div class="modal-footer">
-                  <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                  <button type="button" class="btn btn-primary">Save changes</button>
-                </div>
-              </div>
-            </div>
           </div>
           <!-- content-wrapper ends -->
           <!-- partial:partials/_footer.html -->
