@@ -10,6 +10,8 @@ const queryParse = require('query-string');
 const bodyParser = require('body-parser');
 const axios = require('axios');
 
+const NodeCache = require('node-cache')
+const myCache = new NodeCache()
 
 // Body Parser helps to transfer data in forms from one route to other
 app.use(express.urlencoded({ extended: true }))
@@ -177,7 +179,7 @@ router.get('/fitness_para',isLoggedIn,async (req,res)=>{
         }
     })
 
-    res.render("fitbit",{Calories,Dates,Move_Mins,Distance});
+    res.render("fitbit",{Calories,Dates,Move_Mins,Distance,"username":myCache.get('username')});
 })
 
 

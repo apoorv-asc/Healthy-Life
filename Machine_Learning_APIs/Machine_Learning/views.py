@@ -11,9 +11,23 @@ from nltk.tag import pos_tag
 import nltk
 import joblib
 
+from nltk.tag import pos_tag
+from sklearn_crfsuite import CRF, metrics
+from sklearn.metrics import make_scorer,confusion_matrix
+from pprint import pprint
+from sklearn.metrics import f1_score,classification_report
+from sklearn.pipeline import Pipeline
+from sklearn.model_selection import train_test_split as tts
+import string
+import pycrfsuite
+
 regressor = joblib.load("regressor_cost_prediction.sav")
 RFClassifier_disease_predict = joblib.load("RFClassifier_disease_predict.pkl")
 RFClassifier = joblib.load("RFClassifier.pkl")
+# tagger = joblib.load("crf.model")
+
+tagger = pycrfsuite.Tagger()
+tagger.open('crf.model')
 
 def home(request):
     return render(request,"home.html")
@@ -68,3 +82,106 @@ def disease_pred(request):
         prob_arr.append(i*100)
 
     return JsonResponse({"Diseases":disease_arr,"Probabilities":prob_arr})
+
+@csrf_exempt
+def ner(request):
+
+    sigs = ["for 5 to 6 days", "inject 2 units", "x 2 weeks", "x 3 days", "every day", "every 2 weeks", "every 3 days", "every 1 to 2 months", "every 2 to 6 weeks", "every 4 to 6 days", "take two to four tabs", "take 2 to 4 tabs", "take 3 tabs orally bid for 10 days at bedtime", "swallow three capsules tid orally", "take 2 capsules po every 6 hours", "take 2 tabs po for 10 days", "take 100 caps by mouth tid for 10 weeks", "take 2 tabs after an hour", "2 tabs every 4-6 hours", "every 4 to 6 hours", "q46h", "q4-6h", "2 hours before breakfast", "before 30 mins at bedtime", "30 mins before bed", "and 100 tabs twice a month", "100 tabs twice a month", "100 tabs once a month", "100 tabs thrice a month", "3 tabs daily for 3 days then 1 tab per day at bed", "30 tabs 10 days tid", "take 30 tabs for 10 days three times a day", "qid q6h", "bid", "qid", "30 tabs before dinner and bedtime", "30 tabs before dinner & bedtime", "take 3 tabs at bedtime", "30 tabs thrice daily for 10 days ", "30 tabs for 10 days three times a day", "Take 2 tablets a day", "qid for 10 days", "every day", "take 2 caps at bedtime", "apply 3 drops before bedtime", "take three capsules daily", "swallow 3 pills once a day", "swallow three pills thrice a day", "apply daily", "apply three drops before bedtime", "every 6 hours", "before food", "after food", "for 20 days", "for twenty days", "with meals"]
+    input_sigs = [['for', '5', 'to', '6', 'days'], ['inject', '2', 'units'], ['x', '2', 'weeks'], ['x', '3', 'days'], ['every', 'day'], ['every', '2', 'weeks'], ['every', '3', 'days'], ['every', '1', 'to', '2', 'months'], ['every', '2', 'to', '6', 'weeks'], ['every', '4', 'to', '6', 'days'], ['take', 'two', 'to', 'four', 'tabs'], ['take', '2', 'to', '4', 'tabs'], ['take', '3', 'tabs', 'orally', 'bid', 'for', '10', 'days', 'at', 'bedtime'], ['swallow', 'three', 'capsules', 'tid', 'orally'], ['take', '2', 'capsules', 'po', 'every', '6', 'hours'], ['take', '2', 'tabs', 'po', 'for', '10', 'days'], ['take', '100', 'caps', 'by', 'mouth', 'tid', 'for', '10', 'weeks'], ['take', '2', 'tabs', 'after', 'an', 'hour'], ['2', 'tabs', 'every', '4-6', 'hours'], ['every', '4', 'to', '6', 'hours'], ['q46h'], ['q4-6h'], ['2', 'hours', 'before', 'breakfast'], ['before', '30', 'mins', 'at', 'bedtime'], ['30', 'mins', 'before', 'bed'], ['and', '100', 'tabs', 'twice', 'a', 'month'], ['100', 'tabs', 'twice', 'a', 'month'], ['100', 'tabs', 'once', 'a', 'month'], ['100', 'tabs', 'thrice', 'a', 'month'], ['3', 'tabs', 'daily', 'for', '3', 'days', 'then', '1', 'tab', 'per', 'day', 'at', 'bed'], ['30', 'tabs', '10', 'days', 'tid'], ['take', '30', 'tabs', 'for', '10', 'days', 'three', 'times', 'a', 'day'], ['qid', 'q6h'], ['bid'], ['qid'], ['30', 'tabs', 'before', 'dinner', 'and', 'bedtime'], ['30', 'tabs', 'before', 'dinner', '&', 'bedtime'], ['take', '3', 'tabs', 'at', 'bedtime'], ['30', 'tabs', 'thrice', 'daily', 'for', '10', 'days'], ['30', 'tabs', 'for', '10', 'days', 'three', 'times', 'a', 'day'], ['take', '2', 'tablets', 'a', 'day'], ['qid', 'for', '10', 'days'], ['every', 'day'], ['take', '2', 'caps', 'at', 'bedtime'], ['apply', '3', 'drops', 'before', 'bedtime'], ['take', 'three', 'capsules', 'daily'], ['swallow', '3', 'pills', 'once', 'a', 'day'], ['swallow', 'three', 'pills', 'thrice', 'a', 'day'], ['apply', 'daily'], ['apply', 'three', 'drops', 'before', 'bedtime'], ['every', '6', 'hours'], ['before', 'food'], ['after', 'food'], ['for', '20', 'days'], ['for', 'twenty', 'days'], ['with', 'meals']]
+    output_labels = [['FOR', 'Duration', 'TO', 'DurationMax', 'DurationUnit'], ['Method', 'Qty', 'Form'], ['FOR', 'Duration', 'DurationUnit'], ['FOR', 'Duration', 'DurationUnit'], ['EVERY', 'Period'], ['EVERY', 'Period', 'PeriodUnit'], ['EVERY', 'Period', 'PeriodUnit'], ['EVERY', 'Period', 'TO', 'PeriodMax', 'PeriodUnit'], ['EVERY', 'Period', 'TO', 'PeriodMax', 'PeriodUnit'], ['EVERY', 'Period', 'TO', 'PeriodMax', 'PeriodUnit'], ['Method', 'Qty', 'TO', 'Qty', 'Form'], ['Method', 'Qty', 'TO', 'Qty', 'Form'], ['Method', 'Qty', 'Form', 'PO', 'BID', 'FOR', 'Duration', 'DurationUnit', 'AT', 'WHEN'], ['Method', 'Qty', 'Form', 'TID', 'PO'], ['Method', 'Qty', 'Form', 'PO', 'EVERY', 'Period', 'PeriodUnit'], ['Method', 'Qty', 'Form', 'PO', 'FOR', 'Duration', 'DurationUnit'], ['Method', 'Qty', 'Form', 'BY', 'PO', 'TID', 'FOR', 'Duration', 'DurationUnit'], ['Method', 'Qty', 'Form', 'AFTER', 'Period', 'PeriodUnit'], ['Qty', 'Form', 'EVERY', 'Period', 'PeriodUnit'], ['EVERY', 'Period', 'TO', 'PeriodMax', 'PeriodUnit'], ['Q46H'], ['Q4-6H'], ['Qty', 'PeriodUnit', 'BEFORE', 'WHEN'], ['BEFORE', 'Qty', 'M', 'AT', 'WHEN'], ['Qty', 'M', 'BEFORE', 'WHEN'], ['AND', 'Qty', 'Form', 'Frequency', 'Period', 'PeriodUnit'], ['Qty', 'Form', 'Frequency', 'Period', 'PeriodUnit'], ['Qty', 'Form', 'Frequency', 'Period', 'PeriodUnit'], ['Qty', 'Form', 'Frequency', 'Period', 'PeriodUnit'], ['Qty', 'Form', 'Frequency', 'FOR', 'Duration', 'DurationUnit', 'THEN', 'Qty', 'Form', 'Frequency', 'PeriodUnit', 'AT', 'WHEN'], ['Qty', 'Form', 'Duration', 'DurationUnit', 'TID'], ['Method', 'Qty', 'Form', 'FOR', 'Duration', 'DurationUnit', 'Qty', 'TIMES', 'Period', 'PeriodUnit'], ['QID', 'Q6H'], ['BID'], ['QID'],['Qty', 'Form', 'BEFORE', 'WHEN', 'AND', 'WHEN'], ['Qty', 'Form', 'BEFORE', 'WHEN', 'AND', 'WHEN'], ['Method', 'Qty', 'Form', 'AT', 'WHEN'], ['Qty', 'Form', 'Frequency', 'DAILY', 'FOR', 'Duration', 'DurationUnit'], ['Qty', 'Form', 'FOR', 'Duration', 'DurationUnit', 'Frequency', 'TIMES', 'Period', 'PeriodUnit'], ['Method', 'Qty', 'Form', 'Period', 'PeriodUnit'], ['QID', 'FOR', 'Duration', 'DurationUnit'], ['EVERY', 'PeriodUnit'], ['Method', 'Qty', 'Form', 'AT', 'WHEN'], ['Method', 'Qty', 'Form', 'BEFORE', 'WHEN'], ['Method', 'Qty', 'Form', 'DAILY'], ['Method', 'Qty', 'Form', 'Frequency', 'Period', 'PeriodUnit'], ['Method', 'Qty', 'Form', 'Frequency', 'Period', 'PeriodUnit'], ['Method', 'DAILY'], ['Method', 'Qty', 'Form', 'BEFORE', 'WHEN'], ['EVERY', 'Period', 'PeriodUnit'], ['BEFORE', 'FOOD'], ['AFTER', 'FOOD'], ['FOR', 'Duration', 'DurationUnit'], ['FOR', 'Duration', 'DurationUnit'], ['WITH', 'FOOD']]
+
+    whole_data= [[('for', 'FOR'), ('5', 'Duration'), ('to', 'TO'), ('6', 'DurationMax'), ('days', 'DurationUnit')], [('inject', 'Method'), ('2', 'Qty'), ('units', 'Form')], [('x', 'FOR'), ('2', 'Duration'), ('weeks', 'DurationUnit')], [('x', 'FOR'), ('3', 'Duration'), ('days', 'DurationUnit')], [('every', 'EVERY'), ('day', 'Period')], [('every', 'EVERY'), ('2', 'Period'), ('weeks', 'PeriodUnit')], [('every', 'EVERY'), ('3', 'Period'), ('days', 'PeriodUnit')], [('every', 'EVERY'), ('1', 'Period'), ('to', 'TO'), ('2', 'PeriodMax'), ('months', 'PeriodUnit')], [('every', 'EVERY'), ('2', 'Period'), ('to', 'TO'), ('6', 'PeriodMax'), ('weeks', 'PeriodUnit')], [('every', 'EVERY'), ('4', 'Period'), ('to', 'TO'), ('6', 'PeriodMax'), ('days', 'PeriodUnit')], [('take', 'Method'), ('two', 'Qty'), ('to', 'TO'), ('four', 'Qty'), ('tabs', 'Form')], [('take', 'Method'), ('2', 'Qty'), ('to', 'TO'), ('4', 'Qty'), ('tabs', 'Form')], [('take', 'Method'), ('3', 'Qty'), ('tabs', 'Form'), ('orally', 'PO'), ('bid', 'BID'), ('for', 'FOR'), ('10', 'Duration'), ('days', 'DurationUnit'), ('at', 'AT'), ('bedtime', 'WHEN')], [('swallow', 'Method'), ('three', 'Qty'), ('capsules', 'Form'), ('tid', 'TID'), ('orally', 'PO')], [('take', 'Method'), ('2', 'Qty'), ('capsules', 'Form'), ('po', 'PO'), ('every', 'EVERY'), ('6', 'Period'), ('hours', 'PeriodUnit')], [('take', 'Method'), ('2', 'Qty'), ('tabs', 'Form'), ('po', 'PO'), ('for', 'FOR'), ('10', 'Duration'), ('days', 'DurationUnit')], [('take', 'Method'), ('100', 'Qty'), ('caps', 'Form'), ('by', 'BY'), ('mouth', 'PO'), ('tid', 'TID'), ('for', 'FOR'), ('10', 'Duration'), ('weeks', 'DurationUnit')], [('take', 'Method'), ('2', 'Qty'), ('tabs', 'Form'), ('after', 'AFTER'), ('an', 'Period'), ('hour', 'PeriodUnit')], [('2', 'Qty'), ('tabs', 'Form'), ('every', 'EVERY'), ('4-6', 'Period'), ('hours', 'PeriodUnit')], [('every', 'EVERY'), ('4', 'Period'), ('to', 'TO'), ('6', 'PeriodMax'), ('hours', 'PeriodUnit')], [('q46h', 'Q46H')], [('q4-6h', 'Q4-6H')], [('2', 'Qty'), ('hours', 'PeriodUnit'), ('before', 'BEFORE'), ('breakfast', 'WHEN')], [('before', 'BEFORE'), ('30', 'Qty'), ('mins', 'M'), ('at', 'AT'), ('bedtime', 'WHEN')], [('30', 'Qty'), ('mins', 'M'), ('before', 'BEFORE'), ('bed', 'WHEN')], [('and', 'AND'), ('100', 'Qty'), ('tabs', 'Form'), ('twice', 'Frequency'), ('a', 'Period'), ('month', 'PeriodUnit')], [('100', 'Qty'), ('tabs', 'Form'), ('twice', 'Frequency'), ('a', 'Period'), ('month', 'PeriodUnit')], [('100', 'Qty'), ('tabs', 'Form'), ('once', 'Frequency'), ('a', 'Period'), ('month', 'PeriodUnit')], [('100', 'Qty'), ('tabs', 'Form'), ('thrice', 'Frequency'), ('a', 'Period'), ('month', 'PeriodUnit')], [('3', 'Qty'), ('tabs', 'Form'), ('daily', 'Frequency'), ('for', 'FOR'), ('3', 'Duration'), ('days', 'DurationUnit'), ('then', 'THEN'), ('1', 'Qty'), ('tab', 'Form'), ('per', 'Frequency'), ('day', 'PeriodUnit'), ('at', 'AT'), ('bed', 'WHEN')], [('30', 'Qty'), ('tabs', 'Form'), ('10', 'Duration'), ('days', 'DurationUnit'), ('tid', 'TID')], [('take', 'Method'), ('30', 'Qty'), ('tabs', 'Form'), ('for', 'FOR'), ('10', 'Duration'), ('days', 'DurationUnit'), ('three', 'Qty'), ('times', 'TIMES'), ('a', 'Period'), ('day', 'PeriodUnit')], [('qid', 'QID'), ('q6h', 'Q6H')], [('bid', 'BID')], [('qid', 'QID')], [('30', 'Qty'), ('tabs', 'Form'), ('before', 'BEFORE'), ('dinner', 'WHEN'), ('and', 'AND'), ('bedtime', 'WHEN')], [('30', 'Qty'), ('tabs', 'Form'), ('before', 'BEFORE'), ('dinner', 'WHEN'), ('&', 'AND'), ('bedtime', 'WHEN')], [('take', 'Method'), ('3', 'Qty'), ('tabs', 'Form'), ('at', 'AT'), ('bedtime', 'WHEN')], [('30', 'Qty'), ('tabs', 'Form'), ('thrice', 'Frequency'), ('daily', 'DAILY'), ('for', 'FOR'), ('10', 'Duration'), ('days', 'DurationUnit')], [('30', 'Qty'), ('tabs', 'Form'), ('for', 'FOR'), ('10', 'Duration'), ('days', 'DurationUnit'), ('three', 'Frequency'), ('times', 'TIMES'), ('a', 'Period'), ('day', 'PeriodUnit')], [('take', 'Method'), ('2', 'Qty'), ('tablets', 'Form'), ('a', 'Period'), ('day', 'PeriodUnit')], [('qid', 'QID'), ('for', 'FOR'), ('10', 'Duration'), ('days', 'DurationUnit')], [('every', 'EVERY'), ('day', 'PeriodUnit')], [('take', 'Method'), ('2', 'Qty'), ('caps', 'Form'), ('at', 'AT'), ('bedtime', 'WHEN')], [('apply', 'Method'), ('3', 'Qty'), ('drops', 'Form'), ('before', 'BEFORE'), ('bedtime', 'WHEN')], [('take', 'Method'), ('three', 'Qty'), ('capsules', 'Form'), ('daily', 'DAILY')], [('swallow', 'Method'), ('3', 'Qty'), ('pills', 'Form'), ('once', 'Frequency'), ('a', 'Period'), ('day', 'PeriodUnit')], [('swallow', 'Method'), ('three', 'Qty'), ('pills', 'Form'), ('thrice', 'Frequency'), ('a', 'Period'), ('day', 'PeriodUnit')], [('apply', 'Method'), ('daily', 'DAILY')], [('apply', 'Method'), ('three', 'Qty'), ('drops', 'Form'), ('before', 'BEFORE'), ('bedtime', 'WHEN')], [('every', 'EVERY'), ('6', 'Period'), ('hours', 'PeriodUnit')], [('before', 'BEFORE'), ('food', 'FOOD')], [('after', 'AFTER'), ('food', 'FOOD')], [('for', 'FOR'), ('20', 'Duration'), ('days', 'DurationUnit')], [('for', 'FOR'), ('twenty', 'Duration'), ('days', 'DurationUnit')], [('with', 'WITH'), ('meals', 'FOOD')]]
+    sample_data = [[('for', 'IN', 'FOR'), ('5', 'CD', 'Duration'), ('to', 'TO', 'TO'), ('6', 'CD', 'DurationMax'), ('days', 'NNS', 'DurationUnit')],[('inject', 'NN', 'Method'), ('2', 'CD', 'Qty'), ('units', 'NNS', 'Form')],[('x', 'NN', 'FOR'),   ('2', 'CD', 'Duration'), ('weeks', 'NNS', 'DurationUnit')],[('x', 'NN', 'FOR'), ('3', 'CD', 'Duration'), ('days', 'NNS', 'DurationUnit')],[('every', 'DT', 'EVERY'), ('day', 'NN', 'Period')],[('every', 'DT', 'EVERY'),   ('2', 'CD', 'Period'), ('weeks', 'NNS', 'PeriodUnit')],[('every', 'DT', 'EVERY'), ('3', 'CD', 'Period'), ('days', 'NNS', 'PeriodUnit')],[('every', 'DT', 'EVERY'),   ('1', 'CD', 'Period'), ('to', 'TO', 'TO'), ('2', 'CD', 'PeriodMax'), ('months', 'NNS', 'PeriodUnit')],[('every', 'DT', 'EVERY'), ('2', 'CD', 'Period'), ('to', 'TO', 'TO'), ('6', 'CD', 'PeriodMax'), ('weeks', 'NNS', 'PeriodUnit')],[('every', 'DT', 'EVERY'),   ('4', 'CD', 'Period'), ('to', 'TO', 'TO'), ('6', 'CD', 'PeriodMax'), ('days', 'NNS', 'PeriodUnit')],[('take', 'VB', 'Method'), ('two', 'CD', 'Qty'), ('to', 'TO', 'TO'), ('four', 'CD', 'Qty'), ('tabs', 'NNS', 'Form')],[('take', 'VB', 'Method'),  ('2', 'CD', 'Qty'),  ('to', 'TO', 'TO'),  ('4', 'CD', 'Qty'),  ('tabs', 'NNS', 'Form')],[('take', 'VB', 'Method'),  ('3', 'CD', 'Qty'),  ('tabs', 'NNS', 'Form'),  ('orally', 'RB', 'PO'),  ('bid', 'NN', 'BID'),  ('for', 'IN', 'FOR'),  ('10', 'CD', 'Duration'),  ('days', 'NNS', 'DurationUnit'),  ('at', 'IN', 'AT'),  ('bedtime', 'NN', 'WHEN')],[('swallow', 'NN', 'Method'),  ('three', 'CD', 'Qty'),  ('capsules', 'NNS', 'Form'),  ('tid', 'NN', 'TID'),  ('orally', 'RB', 'PO')], [('take', 'VB', 'Method'),  ('2', 'CD', 'Qty'),  ('capsules', 'NNS', 'Form'),  ('po', 'NN', 'PO'),  ('every', 'DT', 'EVERY'),  ('6', 'CD', 'Period'),  ('hours', 'NNS', 'PeriodUnit')], [('take', 'VB', 'Method'),  ('2', 'CD', 'Qty'),  ('tabs', 'NNS', 'Form'),  ('po', 'NN', 'PO'),  ('for', 'IN', 'FOR'),  ('10', 'CD', 'Duration'),  ('days', 'NNS', 'DurationUnit')], [('take', 'VB', 'Method'),  ('100', 'CD', 'Qty'),  ('caps', 'NNS', 'Form'),  ('by', 'IN', 'BY'),  ('mouth', 'NN', 'PO'),  ('tid', 'NN', 'TID'),  ('for', 'IN', 'FOR'),  ('10', 'CD', 'Duration'),  ('weeks', 'NNS', 'DurationUnit')], [('take', 'VB', 'Method'),  ('2', 'CD', 'Qty'),  ('tabs', 'NNS', 'Form'),  ('after', 'IN', 'AFTER'),  ('an', 'DT', 'Period'),  ('hour', 'NN', 'PeriodUnit')], [('2', 'CD', 'Qty'),  ('tabs', 'NNS', 'Form'),  ('every', 'DT', 'EVERY'),  ('4-6', 'JJ', 'Period'),  ('hours', 'NNS', 'PeriodUnit')], [('every', 'DT', 'EVERY'),  ('4', 'CD', 'Period'),  ('to', 'TO', 'TO'),  ('6', 'CD', 'PeriodMax'),  ('hours', 'NNS', 'PeriodUnit')], [('q46h', 'NN', 'Q46H')],[('q4-6h', 'NN', 'Q4-6H')],[('2', 'CD', 'Qty'),  ('hours', 'NNS', 'PeriodUnit'),  ('before', 'IN', 'BEFORE'),  ('breakfast', 'NN', 'WHEN')],[('before', 'IN', 'BEFORE'),  ('30', 'CD', 'Qty'),  ('mins', 'NNS', 'M'),  ('at', 'IN', 'AT'),  ('bedtime', 'NN', 'WHEN')], [('30', 'CD', 'Qty'),  ('mins', 'NNS', 'M'),  ('before', 'IN', 'BEFORE'),  ('bed', 'NN', 'WHEN')],[('and', 'CC', 'AND'),  ('100', 'CD', 'Qty'),  ('tabs', 'NNS', 'Form'),  ('twice', 'RB', 'Frequency'),  ('a', 'DT', 'Period'),  ('month', 'NN', 'PeriodUnit')], [('100', 'CD', 'Qty'),  ('tabs', 'NNS', 'Form'),  ('twice', 'RB', 'Frequency'),  ('a', 'DT', 'Period'),  ('month', 'NN', 'PeriodUnit')],[('100', 'CD', 'Qty'),  ('tabs', 'NNS', 'Form'),  ('once', 'RB', 'Frequency'),  ('a', 'DT', 'Period'),  ('month', 'NN', 'PeriodUnit')],[('100', 'CD', 'Qty'),  ('tabs', 'NNS', 'Form'),  ('thrice', 'NN', 'Frequency'),  ('a', 'DT', 'Period'),  ('month', 'NN', 'PeriodUnit')], [('3', 'CD', 'Qty'),  ('tabs', 'NNS', 'Form'),  ('daily', 'JJ', 'Frequency'),  ('for', 'IN', 'FOR'),  ('3', 'CD', 'Duration'),  ('days', 'NNS', 'DurationUnit'),  ('then', 'RB', 'THEN'),  ('1', 'CD', 'Qty'),  ('tab', 'NN', 'Form'),  ('per', 'IN', 'Frequency'),  ('day', 'NN', 'PeriodUnit'),  ('at', 'IN', 'AT'),  ('bed', 'NN', 'WHEN')],[('30', 'CD', 'Qty'),  ('tabs', 'NNS', 'Form'),  ('10', 'CD', 'Duration'),  ('days', 'NNS', 'DurationUnit'),  ('tid', 'NN', 'TID')], [('take', 'VB', 'Method'),  ('30', 'CD', 'Qty'),  ('tabs', 'NNS', 'Form'),  ('for', 'IN', 'FOR'),  ('10', 'CD', 'Duration'),  ('days', 'NNS', 'DurationUnit'),  ('three', 'CD', 'Qty'),  ('times', 'NNS', 'TIMES'),  ('a', 'DT', 'Period'),  ('day', 'NN', 'PeriodUnit')],[('qid', 'NN', 'QID'), ('q6h', 'NN', 'Q6H')],[('bid', 'NN', 'BID')],[('qid', 'NN', 'QID')],[('30', 'CD', 'Qty'),  ('tabs', 'NNS', 'Form'),  ('before', 'IN', 'BEFORE'),  ('dinner', 'NN', 'WHEN'),  ('and', 'CC', 'AND'),  ('bedtime', 'NN', 'WHEN')], [('30', 'CD', 'Qty'),  ('tabs', 'NNS', 'Form'), ('before', 'IN', 'BEFORE'),  ('dinner', 'NN', 'WHEN'),  ('&', 'CC', 'AND'),  ('bedtime', 'NN', 'WHEN')],[('take', 'VB', 'Method'),  ('3', 'CD', 'Qty'),  ('tabs', 'NNS', 'Form'),  ('at', 'IN', 'AT'),  ('bedtime', 'NN', 'WHEN')], [('30', 'CD', 'Qty'),  ('tabs', 'NNS', 'Form'),  ('thrice', 'NN', 'Frequency'),  ('daily', 'JJ', 'DAILY'),  ('for', 'IN', 'FOR'),  ('10', 'CD', 'Duration'),  ('days', 'NNS', 'DurationUnit')], [('30', 'CD', 'Qty'),  ('tabs', 'NNS', 'Form'),  ('for', 'IN', 'FOR'),  ('10', 'CD', 'Duration'),  ('days', 'NNS', 'DurationUnit'),  ('three', 'CD', 'Frequency'),  ('times', 'NNS', 'TIMES'),  ('a', 'DT', 'Period'),  ('day', 'NN', 'PeriodUnit')],[('take', 'VB', 'Method'),  ('2', 'CD', 'Qty'),  ('tablets', 'NNS', 'Form'),  ('a', 'DT', 'Period'),  ('day', 'NN', 'PeriodUnit')], [('qid', 'NN', 'QID'),  ('for', 'IN', 'FOR'),  ('10', 'CD', 'Duration'),  ('days', 'NNS', 'DurationUnit')],[('every', 'DT', 'EVERY'), ('day', 'NN', 'PeriodUnit')],[('take', 'VB', 'Method'),  ('2', 'CD', 'Qty'),  ('caps', 'NNS', 'Form'),  ('at', 'IN', 'AT'),  ('bedtime', 'NN', 'WHEN')], [('apply', 'VB', 'Method'),  ('3', 'CD', 'Qty'),  ('drops', 'NNS', 'Form'),  ('before', 'IN', 'BEFORE'),  ('bedtime', 'NN', 'WHEN')], [('take', 'VB', 'Method'),  ('three', 'CD', 'Qty'),  ('capsules', 'NNS', 'Form'),  ('daily', 'JJ', 'DAILY')], [('swallow', 'NN', 'Method'),  ('3', 'CD', 'Qty'),  ('pills', 'NNS', 'Form'),  ('once', 'RB', 'Frequency'),  ('a', 'DT', 'Period'),  ('day', 'NN', 'PeriodUnit')], [('swallow', 'NN', 'Method'),  ('three', 'CD', 'Qty'),  ('pills', 'NNS', 'Form'),  ('thrice', 'NN', 'Frequency'),  ('a', 'DT', 'Period'),  ('day', 'NN', 'PeriodUnit')], [('apply', 'VB', 'Method'), ('daily', 'JJ', 'DAILY')], [('apply', 'VB', 'Method'),  ('three', 'CD', 'Qty'),  ('drops', 'NNS', 'Form'),  ('before', 'IN', 'BEFORE'),  ('bedtime', 'NN', 'WHEN')], [('every', 'DT', 'EVERY'),  ('6', 'CD', 'Period'),  ('hours', 'NNS', 'PeriodUnit')],[('before', 'IN', 'BEFORE'), ('food', 'NN', 'FOOD')], [('after', 'IN', 'AFTER'), ('food', 'NN', 'FOOD')], [('for', 'IN', 'FOR'),  ('20', 'CD', 'Duration'),  ('days', 'NNS', 'DurationUnit')], [('for', 'IN', 'FOR'),  ('twenty', 'NN', 'Duration'),  ('days', 'NNS', 'DurationUnit')],  [('with', 'IN', 'WITH'), ('meals', 'NNS', 'FOOD')]] 
+    
+    data = json.loads(request.body.decode("utf-8"))
+    search = data["search"]
+    resdf = pd.DataFrame()
+    res = return_result(search,resdf)
+    print(res)
+    return render(request,"result.html") 
+
+
+
+
+
+# # ===================================================
+# #              HELPER FUNCTIONS
+# # ===================================================
+
+def token_to_features(doc, i):
+    word = doc[i][0]
+    postag = doc[i][1]
+    features = [
+        'bias',
+        'word.lower=' + word.lower(),
+        'word[-3:]=' + word[-3:],
+        'word[-2:]=' + word[-2:],
+        'word.isupper=%s' % word.isupper(),
+        'word.istitle=%s' % word.istitle(),
+        'word.isdigit=%s' % word.isdigit(),
+        'postag=' + postag
+    ]
+    if i > 0:
+        word1 = doc[i-1][0]
+        postag1 = doc[i-1][1]
+        features.extend([
+            '-1:word.lower=' + word1.lower(),
+            '-1:word.istitle=%s' % word1.istitle(),
+            '-1:word.isupper=%s' % word1.isupper(),
+            '-1:word.isdigit=%s' % word1.isdigit(),
+            '-1:postag=' + postag1
+        ])
+    else:
+        features.append('BOS')
+    if i < len(doc)-1:
+        word1 = doc[i+1][0]
+        postag1 = doc[i+1][1]
+        features.extend([
+            '+1:word.lower=' + word1.lower(),
+            '+1:word.istitle=%s' % word1.istitle(),
+            '+1:word.isupper=%s' % word1.isupper(),
+            '+1:word.isdigit=%s' % word1.isdigit(),
+            '+1:postag=' + postag1
+        ])
+    else:
+        features.append('EOS')
+    return features
+
+def get_features(doc):
+    return [token_to_features(doc, i) for i in range(len(doc))]
+
+def get_labels(doc):
+    return [label for (token, postag, label) in doc]
+
+
+def predict(sig):
+    demo = []
+    sample_data = []
+    sig = [sig]
+    for x in sig:
+        temp = nltk.word_tokenize(x)
+        pos = nltk.pos_tag(temp)
+        for y in range(len(pos)):
+            temp2 = (pos[y][0], pos[y][1], pos[y][1]) 
+            demo.append(temp2) 
+            sample_data.append(demo)
+            demo = []
+    data = [get_features(doc) for doc in sample_data]
+    predictions = [tagger.tag(xseq) for xseq in data]
+    
+    return predictions
+
+def return_result(s, resdf):
+  pred = predict(s) 
+
+  sent = s.split(" ")
+  len(sent)
+  entity = []
+  for i in range(len(pred)):
+      entity.append(pred[i][0])
+  len(entity)
+      
+  resdf['entity'] = entity
+  resdf['value'] = sent
+
+  return resdf

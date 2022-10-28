@@ -32,6 +32,10 @@
     <script src="./charts.js"></script>
     <!-- End layout styles -->
     <link rel="shortcut icon" href="/assets/images/favicon.png" />
+    <script>
+      const username = "<%= username %>";
+      const roomId= "<%= id%>";
+    </script>
   </head>
   <body>
     <div class="container-scroller">
@@ -290,6 +294,12 @@
                         <div class="flex-grow-0 py-3 px-4 border-top" style="background-color: #d4e6e7">
                           <form id="message-form">
                             <div class="input-group">
+                              <select name="msg_type" class="form-control">
+                                <option value="msg">Message</option>
+                                <option value="prs">Prescription</option>
+                              </select>
+                            </div>
+                            <div class="input-group">
                               <input name="message" type="text" class="form-control" placeholder="Type your message" style="height: 42px">
                               <button id="send-btn" class="btn btn-primary"><i class="mdi mdi-send"></i></button>
                             </div>
@@ -321,6 +331,18 @@
                               <div class="flex-shrink-1 rounded py-2 px-3 mr-3">
                                 <div class="font-weight-bold mb-1">{{username}}</div>
                                 {{message}}
+                              </div>
+                            </div>
+                          </div>
+                        </script>
+
+                        <script id="message-template3" type="text/html">
+                          <div class="message">
+                            <div class="chat-message-left pb-4">
+                              <div class="flex-shrink-1 rounded py-2 px-3 mr-3">
+                                <div class="font-weight-bold mb-1">{{username}} prescribed you a medicine... Would you like to add this in your Daily Activity</div>
+                                <a href="/ml/<%= username %>/"+{{ message }} target="_blank">Yes</a>
+                                <a href="#">No</a>
                               </div>
                             </div>
                           </div>

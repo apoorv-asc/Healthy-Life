@@ -43,6 +43,7 @@ passport.deserializeUser(User.deserializeUser());
 
 app.use(function(req,res,next){
     res.locals.user=req.user;
+    // console.log(res.locals.user);
     next();
 })
 
@@ -75,10 +76,11 @@ io.on("connection", (socket) => {
                 username:data.username,
                 message:data.message,
                 timestamp:data.time,
+                msg_type:data.msg_type
             })
             await chat.save();
             // Displays the message in the chat page
-            io.to(data.roomId).emit('Show-Message', {username:data.username, msg:data.message})
+            io.to(data.roomId).emit('Show-Message', {username:data.username, msg:data.message,msg_type:data.msg_type})
             callback()
         })
 

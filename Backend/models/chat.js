@@ -12,7 +12,8 @@ const ChatScehma =new mongoose.Schema({
     msg:[{
         username:{type:String},
         message:{type:String},
-        timestamp:{type:String}
+        timestamp:{type:String},
+        msg_type:{type:String}
     }]
 });
 

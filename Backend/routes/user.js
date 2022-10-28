@@ -4,6 +4,9 @@ const router = express.Router();
 const { v4: uuidv4 } = require("uuid");
 const axios = require('axios')
 
+const NodeCache = require('node-cache')
+const myCache = new NodeCache()
+
 // Body Parser helps to transfer data in forms from one route to other
 app.use(express.urlencoded({ extended: true }))
 app.use(express.json());  
@@ -20,8 +23,10 @@ const Chat = require('../models/chat');
 // @route   GET user/home
 // @desc    Users Homepage
 // @access  Private
-router.get('/home',isLoggedIn,(req,res)=>{
-    res.render('user_home');
+router.get('/home',isLoggedIn,async (req,res)=>{
+    let user = await UserData.findOne({email:res.locals.user.username});
+    myCache.set('username', user.name);
+    res.render('user_home',{"username":myCache.get('username')});
 })
 
 router.get('/dashboard',isLoggedIn,async (req,res)=>{
@@ -40,7 +45,7 @@ router.get('/dashboard',isLoggedIn,async (req,res)=>{
     let steps = [];
     let Dates = [];
 
-    for(let x=start_time;x<=end_time;x=x+86400000){
+    for(let x=start_time;x<end_time;x=x+86400000){
         let q = new Date(x);
         Dates.push(q.getDate());
 
@@ -102,7 +107,7 @@ router.get('/dashboard',isLoggedIn,async (req,res)=>{
     let heart_score = heart_points.reduce((partialSum, a) => partialSum + a, 0);
     let total_steps = steps.reduce((partialSum, a) => partialSum + a, 0);
 
-    res.render("dashboard",{heart_points,heart_score,steps,total_steps,Dates,person});
+    res.render("dashboard",{"username":myCache.get('username'),heart_points,heart_score,steps,total_steps,Dates,person});
 })
 
 // @route   GET user/create_room
@@ -122,7 +127,8 @@ router.get('/create_room',isLoggedIn,async (req,res)=>{
             ge:ge,
             cardio:cardio,
             derma:derma,
-            ortho:ortho
+            ortho:ortho,
+            "username":myCache.get('username')
         }
     );
 })
@@ -244,7 +250,7 @@ router.get('/chat',isLoggedIn, async (req,res)=>{
 
     const LoggedInUser = await UserData.findOne({email:res.locals.user.username});
     const Chat = null;
-    res.render('Untitled-1',{rooms:LoggedInUser.chatrooms,prevChat:Chat,username:LoggedInUser.name,id:-1});
+    res.render('chat_rooms',{rooms:LoggedInUser.chatrooms,prevChat:Chat,username:LoggedInUser.name,id:-1});
 })
 
 
@@ -252,20 +258,28 @@ router.get('/chat/:id',isLoggedIn, async (req,res)=>{
 
     const LoggedInUser = await UserData.findOne({email:res.locals.user.username});
     const chat = await Chat.findOne({ChatID:req.params.id});
-    res.render('Untitled-1',{rooms:LoggedInUser.chatrooms,prevChat:chat,id:req.params.id,username:LoggedInUser.name});
+    res.render('chat_rooms',{rooms:LoggedInUser.chatrooms,prevChat:chat,id:req.params.id,username:LoggedInUser.name});
 })
 
 router.get('/health_risk',async (req,res)=>{
-    res.render("health_risk");
+    res.render("health_risk",{"username":myCache.get('username')});
 })
 
 router.post('/health_risk',async (req,res)=>{
-    res.render("health_risk_res");
+    res.render("health_risk_res",{"username":myCache.get('username')});
 })
 
 router.get('/review',async (req,res)=>{
     const user = await UserData.findOne({email:res.locals.user.username});
-    res.render('review.ejs',{user});
+    res.render('review.ejs',{user,"username":myCache.get('username')});
+})
+
+router.get('/treatment_cost',async (req,res)=>{
+    res.render('treatment_cost',{"username":myCache.get('username')})
+})
+
+router.get('/outpatient_cost',async (req,res)=>{
+    res.render('outpatient_cost',{"username":myCache.get('username')})
 })
 
 
