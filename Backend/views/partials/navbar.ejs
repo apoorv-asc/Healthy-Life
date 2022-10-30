@@ -8,7 +8,7 @@
           <!--change to offline or busy as needed-->
         </div>
         <div class="nav-profile-text d-flex ms-0 mb-3 flex-column">
-          <span class="font-weight-semibold mb-1 mt-2 text-center" style="color:white"><%= username %></span>
+          <span class="font-weight-semibold mb-1 mt-2 text-center" style="color:white"></span>
           <span class="icon-sm text-center" style="color:white">Health Score: 340</span>
         </div>
       </a>
@@ -35,28 +35,8 @@
       </a>
     </li>
     <li class="nav-item">
-      <a class="nav-link" data-bs-toggle="collapse" href="#ui-basic" aria-expanded="false" aria-controls="ui-basic">
-        <i class="mdi mdi-crosshairs-gps menu-icon"></i>
-        <span class="menu-title">Health Monitoring</span>
-        <i class="menu-arrow"></i>
-      </a>
-      <div class="collapse" id="ui-basic">
-        <ul class="nav flex-column sub-menu">
-          <li class="nav-item">
-            <a class="nav-link" href="/fitbit/fitness_para">Fitness Parameters</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="#">Physiotherapy</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="/user/health_risk">Health Risk</a>
-          </li>
-        </ul>
-      </div>
-    </li>
-    <li class="nav-item">
       <a class="nav-link" data-bs-toggle="collapse" href="#ui-basic2" aria-expanded="false" aria-controls="ui-basic">
-        <i class="mdi mdi-format-list-bulleted menu-icon"></i>
+        <i class="mdi mdi-chart-bubble menu-icon"></i>
         <span class="menu-title">Value-Cost Analysis</span>
         <i class="menu-arrow"></i>
       </a>
@@ -70,6 +50,29 @@
           </li>
           <li class="nav-item">
             <a class="nav-link" href="/user/outpatient_cost">Outpatient Cost</a>
+          </li>
+        </ul>
+      </div>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" href="/user/health_risk">
+        <i class="mdi mdi-alert-octagon menu-icon"></i>
+        <span class="menu-title">Surgical Risk</span>
+      </a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" data-bs-toggle="collapse" href="#ui-basic" aria-expanded="false" aria-controls="ui-basic">
+        <i class="mdi mdi-crosshairs-gps menu-icon"></i>
+        <span class="menu-title">Health Monitoring</span>
+        <i class="menu-arrow"></i>
+      </a>
+      <div class="collapse" id="ui-basic">
+        <ul class="nav flex-column sub-menu">
+          <li class="nav-item">
+            <a class="nav-link" href="/fitbit/fitness_para">Fitness Parameters</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="/user/physiotherapy">Physiotherapy</a>
           </li>
         </ul>
       </div>

@@ -39,7 +39,7 @@ router.post("/cost_pred",async (req,res)=>{
         console.log(result.data);
         const pred = result.data.res;
         console.log(pred)
-        res.send("<h1>pred</h1>");
+        res.render("cost_pred_res",{"res":pred.toFixed(2)});
     }catch(err){
         res.send(err);
     }

@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+    <title>Physiotherapy</title>
+    <!-- plugins:css -->
+    <link rel="stylesheet" href="/assets/vendors/mdi/css/materialdesignicons.min.css">
+    <link rel="stylesheet" href="/assets/vendors/flag-icon-css/css/flag-icon.min.css">
+    <link rel="stylesheet" href="/assets/vendors/css/vendor.bundle.base.css">
+    <!-- endinject -->
+    <!-- Plugin css for this page -->
+    <link rel="stylesheet" href="/assets/vendors/jquery-bar-rating/css-stars.css" />
+    <link rel="stylesheet" href="/assets/vendors/font-awesome/css/font-awesome.min.css" />
+    <script src="https://code.jquery.com/jquery-1.10.2.min.js"></script>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.0/dist/css/bootstrap.min.css" rel="stylesheet">
+	<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.0/dist/js/bootstrap.bundle.min.js"></script>
+    <link rel="stylesheet" href="/assets/css/demo_1/style.css" />
+    <link rel="stylesheet" href="/css/index.css">
+    <link rel="stylesheet" href="/css/chat.css">
+    <!-- End layout styles -->
+    <link rel="shortcut icon" href="/assets/images/favicon.png" />
+  </head>
+  <body>
+    <div class="container-scroller">
+      <!-- partial:partials/_sidebar.html -->
+      <%- include("partials/navbar") %>
+        <!-- partial -->
+        <div class="main-panel">
+          <div class="content-wrapper pb-0">
+             <div class="row">
+                <div class="col-lg-9 grid-margin stretch-card">
+                  <div class="card">
+                    <div class="card-body">
+                      <div class="d-flex border-bottom mb-4 pb-2">
+                        <!-- <button class="btn btn-primary" onclick="showvalue()">show</button> -->
+                        <h4>How is your Pain Level today? &nbsp;&nbsp;&nbsp;&nbsp;
+                          <!-- Button trigger modal -->
+                        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
+                          Rate Now
+                        </button>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                        <span id="pain_level" style="font-size: 40px; color: orangered;"></span>
+                        </h4>
+                      </div>
+                      <div class="conatiner">
+                        <h4>Check Progress of Physiotherapy &nbsp;&nbsp;&nbsp;&nbsp;
+                          <button type="button" class="btn btn-warning" data-toggle="modal" data-target=".bd-example-modal-lg">Large modal</button>
+                        </h4>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-lg-3 grid-margin stretch-card">
+                  <div class="row">
+                    <div class="col-sm-12 stretch-card" style="height: 120px">
+                      <div class="card">
+                      <div class="card-header" style="background-color: rgb(229, 156, 0); color: white">
+                        7-day average
+                      </div>
+                        <div class="card-body" style="background-color: rgb(255, 246, 202);">
+                          <p style="margin-top: -20px">Compliance</p>
+                          <h1 style="color:rgb(229, 156, 0); margin-top: -15px; fontsize: 50px; text-align: center">98%</h1>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="col-sm-12 stretch-card" style="height: 120px">
+                      <div class="card">
+                      <div class="card-header" style="background-color: rgb(229, 111, 0); color: white">
+                        Last 7 days
+                      </div>
+                        <div class="card-body" style="background-color: rgb(255, 228, 202);">
+                          <p style="margin-top: -20px">Pain</p>
+                          <h1 style="color:rgb(229, 111, 0); margin-top: -15px; fontsize: 50px; text-align: center">0.7</h1>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="col-sm-12 stretch-card" style="height: 120px">
+                      <div class="card">
+                      <div class="card-header" style="background-color: rgb(229, 61, 0); color: white">
+                        Last 7 days
+                      </div>
+                        <div class="card-body" style="background-color: rgb(255, 216, 202);">
+                          <p style="margin-top: -20px">Opioid Use</p>
+                          <h1 style="color:rgb(229, 61, 0); margin-top: -15px; fontsize: 50px; text-align: center">0</h1>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="col-sm-12 stretch-card" style="height: 120px">
+                      <div class="card">
+                      <div class="card-header" style="background-color: rgb(0, 98, 209); color: white">
+                        Last 7 days
+                      </div>
+                        <div class="card-body" style="background-color: rgb(223, 239, 251);">
+                          <p style="margin-top: -20px">Steps</p>
+                          <h1 style="color:rgb(0, 98, 209); margin-top: -15px; fontsize: 50px; text-align: center">11803</h1>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="col-sm-12 stretch-card" style="height: 120px">
+                      <div class="card">
+                      <div class="card-header" style="background-color: rgb(1, 31, 52); color: white">
+                        Last Survey
+                      </div>
+                        <div class="card-body" style="background-color: rgb(222, 248, 255);">
+                          <p style="margin-top: -20px">Knee Bend Angle</p>
+                          <h1 style="color:rgb(1, 31, 52); margin-top: -15px; fontsize: 50px; text-align: center">43.68<sup>o</sup></h1>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  
+                </div>
+             </div>
+          </div>
+          <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <h5 class="modal-title" id="exampleModalLabel">Rate your pain level</h5>
+                  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                  </button>
+                </div>
+                <div class="modal-body">
+                  <form>
+                  <div class="form-group">
+                    <div class="form-group row">
+                      <label class="col-form-label">Membership</label>
+                      <div class="col-sm-2">
+                        <div class="form-check" id="formvalue">
+                          <label class="form-check-label">
+                            <input type="radio" class="form-check-input" name="radio" id="radio1" value="1" checked /> 1 </label>
+                        </div>
+                      </div>
+                      <div class="col-sm-2">
+                        <div class="form-check">
+                          <label class="form-check-label">
+                            <input type="radio" class="form-check-input" name="radio" id="radio2" value="2" /> 2 </label>
+                        </div>
+                      </div>
+                      <div class="col-sm-2">
+                        <div class="form-check">
+                          <label class="form-check-label">
+                            <input type="radio" class="form-check-input" name="radio" id="radio3" value="3" /> 3 </label>
+                        </div>
+                      </div>
+                      <div class="col-sm-2">
+                        <div class="form-check">
+                          <label class="form-check-label">
+                            <input type="radio" class="form-check-input" name="radio" id="radio4" value="4" /> 4 </label>
+                        </div>
+                      </div>
+                      <div class="col-sm-2">
+                        <div class="form-check">
+                          <label class="form-check-label">
+                            <input type="radio" class="form-check-input" name="radio" id="radio5" value="5" /> 5 </label>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  </form>
+                </div>
+                <div class="modal-footer">
+                  <button type="button" class="btn btn-primary" data-dismiss="modal" onclick="showvalue()">Save changes</button>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Video modal -->
+          <div class="modal fade bd-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+            <div class="modal-dialog modal-lg">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <h5 class="modal-title" id="exampleModalLabel">Capturing Video</h5>
+                  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                  </button>
+                </div>
+                <div class="modal-body" style="padding: 60px">
+                  ... <br>
+                  ...<br>
+                  ... <br>
+                  ...<br>
+                  ... <br>
+                  ...<br>
+                  ...<br>
+                  ... <br>
+                  ...<br>
+                  ... <br>
+                  ...<br>
+                  ... <br>
+                  ...<br>
+                  ... <br>
+                  ...<br>
+                </div>
+                <div class="modal-footer">
+                  <button type="button" class="btn btn-primary" data-dismiss="modal" onclick="calculateAngle()">See Report</button>
+                </div>
+              </div>
+            </div>
+          </div>
+          <!-- content-wrapper ends -->
+          <!-- partial:partials/_footer.html -->
+          
+          <!-- partial -->
+        </div>
+        <!-- main-panel ends -->
+      </div>
+      <!-- page-body-wrapper ends -->
+    </div>
+    <!-- container-scroller -->
+    <!-- plugins:js -->
+    <script>
+      function showvalue(){
+        // var x =  document.getElementById("formvalue").value;
+        x = $('form').serializeArray()
+        y = x[0].value
+        console.log(x[0].value)
+        document.getElementById("pain_level").innerHTML = y + ' / 5';
+      }
+      
+      </script>
+    <script src="/assets/vendors/js/vendor.bundle.base.js"></script>
+    <!-- endinject -->
+    <!-- Plugin js for this page -->
+    <script src="/assets/vendors/jquery-bar-rating/jquery.barrating.min.js"></script>
+    <script src="/assets/vendors/chart.js/Chart.min.js"></script>
+    <script src="/assets/vendors/flot/jquery.flot.js"></script>
+    <script src="/assets/vendors/flot/jquery.flot.resize.js"></script>
+    <script src="/assets/vendors/flot/jquery.flot.categories.js"></script>
+    <script src="/assets/vendors/flot/jquery.flot.fillbetween.js"></script>
+    <script src="/assets/vendors/flot/jquery.flot.stack.js"></script>
+    <script src="/assets/js/jquery.cookie.js" type="text/javascript"></script>
+    <!-- End plugin js for this page -->
+    <!-- inject:js -->
+    <script src="/assets/js/off-canvas.js"></script>
+    <script src="/assets/js/hoverable-collapse.js"></script>
+    <script src="/assets/js/misc.js"></script>
+    <script src="/assets/js/settings.js"></script>
+    <script src="/assets/js/todolist.js"></script>
+    <!-- endinject -->
+    <!-- Custom js for this page -->
+    <script src="/assets/js/dashboard.js"></script>
+    <!-- End custom js for this page -->
+  </body>
+</html>

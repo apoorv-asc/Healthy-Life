@@ -49,7 +49,7 @@ router.post("/",
     passport.authenticate("local",{
 
         // Redirects to the home page on successful login
-        successRedirect:'/user/home',
+        successRedirect:'/user/dashboard',
 
         // Redirects to the login page if login fails
         failureRedirect:"/login"
