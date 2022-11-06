@@ -74,7 +74,7 @@ router.get('/connect',isLoggedIn,async (req,res)=>{
         {$set:{token:tokens.tokens.access_token,token_time:(new Date(tokens.tokens.expiry_date)).getTime()}}
     )
 
-    res.redirect('/fitbit/fitness_para');
+    res.redirect('/user/dashboard');
 })
 
 router.get('/fitness_para',isLoggedIn,async (req,res)=>{

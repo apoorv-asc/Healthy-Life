@@ -37,7 +37,16 @@
           <div class="content-wrapper pb-0" >
             <div class="row">
               <div class="col-md-9">
-                <h4>Conditions that match your symptoms <button type="submit" class="btn btn-warning"><a href="/ml/diseases_pred" style="color: white; text-decoration: none">Back</a></button></h4><br>
+                <button type="submit" class="btn btn-warning" onclick="document.location.href='/ml/diseases_pred';">
+                  <a href="/ml/diseases_pred" style="color: white; text-decoration: none">Back</a>
+                </button>
+                <button type="submit" class="btn btn-success" onclick="document.location.href='/ml/diseases_pred';">
+                  <a href="/ml/diseases_pred" style="color: white; text-decoration: none">Back</a>
+                </button>
+                <br>
+                <br>
+                <h4>Conditions that match your symptoms 
+                </h4><br>
                 <% let x = 0; %>
                 <% for(x=0;x< diseases.length;x++){ %>
                     <div class="row">

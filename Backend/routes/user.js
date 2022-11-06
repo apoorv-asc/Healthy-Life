@@ -266,7 +266,26 @@ router.get('/health_risk',async (req,res)=>{
 })
 
 router.post('/health_risk',async (req,res)=>{
-    res.render("health_risk_res",{"username":myCache.get('username')});
+    const {age,emer,vent,cancer,diab,hypt,dial,ren,wt,ht} = req.body;
+    let result = await axios("http://localhost:8000/sur_risk/",{
+        method:"POST",
+        data:{
+            age:age,
+            emer:emer,
+            vent:vent,
+            cancer:cancer,
+            diab:diab,
+            hypt:hypt,
+            dial:dial,
+            ren:ren,
+            wt:wt,
+            ht:ht
+        },headers:{
+            'Content-Type': 'application/json',
+        }
+    })
+    let values = result.data.res;
+    res.render("health_risk_res",{values,"username":myCache.get('username')});
 })
 
 router.get('/review',async (req,res)=>{
@@ -287,6 +306,20 @@ router.get('/physiotherapy',async (req,res)=>{
     res.render('physiotherapy')
 })
 
+router.get('/profile',async (req,res)=>{
+    res.render('profile')
+})
 
+router.post('/profile',async (req,res)=>{
+    let UserInfo = new UserData(
+        {
+            name:req.body.name,
+            email:req.body.email,
+            prof:req.body.prof
+        }
+    )
+    await UserInfo.save();
+    res.redirect('/user/dashboard');
+})
 
 module.exports = router;

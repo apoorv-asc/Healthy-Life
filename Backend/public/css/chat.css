@@ -36,8 +36,28 @@
 
 .chat-message-right {
     flex-direction: row-reverse;
-    margin-left: auto
+    /* margin-left: auto */
 }
+
+.chat-message-prescription {
+    background-color: rgb(41, 179, 115);
+    color: white;
+    margin-bottom: 20px;
+    border-radius: 6px;
+    font-size: 12px;
+    /* margin-left: auto */
+}
+
+
+.chat-message-aidata {
+    background-color: rgb(151, 85, 196);
+    color: white;
+    margin-bottom: 20px;
+    border-radius: 6px;
+    font-size: 12px;
+    /* margin-left: auto */
+}
+
 .py-3 {
     padding-top: 1rem!important;
     padding-bottom: 1rem!important;

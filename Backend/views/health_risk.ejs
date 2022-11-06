@@ -39,18 +39,18 @@
                 <div class="card-body">
                     <form action="/user/health_risk" method="post">
                         <label for="exampleFormControlSelect1">Procedure (CPT Code)</label>
-                        <select class="form-control form-control-lg" id="exampleFormControlSelect1">
-                            <option>78272	Vit B-12 absorp combined</option>
-                            <option>95831	Limb muscle testing manual</option>
-                            <option>95832	Hand muscle testing manual</option>
-                            <option>95833	Body muscle testing manual</option>
-                            <option>95834	Body muscle testing manual</option>
-                            <option>95851	Range of motion measurements</option>
-                            <option>95852	Range of motion measurements</option>
-                            <option>21243 Arthroplasty, temporomandibular joint, with prosthetic joint replacement</option>
-                            <option>26535 Arthroplasty, interphalangeal joint; each joint</option>
-                            <option>72170	X-ray exam of pelvis</option>
-                            <option>73560	X-ray exam of knee 1 or 2</option>
+                        <select name="surgery" class="form-control form-control-lg" id="exampleFormControlSelect1">
+                            <option value="78272	Vit B-12 absorp combined">78272	Vit B-12 absorp combined</option>
+                            <option value="95831	Limb muscle testing manual">95831	Limb muscle testing manual</option>
+                            <option value="95832	Hand muscle testing manual">95832	Hand muscle testing manual</option>
+                            <option value="95833	Body muscle testing manual">95833	Body muscle testing manual</option>
+                            <option value="95834	Body muscle testing manual">95834	Body muscle testing manual</option>
+                            <option value="95851	Range of motion measurements">95851	Range of motion measurements</option>
+                            <option value="95852	Range of motion measurements">95852	Range of motion measurements</option>
+                            <option value="21243 Arthroplasty, temporomandibular joint, with prosthetic joint replacement">21243 Arthroplasty, temporomandibular joint, with prosthetic joint replacement</option>
+                            <option value="26535 Arthroplasty, interphalangeal joint; each joint">26535 Arthroplasty, interphalangeal joint; each joint</option>
+                            <option value="72170	X-ray exam of pelvis">72170	X-ray exam of pelvis</option>
+                            <option value="73560	X-ray exam of knee 1 or 2">73560	X-ray exam of knee 1 or 2</option>
                         </select><br>
                         Are there other potential appropriate treatment options?
                         <div class="row">
@@ -76,11 +76,11 @@
                         <div class="row">
                             <div class="col-md-6">
                                 <label for="ageGroup">Age Group</label>
-                                <select class="form-control form-control-lg" id="ageGroup">
-                                    <option>Under 65 years</option>
-                                    <option>Under 65-74 years</option>
-                                    <option>Under 75-84 years</option>
-                                    <option>85 years or older</option>
+                                <select name="age" class="form-control form-control-lg" id="ageGroup">
+                                    <option value="50">Under 65 years</option>
+                                    <option value="67">Under 65-74 years</option>
+                                    <option value="79">Under 75-84 years</option>
+                                    <option value="90">85 years or older</option>
                                 </select><br>
                                 <label for="sex">Sex</label>
                                 <select class="form-control form-control-lg" id="sex">
@@ -89,9 +89,9 @@
                                     <option>Other</option>
                                 </select><br>
                                 <label for="emergencyCase">Emergency Case</label>
-                                <select class="form-control form-control-lg" id="emergencyCase">
-                                    <option>No</option>
-                                    <option>Yes</option>
+                                <select name="emer" class="form-control form-control-lg" id="emergencyCase">
+                                    <option value="0">No</option>
+                                    <option value="1">Yes</option>
                                 </select><br>
                                 <label for="patientClass">ASA Patient Class</label>
                                 <select class="form-control form-control-lg" id="patientClass">
@@ -107,59 +107,59 @@
                                     <option>Yes</option>
                                 </select><br>
                                 <label for="ventilator">Ventilator Dependent</label>
-                                <select class="form-control form-control-lg" id="ventilator">
-                                    <option>No</option>
-                                    <option>Yes</option>
+                                <select name="vent" class="form-control form-control-lg" id="ventilator">
+                                    <option value="0">No</option>
+                                    <option value="2">Yes</option>
                                 </select><br>
                                 <label for="cancer">Disseminated Cancer</label>
-                                <select class="form-control form-control-lg" id="cancer">
-                                    <option>No</option>
-                                    <option>Yes</option>
+                                <select name="cancer" class="form-control form-control-lg" id="cancer">
+                                    <option value="0">No</option>
+                                    <option value="1">Yes</option>
                                 </select><br>
                             </div>
                             <div class="col-md-6">
                                 <label for="diabetes">Has Diabetes</label>
-                                <select class="form-control form-control-lg" id="diabetes">
-                                    <option>No</option>
-                                    <option>Oral</option>
-                                    <option>Insulin</option>
+                                <select name="diab" class="form-control form-control-lg" id="diabetes">
+                                    <option value="0">No</option>
+                                    <option value="1">Oral</option>
+                                    <option value="2">Insulin</option>
                                 </select><br>
                                 <label for="hypertension">Hypertension requiring medication </label>
-                                <select class="form-control form-control-lg" id="hypertension">
-                                    <option>No</option>
-                                    <option>Yes</option>
+                                <select name="hypt" class="form-control form-control-lg" id="hypertension">
+                                    <option value="0">No</option>
+                                    <option value="1">Yes</option>
                                 </select><br>
                                 <label for="heartFailure">Heart Failure in 30 days prior to surgery </label>
-                                <select class="form-control form-control-lg" id="heartFailure">
-                                    <option>No</option>
-                                    <option>Yes</option>
+                                <select name="heartf" class="form-control form-control-lg" id="heartFailure">
+                                    <option value="0">No</option>
+                                    <option value="1">Yes</option>
                                 </select><br>
                                 <label for="currentSmoker">Current Smoker within 1 Year </label>
-                                <select class="form-control form-control-lg" id="currentSmoker">
-                                    <option>No</option>
-                                    <option>Yes</option>
+                                <select name="smoker" class="form-control form-control-lg" id="currentSmoker">
+                                    <option value="0">No</option>
+                                    <option value="1">Yes</option>
                                 </select><br>
                                 <label for="dialysis">Dialysis</label>
-                                <select class="form-control form-control-lg" id="dialysis">
-                                    <option>No</option>
-                                    <option>Yes</option>
+                                <select name="dial" class="form-control form-control-lg" id="dialysis">
+                                    <option value="0">No</option>
+                                    <option value="1">Yes</option>
                                 </select><br>
                                 <label for="renalFailure">Acute Renal Failure</label>
-                                <select class="form-control form-control-lg" id="renalFailure">
-                                    <option>No</option>
-                                    <option>Yes</option>
+                                <select name="ren" class="form-control form-control-lg" id="renalFailure">
+                                    <option value="0">No</option>
+                                    <option value="1">Yes</option>
                                 </select><br>
                                 <div class="row">
                                     <div class="col-md-6">
                                         <div class="form-group">
                                             <label for="weight">Weight (kg)</label>
-                                            <input type="text" class="form-control" id="weight" placeholder="weight" />
+                                            <input name="wt" type="text" class="form-control" id="weight" placeholder="weight" />
                                         </div>
                                     </div>
                                     <div class="col-md-6">
                                         <div class="form-group">
                                             <label for="height">Height (cm)</label>
-                                            <input type="text" class="form-control" id="height" placeholder="height" />
+                                            <input name="ht" type="text" class="form-control" id="height" placeholder="height" />
                                         </div>
                                     </div>
                                 </div>

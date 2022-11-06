@@ -127,10 +127,9 @@
                             <div id="messages">
                               <% if(prevChat != null && prevChat.msg != null) { %>
                                 <% (prevChat.msg).forEach((msg)=>{ %>
-
                                   <% if(username == msg.username){ %>
                                     <div class="chat-message-right pb-4 message" >
-                                  <% }else{ %>
+                                  <% }else if(msg.msg_type !="result" ){ %>
                                     <div class="chat-message-left pb-4">
                                   <% } %>
                                   
@@ -143,6 +142,28 @@
                                       <%= msg.message %>
                                     </div>
                                   </div>
+
+                                  <% if(msg.msg_type==="prs"){ %>
+                                    <div class="chat-message-prescription pb-4">
+                                      <div class="card-header font-weight-bold" style="font-size:14px">Prescription</div>
+                                      <div class="rounded py-2 px-3 mr-3">
+                                        <div class="mb-1"><%= msg.username%> prescribed you a medicine... Would you like to add this in your Daily Activity &nbsp;
+                                          <a href="/ml/<%= msg.username %>/<%= msg.message %>" target="_blank">Yes</a>
+                                          <a href="#">No</a>
+                                        </div>
+                                      </div>
+                                    </div>
+                                  <% }else if(msg.msg_type==="result"){ %>
+                                    <div class="chat-message-aidata pb-4">
+                                      <div class="card-header font-weight-bold" style="font-size:14px">Symptom Checker Results</div>
+                                      <div class="rounded py-2 px-3 mr-3">
+                                        <div class="mb-1"><%= msg.username%> shared their AI HealthCheckup result. Click here to check them&nbsp;
+                                          <a href="#" target="_blank">Yes</a>
+                                          <a href="#">No</a></div>
+                                      </div>
+                                    </div>
+                                  <% } %>
+                                  
                               <% }) } %>
                             </div>
                           </div>
@@ -195,11 +216,13 @@
 
                         <script id="message-template3" type="text/html">
                           <div class="message">
-                            <div class="chat-message-left pb-4">
-                              <div class="flex-shrink-1 rounded py-2 px-3 mr-3">
-                                <div class="font-weight-bold mb-1">{{username}} prescribed you a medicine... Would you like to add this in your Daily Activity</div>
-                                <a href="/ml/<%= username %>/"+{{ message }} target="_blank">Yes</a>
-                                <a href="#">No</a>
+                            <div class="chat-message-prescription pb-4">
+                              <div class="card-header font-weight-bold" style="font-size:14px">Prescription</div>
+                              <div class="rounded py-2 px-3 mr-3">
+                                <div class="mb-1">{{username}} prescribed you a medicine... Would you like to add this in your Daily Activity &nbsp;
+                                  <a href="#" target="_blank">Yes</a>
+                                  <a href="#">No</a>
+                                </div>
                               </div>
                             </div>
                           </div>

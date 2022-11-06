@@ -56,7 +56,7 @@ router.post('/',function(req,res){
             }
             else{
                 passport.authenticate("local")(req,res,function(){
-                    res.render('register_user',{email:req.body.username})
+                    res.redirect(`/registeration/register_user/${req.body.username}`);
                 })
             }
         })
@@ -66,6 +66,10 @@ router.post('/',function(req,res){
     }
 })
 
+
+router.get('/register_user/:email',async (req,res)=>{
+    res.render('register_user',{email:req.params.email})
+})
 // @route   POST registeration/reg_user
 // @desc    Adds info of the recently added user
 // @access  Public

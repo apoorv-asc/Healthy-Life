@@ -42,7 +42,6 @@ def cost_pred(request):
         diagnosis = {'Admission to orthopedic department': 0, 'Admission to trauma surgery department': 1, 'Alpha-fetoprotein test': 2, 'Ankle X-ray': 3, 'Asthma screening': 4, 'Augmentation of labor': 5, 'Auscultation of the fetal heart': 6, 'Blood typing  RH typing': 7, 'Bone density scan (procedure)': 8, 'Bone immobilization': 9, 'Chest X-ray': 10, 'Childbirth': 11, 'Chlamydia antigen test': 12, 'Clavicle X-ray': 13, 'Combined chemotherapy and radiation therapy (procedure)': 14, 'Cytopathology procedure  preparation of smear  genital source': 15, 'Digital examination of rectum': 16, 'Electrical cardioversion': 17, 'Evaluation of uterine fundal height': 18, 'Extraction of wisdom tooth': 19, 'Fetal anatomy study': 20, 'Gonorrhea infection test': 21, 'Hearing examination (procedure)': 22, 'Hemoglobin / Hematocrit / Platelet count': 23, 'Hepatitis B Surface Antigen Measurement': 24, 'Hepatitis C antibody test': 25, 'High resolution computed tomography of chest without contrast (procedure)': 26, 'Human immunodeficiency virus antigen test': 27, 'Injection of tetanus antitoxin': 28, 'Intramuscular injection': 29, 'Knee X-ray': 30, 'Measurement of Varicella-zoster virus antibody': 31, 'Measurement of respiratory function (procedure)': 32, 'Medication Reconciliation (procedure)': 33, 'Pelvis X-ray': 34, 'Physical examination of mother': 35, 'Plain chest X-ray (procedure)': 36, 'Prostatectomy': 37, 'Pulmonary rehabilitation (regime/therapy)': 38, 'Rubella screening': 39, 'Skin test for tuberculosis': 40, 'Spirometry (procedure)': 41, 'Sputum examination (procedure)': 42, 'Standard pregnancy test': 43, 'Suture open wound': 44, 'Syphilis infection test': 45, 'Ultrasound scan for fetal viability': 46, 'Upper arm X-ray': 47, 'Urine culture': 48, 'Urine protein test': 49, 'Urine screening test for diabetes': 50, 'X-ray or wrist': 51, 'positive screening for PHQ-9': 52}
         lis = []
         data = json.loads(request.body.decode("utf-8"))
-        print(data)
         lis.append(encounters[data['enc']])
         lis.append(hospitals[data['hosp']]/117)
         lis.append(description[data['desc']]/14)
@@ -100,6 +99,141 @@ def ner(request):
     print(res)
     return render(request,"result.html") 
 
+@csrf_exempt
+def sur_risk(request):
+    data = json.loads(request.body.decode("utf-8"))
+    
+    age=int(data["age"])
+    emergency=int(data["emer"])
+    ventilator=int(data["vent"])
+    cancer=int(data["cancer"])
+    diabetes=int(data["diab"])
+    hypertension=int(data["hypt"])
+    dialysis=int(data["dial"])
+    renalval=int(data["ren"])
+    weight=int(data["wt"])
+    height=int(data["ht"])
+    try:
+        val=[]
+        serious=0
+        compl=0
+        cardiac=0
+        infection=0
+        renal=0
+        readmission=0
+        returnOR=0
+        los=0
+        if(age<65):
+            cardiac+=0.2
+            serious+=0.2
+            compl+=0.4
+            infection+=0.2
+            readmission+=0.2
+        elif(age>=65 & age<74):
+            serious+=0.4
+            compl+=0.5
+            cardiac+=0.2
+            infection+=0.2
+            readmission+=0.2
+        elif(age>=75):
+            serious+=0.6
+            compl+=0.6
+            cardiac+=0.4
+            renal+= 0.2
+            infection+=0.3
+            readmission+=0.3
+            returnOR=0.3
+        if(emergency==1):
+            serious+=0.4
+            infection+=0.3
+            returnOR+=0.3
+            readmission+=0.2
+            compl+=0.4
+        if(ventilator==1):
+            serious+=0.5
+            compl+=0.4
+            cardiac+=0.4
+            readmission+=0.5
+        if(cancer==1):
+            cardiac+=0.3
+            readmission+=0.4
+            returnOR+=0.4
+        if(diabetes==1):
+            serious+=0.4
+            compl+=0.4
+            infection+=0.5
+            renal+=0.4
+            returnOR+=0.4
+        if(hypertension==1):
+            serious+=0.3
+            compl+=0.3
+            cardiac+=0.3
+            infection+=0.5
+        if(dialysis==1):
+            serious+=0.4
+            compl+=0.4
+            renal+=0.4
+            infection+=0.1
+        if(renalval==1):
+            serious+=0.2
+            compl+=0.2
+            renal+=0.2
+            infection+=0.4
+        
+        bmi = BMI(height, weight)
+        if (bmi < 18.5):
+            serious+=0.5
+            compl+=0.5
+            cardiac+=0.5
+            renal+= 0.4
+            infection+=0.4
+            readmission+=0.4
+            returnOR=0.4
+        elif ( bmi >= 18.5 and bmi < 24.9):
+            serious+=0.3
+            compl+=0.3
+            cardiac+=0.3
+            renal+= 0.3
+            infection+=0.3
+            readmission+=0.2
+            returnOR=0.1
+        elif ( bmi >= 24.9 and bmi < 30):
+            serious+=0.6
+            compl+=0.5
+            cardiac+=0.6
+            renal+= 0.3
+            infection+=0.3
+            readmission+=0.3
+            returnOR=0.3
+        elif( bmi >=30):
+            serious+=0.7
+            compl+=0.6
+            cardiac+=0.6
+            renal+= 0.4
+            infection+=0.4
+            readmission+=0.4
+            returnOR=0.4
+        
+        val.append(serious)
+        val.append(compl)
+        val.append(cardiac)
+        val.append(infection)
+        val.append(renal)
+        val.append(readmission)
+        val.append(returnOR)
+        avg = Average(val)
+        if(avg<1):
+            los+=1
+        elif(avg>1 and avg<4):
+            los+=2
+        elif(avg>4 and avg<10):
+            los+=5
+        elif(avg>10):
+            los+=7
+        val.append(los)
+        return JsonResponse({"res":val})
+    except:
+        return JsonResponse({"res":[-1]})
 
 
 
@@ -185,3 +319,11 @@ def return_result(s, resdf):
   resdf['value'] = sent
 
   return resdf
+
+def BMI(height, weight):
+    bmi = weight/(height**2)
+    return bmi
+
+def Average(lst):
+    return sum(lst) / len(lst)
+
