@@ -20,7 +20,7 @@
 
 
 <div align="center">
-  <img src="\Backend\assets\images\logo.svg" alt="Logo" width="95" height="80">
+  <img src="logo.svg" alt="Logo" width="95" height="80">
 
   <h3 align="center">Care.Connect - All-in-one Medication Solution</h3>
 </div>
