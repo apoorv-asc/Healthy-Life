@@ -179,7 +179,9 @@ router.get('/fitness_para',isLoggedIn,async (req,res)=>{
         }
     })
 
-    res.render("fitbit",{Calories,Dates,Move_Mins,Distance,"username":myCache.get('username')});
+    let user = await UserData.findOne({email:res.locals.user.username});
+
+    res.render("fitbit",{Calories,Dates,Move_Mins,Distance,user});
 })
 
 

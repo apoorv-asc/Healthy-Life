@@ -29,6 +29,14 @@
       var Dates = ("<%= Dates %>".replace(/(^,)|(,$)/g, "")).split(",");
     </script>
   </head>
+  <script src="https://www.gstatic.com/dialogflow-console/fast/messenger-cx/bootstrap.js?v=1"></script>
+  <df-messenger
+    df-cx="true"
+    location="asia-south1"
+    chat-title="Care.Bot"
+    agent-id="04d14e4b-3a6a-4ad3-87ff-e2d38bb891ff"
+    language-code="en"
+  ></df-messenger>
   <body>
     <div class="container-scroller">
       <!-- partial:partials/_sidebar.html -->
@@ -58,7 +66,7 @@
                         </div>
                       </div>
                       <div class="ps-4">
-                        <h4 class="font-weight-bold text-warning mb-0"><%- ((heart_score/7.0)/10).toFixed(2) %></h4>
+                        <h4 class="font-weight-bold text-warning mb-0">3</h4>
                         <h6 class="text-muted">Heart Score</h6>
                       </div>
                     </div>

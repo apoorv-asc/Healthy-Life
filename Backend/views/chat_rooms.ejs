@@ -82,8 +82,12 @@
                                 <div class="position-relative">
                                   <img src="https://bootdey.com/img/Content/avatar/avatar3.png" class="rounded-circle mr-1" alt="Sharon Lessman" width="30" height="30">
                                 </div>
-                                <div class="flex-grow-0">
-                                  <%= participant %>
+                                
+                                <div class="flex-grow-0" class="position-relative">
+                                  <%= participant %> &nbsp; &nbsp;
+                                  <button onclick="document.location.href='/user/patient_info/apoorvsingh1120@gmail.com';" type="button" class="btn btn-success btn-rounded btn-icon btn-sm">
+                                    <i class="mdi mdi-chart-line"></i>
+                                  </button>
                                 </div>
                               </div>
                             </a>
@@ -127,41 +131,70 @@
                             <div id="messages">
                               <% if(prevChat != null && prevChat.msg != null) { %>
                                 <% (prevChat.msg).forEach((msg)=>{ %>
-                                  <% if(username == msg.username){ %>
-                                    <div class="chat-message-right pb-4 message" >
-                                  <% }else if(msg.msg_type !="result" ){ %>
-                                    <div class="chat-message-left pb-4">
-                                  <% } %>
-                                  
-                                    <div>
-                                      <img src="https://bootdey.com/img/Content/avatar/avatar1.png" class="rounded-circle mr-1" alt="Chris Wood" width="40" height="40">
-                                      <div class="text-muted small text-nowrap mt-2"><%= msg.timestamp %></div>
+                                  <% if(msg.msg_type != "health"){ %>
+                                    <% if(username == msg.username && msg.msg_type !="health" ){ %>
+                                      <div class="chat-message-right pb-4 message" >
+                                    <% }else if(msg.msg_type !="health" ){ %>
+                                      <div class="chat-message-left pb-4">
+                                    <% } %>
+                                    
+                                      <div>
+                                        <img src="https://bootdey.com/img/Content/avatar/avatar1.png" class="rounded-circle mr-1" alt="Chris Wood" width="40" height="40">
+                                        <div class="text-muted small text-nowrap mt-2"><%= msg.timestamp %></div>
+                                      </div>
+                                      <div class="flex-shrink-1 rounded py-2 px-3 mr-3">
+                                        <div class="font-weight-bold mb-1"><%= msg.username %></div>
+                                        <%= msg.message %>
+                                      </div>  
                                     </div>
-                                    <div class="flex-shrink-1 rounded py-2 px-3 mr-3">
-                                      <div class="font-weight-bold mb-1"><%= msg.username %></div>
-                                      <%= msg.message %>
-                                    </div>
-                                  </div>
-
-                                  <% if(msg.msg_type==="prs"){ %>
+                                    <% if(msg.msg_type==="prs"){ %>
+                                      <div class="chat-message-prescription pb-4">
+                                        <div class="card-header font-weight-bold" style="font-size:14px">Prescription</div>
+                                        <div class="rounded py-2 px-3 mr-3">
+                                          <div class="mb-1"><%= msg.username%> prescribed you a medicine... Would you like to add this in your Daily Activity &nbsp;
+                                            <a href="/ml/<%= msg.username %>/<%= msg.message %>" target="_blank">Yes</a>
+                                            <a href="#">No</a>
+                                          </div>
+                                        </div>
+                                      </div>
+                                  <% }} else if(msg.msg_type==="prs"){ %>
                                     <div class="chat-message-prescription pb-4">
                                       <div class="card-header font-weight-bold" style="font-size:14px">Prescription</div>
                                       <div class="rounded py-2 px-3 mr-3">
                                         <div class="mb-1"><%= msg.username%> prescribed you a medicine... Would you like to add this in your Daily Activity &nbsp;
-                                          <a href="/ml/<%= msg.username %>/<%= msg.message %>" target="_blank">Yes</a>
+                                          <!-- <a href="/ml/<%= msg.username %>/<%= msg.message %>" target="_blank">Yes</a> -->
+                                          <a href="/user/dashboard">Yes</a>
                                           <a href="#">No</a>
                                         </div>
                                       </div>
                                     </div>
-                                  <% }else if(msg.msg_type==="result"){ %>
-                                    <div class="chat-message-aidata pb-4">
-                                      <div class="card-header font-weight-bold" style="font-size:14px">Symptom Checker Results</div>
-                                      <div class="rounded py-2 px-3 mr-3">
-                                        <div class="mb-1"><%= msg.username%> shared their AI HealthCheckup result. Click here to check them&nbsp;
-                                          <a href="#" target="_blank">Yes</a>
-                                          <a href="#">No</a></div>
-                                      </div>
+                                  <% }else if(msg.msg_type==="health" && msg.symptoms[0] !=null){ %>
+                                  <div class="chat-message-aidata pb-4">
+                                    <div class="card-header font-weight-bold" style="font-size:14px">Symptom Checker Results</div>
+                                    <div class="dark-color"><b>Symptoms</b></div>
+                                    <div class="light-color">
+                                      <ul>
+                                        <% (msg.symptoms).forEach((sym)=>{ %>
+                                          <li><%= sym  %></li>
+                                        <% }) %>
+                                      </ul>
                                     </div>
+                                    <div class="dark-color"><b>Body Temperature</b></div>
+                                    <div class="light-color"><%= msg.temp %> C</div>
+                                    <div class="dark-color"><b>Duration</b></div>
+                                    <div class="light-color"><%= msg.duration %> days</div>
+                                    <div class="dark-color"><b>Severity</b></div>
+                                    <div class="light-color"><%= msg.sev %></div>
+                                    <div class="dark-color"><b>Predicted Diseases</b></div>
+                                    <div class="light-color">
+                                      <ul>
+                                        <% for(var x=0;x<10; x=x+1){ %>
+                                          <li><%= msg.diseases[x] %> - <%- parseFloat(msg.chances[x]).toFixed(1) %> %</li>
+                                        <% } %>
+                                      </ul>
+                                    </div>
+                                  </div>
+
                                   <% } %>
                                   
                               <% }) } %>

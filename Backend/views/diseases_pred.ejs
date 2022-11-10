@@ -108,7 +108,7 @@
                     <form method="POST" action="/ml/diseases_pred">
                       <div class="form-group">
                         <label for="exampleFormControlSelect1">Symptoms</label>
-                        <select name="sym" class="ui fluid search dropdown" multiple="">
+                        <select required name="sym" class="ui fluid search dropdown" multiple="">
                             <% sym.forEach((symptom)=>{ %>
                                 <option value="<%= symptom %>"><%= symptom %></option>
                             <% }) %>
@@ -116,18 +116,18 @@
                       </div>
                       <div class="form-group">
                         <label for="bodyTemp">Enter body temperature</label>
-                        <input type="number" class="form-control" id="bodyTemp" placeholder="Temperature in degree F" />
+                        <input required name="temp" type="number" class="form-control" id="bodyTemp" placeholder="Temperature in degree F" />
                       </div>
                       <div class="form-group">
                         <label for="duration">Duration</label>
-                        <input type="number" class="form-control" id="duration" placeholder="Duration (days)" />
+                        <input required name="duration" type="number" class="form-control" id="duration" placeholder="Duration (days)" />
                       </div>
                       <div class="form-group">
                         <label for="duration">Severity</label>
-                        <select class="form-control form-control-lg" id="severity">
-                          <option>Mild</option>
-                          <option>Moderate</option>
-                          <option>Extreme</option>
+                        <select required name="severity" class="form-control form-control-lg" id="severity">
+                          <option value="Mild">Mild</option>
+                          <option value="Moderate">Moderate</option>
+                          <option value="Extreme">Extreme</option>
                         </select>
                       </div>
                       <button type="submit" class="btn btn-primary">Submit</button>

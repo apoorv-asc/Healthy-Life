@@ -13,7 +13,13 @@ const ChatScehma =new mongoose.Schema({
         username:{type:String},
         message:{type:String},
         timestamp:{type:String},
-        msg_type:{type:String}
+        msg_type:{type:String},
+        symptoms:[{type:String}],
+        diseases:[{type:String}],
+        chances:[{type:Number}],
+        temp:{type:String},
+        duration:{type:String},
+        sev:{type:String}
     }]
 });
 

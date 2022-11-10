@@ -58,6 +58,16 @@
     /* margin-left: auto */
 }
 
+.chat-message-aidata .dark-color{
+    background-color: rgb(107, 57, 139);
+    padding: 8px;
+}
+
+.chat-message-aidata .light-color{
+    background-color: rgb(151, 85, 196);
+    padding: 8px;
+}
+
 .py-3 {
     padding-top: 1rem!important;
     padding-bottom: 1rem!important;

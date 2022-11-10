@@ -39,7 +39,7 @@
                 <div class="card-body">
                     <form action="/user/profile" method="post">
                         <label for="exampleFormControlSelect1">Full Name</label>
-                        <input type="text" name="name" class="form-control" placeholder="Full Name" />
+                        <input type="text" value="<%= user.name %>" name="name" class="form-control" placeholder="Full Name" />
                         <br>
                         
                         <div class="row">
@@ -47,7 +47,7 @@
                             <div class="col-md-6">
                                 <div class="form-check form-check-flat form-check-primary">
                                     <label for="ageGroup">Email</label>
-                                    <input class="form-control" id="exampleInputEmail1" disabled value="<%= user.username %>"/>
+                                    <input class="form-control" id="exampleInputEmail1" disabled value="<%= user.email %>"/>
                                 </div>
                             </div>
                             <div class="col-md-6">
@@ -63,6 +63,81 @@
                                   </div>
                             </div>
                         </div><br>
+                        <div class="row">
+                          <div class="col-md-4">
+                            <div class="form-check form-check-flat form-check-primary">
+                                <label for="ageGroup">Age</label>
+                                <input name="age" type="number" value="<%= user.age %>" class="form-control" id="exampleInputEmail1" />
+                            </div>
+                          </div>
+                          <div class="col-md-4">
+                            <div class="form-check form-check-flat form-check-primary">
+                              <label for="ageGroup">Weight</label>
+                              <input name="wt" type="number" value="<%= user.wt %>" class="form-control" id="exampleInputEmail1" />
+                          </div>
+                          </div>
+                          <div class="col-md-4">
+                            <div class="form-check form-check-flat form-check-primary">
+                              <label for="ageGroup">Height</label>
+                              <input name="ht" type="number" value="<%= user.ht %>" class="form-control" id="exampleInputEmail1" />
+                          </div>
+                          </div>
+                        </div>
+                        <div class="row">
+                          <div class="col-md-6">
+                            <div class="form-check form-check-flat form-check-primary">
+                                <label for="ageGroup">Diabetes</label>
+                                <select name="diab" class="form-control form-control-lg" id="ageGroup">
+                                  <option value="Yes">Yes</option>
+                                  <option value="No">No</option>
+                              </select>
+                            </div>
+                          </div>
+                          <div class="col-md-6">
+                            <div class="form-check form-check-flat form-check-primary">
+                                <label for="ageGroup">Hypertension</label>
+                                <select name="hypt" class="form-control form-control-lg" id="ageGroup">
+                                  <option value="Yes">Yes</option>
+                                  <option value="No">No</option>
+                              </select>
+                            </div>
+                          </div>
+                        </div><br>
+                        <div class="row">
+                          <div class="col-md-6">
+                              <div class="form-check form-check-flat form-check-primary">
+                                  <label for="ageGroup">Current Medication</label>
+                                  <input type="text" value="<%= user.current_med %>"  name="curr_med" class="form-control" id="exampleInputEmail1" />
+                              </div>
+                          </div>
+                          <div class="col-md-6">
+                            <div class="form-check form-check-flat form-check-primary">
+                              <label for="ageGroup">Allergy History</label>
+                              <input type="text" value="<%= user.allergy %>" name="all_his" class="form-control" id="exampleInputEmail1" />
+                          </div>
+                          </div>
+                        </div><br>
+                        <div class="row">
+                          <div class="col-md-4">
+                            <div class="form-check form-check-flat form-check-primary">
+                              <label for="ageGroup">Cholestrol</label>
+                              <input type="number" value="<%= user.cholestrol %>" name="chol" class="form-control" id="exampleInputEmail1" />
+                            </div>
+                          </div>
+                          <div class="col-md-4">
+                            <div class="form-check form-check-flat form-check-primary">
+                              <label for="ageGroup">BP(Systolic)</label>
+                              <input type="number" value="<%= user.bp_sys %>" name="bpsys" class="form-control" id="exampleInputEmail1" />
+                            </div>
+                          </div>
+                          <div class="col-md-4">
+                            <div class="form-check form-check-flat form-check-primary">
+                              <label for="ageGroup">BP(Diastolic)</label>
+                              <input type="number" value="<%= user.bp_dia %>" name="bpdia" class="form-control" id="exampleInputEmail1" />
+                            </div>
+                          </div>
+                        </div>
+
                         
                         <button type="submit" class="btn btn-primary"><a style="color: white; text-decoration: none">Update</a></button>
                         

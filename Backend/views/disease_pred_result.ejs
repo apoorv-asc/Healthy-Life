@@ -40,10 +40,25 @@
                 <button type="submit" class="btn btn-warning" onclick="document.location.href='/ml/diseases_pred';">
                   <a href="/ml/diseases_pred" style="color: white; text-decoration: none">Back</a>
                 </button>
-                <button type="submit" class="btn btn-success" onclick="document.location.href='/ml/diseases_pred';">
-                  <a href="/ml/diseases_pred" style="color: white; text-decoration: none">Back</a>
-                </button>
                 <br>
+                <br>
+                <form method="post" action="/ml/save_pred_res/<%= id %>">
+                  <div class="form-group">
+                    <div class="row">
+                      <div class="col-md-10">
+                    <select name="result" class="ui fluid search dropdown" >
+                      <% chats.forEach((chat)=>{ %>
+                        <option value="<%= chat.ChatID %>"><%= chat.ChatName %></option>
+                      <% }) %>
+                    </select>
+                      </div>
+                      <div class="col-md-2">
+                        <button class="btn btn-success" type="submit">Share</button>
+                      </div>
+                    </div>
+                    
+                  </div>
+                </form>
                 <br>
                 <h4>Conditions that match your symptoms 
                 </h4><br>

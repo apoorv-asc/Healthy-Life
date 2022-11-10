@@ -36,7 +36,7 @@
                 <div class="card">
                   <div class="card-header"><h3>Surgical Risk Analysis</h3></div>
                   <div class="card-body">
-                    <p class="card-description"> Procedure: 26535 - Arthroplasty, interphalangeal joint; each joint <br>
+                    <p class="card-description"> <%= surgery %> <br>
                         Risk Factors: Mild systemic disease, Diabetes (Oral), Smoker
                     </p>
                     <div class="table-responsive">
@@ -55,7 +55,7 @@
                             <td>Serious Complication</td>
                             <td>
                                 <div class="progress" style="background-color: rgb(255, 251, 213)">
-                                    <div class="progress-bar bg-warning" role="progressbar" style="width: <%- parseInt(values[0]).toFixed(2) %>%;" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
+                                    <div class="progress-bar bg-warning" role="progressbar" style="width: <%- values[0] %>%;" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
                                 </div>
                             </td>
                             <td><%- parseFloat(values[0]).toFixed(2) %>%</td>
@@ -66,7 +66,7 @@
                             <td>Any Complication</td>
                             <td>
                                 <div class="progress" style="background-color: rgb(255, 251, 213)">
-                                    <div class="progress-bar bg-warning" role="progressbar" style="width: <%- parseInt(values[1]).toFixed(2) %>%;" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
+                                    <div class="progress-bar bg-warning" role="progressbar" style="width: <%- values[1] %>%;" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
                                 </div>
                             </td>
                             <td><%- parseFloat(values[1]).toFixed(2) %>%</td>
@@ -76,73 +76,62 @@
                           <tr>
                             <td>Cardiac Complication</td>
                             <td>
-                                <div class="progress" style="background-color: rgb(218, 243, 217)">
-                                    <div class="progress-bar bg-success" role="progressbar" style="width: <%- parseInt(values[2]).toFixed(2) %>%;" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
+                                <div class="progress" style="background-color: rgb(255, 228, 226)">
+                                    <div class="progress-bar bg-danger" role="progressbar" style="width: <%- values[2] %>%;" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
                                 </div>
                             </td>
                             <td><%- parseFloat(values[2]).toFixed(2) %>%</td>
                             <td>0.1%</td>
-                            <td>Below Average</td>
+                            <td>Above Average</td>
                           </tr>
                           <tr>
                             <td>Surgical Site Infection</td>
                             <td>
-                                <div class="progress" style="background-color: rgb(255, 228, 226)">
-                                    <div class="progress-bar bg-danger" role="progressbar" style="width: <%- parseInt(values[3]).toFixed(2) %>%;" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
+                                <div class="progress" style="background-color: rgb(255, 251, 213)">
+                                    <div class="progress-bar bg-warning" role="progressbar" style="width: <%- values[3] %>%;" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
                                 </div>
                             </td>
                             <td><%- parseFloat(values[3]).toFixed(2) %>%</td>
                             <td>1.4%</td>
-                            <td>Above Average</td>
+                            <td>Average</td>
                           </tr>
                           <tr>
                             <td>Renal Failure</td>
                             <td>
-                                <div class="progress" style="background-color: rgb(218, 243, 217)">
-                                    <div class="progress-bar bg-success" role="progressbar" style="width: <%- parseInt(values[4]).toFixed(2) %>%;" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
+                                <div class="progress" style="background-color: rgb(255, 228, 226)">
+                                    <div class="progress-bar bg-danger" role="progressbar" style="width: <%- values[4] %>%;" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
                                 </div>
                             </td>
                             <td><%- parseFloat(values[4]).toFixed(2) %>%</td>
                             <td>0.1%</td>
-                            <td>Below Average</td>
-                          </tr>
-                          <tr>
-                            <td>Readmission</td>
-                            <td>
-                                <div class="progress" style="background-color: rgb(218, 243, 217)">
-                                    <div class="progress-bar bg-success" role="progressbar" style="width: <%- parseInt(values[5]).toFixed(2) %>%;" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
-                                </div>
-                            </td>
-                            <td><%- parseFloat(values[5]).toFixed(2) %>%</td>
-                            <td>0.5%</td>
-                            <td>Below Average</td>
-                          </tr>
-                          <tr>
-                            <td>Return to OR</td>
-                            <td>
-                                <div class="progress" style="background-color: rgb(255, 228, 226)">
-                                    <div class="progress-bar bg-danger" role="progressbar" style="width: <%- parseInt(values[6]).toFixed(2) %>%;" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
-                                </div>
-                            </td>
-                            <td><%- parseFloat(values[6]).toFixed(2) %>%</td>
-                            <td>0.6%</td>
                             <td>Above Average</td>
                           </tr>
                           <tr>
                             <td>Readmission</td>
                             <td>
-                                <div class="progress" style="background-color: rgb(218, 243, 217)">
-                                    <div class="progress-bar bg-success" role="progressbar" style="width: <%- parseInt(values[7]).toFixed(2) %>%;" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
+                                <div class="progress" style="background-color: rgb(255, 251, 213)">
+                                    <div class="progress-bar bg-warning" role="progressbar" style="width: <%- values[5] %>%;" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
                                 </div>
                             </td>
-                            <td><%- parseFloat(values[7]).toFixed(2) %>%</td>
-                            <td>0.8%</td>
+                            <td><%- parseFloat(values[5]).toFixed(2) %>%</td>
+                            <td>0.5%</td>
+                            <td>Average</td>
+                          </tr>
+                          <tr>
+                            <td>Return to OR</td>
+                            <td>
+                                <div class="progress" style="background-color: rgb(218, 243, 217)">
+                                    <div class="progress-bar bg-success" role="progressbar" style="width: <%- values[6] %>%;" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
+                                </div>
+                            </td>
+                            <td><%- parseFloat(values[6]).toFixed(2) %>%</td>
+                            <td>0.6%</td>
                             <td>Below Average</td>
                           </tr>
                         </tbody>
                       </table>
                     </div><br>
-                    <h4 style="color: #EE5B5A;">Predicted Length of Hospital Stay: 2 days</h4>
+                    <h4 style="color: #EE5B5A;">Predicted Length of Hospital Stay: <%= values[7] %> days</h4>
                     <button class="btn btn-primary"><a href="/user/health_risk" style="color: white; text-decoration: none">Back</a></button>
                   </div>
                 </div>

@@ -17,6 +17,7 @@ const isLoggedIn = require('../middleware/auth');
 // +++++++++++++++++++++++++ Models ++++++++++++++++++++++++++++
 const UserData = require('../models/userdata');
 const Chat = require('../models/chat');
+const userdata = require('../models/userdata');
 
 // ============================== Routes ==========================================
 
@@ -261,12 +262,185 @@ router.get('/chat/:id',isLoggedIn, async (req,res)=>{
     res.render('chat_rooms',{rooms:LoggedInUser.chatrooms,prevChat:chat,id:req.params.id,username:LoggedInUser.name});
 })
 
+router.get('/patient_info/:name',async (req,res)=>{
+    console.log(`${req.protocol}://${req.get('host')}${req.originalUrl}`);
+    console.log("Started",req.params.name);
+    const person = await UserData.findOne({email:req.params.name});
+    let token = person.token;
+
+    var today = new Date();
+    var start_time = new Date(today.getFullYear(),today.getMonth(),today.getDate()-6).getTime();
+    var end_time = new Date(today.getFullYear(),today.getMonth(),today.getDate()+1).getTime();
+
+    let BucketData = [];
+    let heart_points = [];
+    let steps = [];
+    let Dates = [];
+
+    for(let x=start_time;x<end_time;x=x+86400000){
+        let q = new Date(x);
+        Dates.push(q.getDate());
+
+    }
+    
+    var result = await axios({
+        method:"POST",
+        headers:{
+            authorization: "Bearer "+token
+        },
+        "Content-Type":"application/json",
+        url:`https://www.googleapis.com/fitness/v1/users/me/dataset:aggregate`,
+        data:{ 
+            aggregateBy:[
+                {       
+                    dataTypeName:"com.google.heart_minutes"
+                }
+            ],
+            bucketByTime :{durationMillis:86400000},
+            startTimeMillis: start_time,
+            endTimeMillis: end_time
+        }
+    })
+    BucketData = result.data.bucket;
+    await (BucketData).forEach((bucket)=>{
+        if(bucket.dataset[0].point[0] == null){
+            heart_points.push(0);
+        }else{
+            heart_points.push(bucket.dataset[0].point[0].value[0].fpVal);
+        }
+    })
+    
+    result = await axios({
+        method:"POST",
+        headers:{
+            authorization: "Bearer "+token
+        },
+        "Content-Type":"application/json",
+        url:`https://www.googleapis.com/fitness/v1/users/me/dataset:aggregate`,
+        data:{ 
+            aggregateBy:[
+                {       
+                    dataTypeName :"com.google.step_count.delta"
+                }
+            ],
+            bucketByTime :{durationMillis:86400000},
+            startTimeMillis: start_time,
+            endTimeMillis: end_time
+        }
+    })
+    BucketData = result.data.bucket;
+    await (BucketData).forEach((bucket)=>{
+        if(bucket.dataset[0].point[0] == null){
+            steps.push(0);
+        }else{
+            steps.push(bucket.dataset[0].point[0].value[0].intVal);
+        }
+    })
+
+    let heart_score = heart_points.reduce((partialSum, a) => partialSum + a, 0);
+    let total_steps = steps.reduce((partialSum, a) => partialSum + a, 0);
+
+    // ======================================================================
+    // ======================================================================
+
+
+    let Calories = [];
+    let Move_Mins = [];
+    let Distance = [];
+    
+    var result = await axios({
+        method:"POST",
+        headers:{
+            authorization: "Bearer "+token
+        },
+        "Content-Type":"application/json",
+        url:`https://www.googleapis.com/fitness/v1/users/me/dataset:aggregate`,
+        data:{ 
+            aggregateBy:[
+                {       
+                    dataTypeName: "com.google.calories.expended"
+                }
+            ],
+            bucketByTime :{durationMillis:86400000},
+            startTimeMillis: start_time,
+            endTimeMillis: end_time
+        }
+    })
+    BucketData = result.data.bucket;
+    await (BucketData).forEach((bucket)=>{
+        if(bucket.dataset[0].point[0] == null){
+            Calories.push(0);
+        }else{
+            Calories.push(Math.round(bucket.dataset[0].point[0].value[0].fpVal));
+        }
+    })
+
+    
+    var result = await axios({
+        method:"POST",
+        headers:{
+            authorization: "Bearer "+token
+        },
+        "Content-Type":"application/json",
+        url:`https://www.googleapis.com/fitness/v1/users/me/dataset:aggregate`,
+        data:{ 
+            aggregateBy:[
+                {       
+                    dataTypeName:"com.google.active_minutes"
+                }
+            ],
+            bucketByTime :{durationMillis:86400000},
+            startTimeMillis: start_time,
+            endTimeMillis: end_time
+        }
+    })
+    BucketData = result.data.bucket;
+    await (BucketData).forEach((bucket)=>{
+        if(bucket.dataset[0].point[0] == null){
+            Move_Mins.push(0);
+        }else{
+            Move_Mins.push(bucket.dataset[0].point[0].value[0].intVal);
+        }
+    })
+
+    
+    var result = await axios({
+        method:"POST",
+        headers:{
+            authorization: "Bearer "+token
+        },
+        "Content-Type":"application/json",
+        url:`https://www.googleapis.com/fitness/v1/users/me/dataset:aggregate`,
+        data:{ 
+            aggregateBy:[
+                {       
+                    dataTypeName:"com.google.distance.delta"
+                }
+            ],
+            bucketByTime :{durationMillis:86400000},
+            startTimeMillis: start_time,
+            endTimeMillis: end_time
+        }
+    })
+    BucketData = result.data.bucket;
+    await (BucketData).forEach((bucket)=>{
+        if(bucket.dataset[0].point[0] == null){
+            Distance.push(0);
+        }else{
+            Distance.push((bucket.dataset[0].point[0].value[0].fpVal/1000).toFixed(2));
+        }
+    })
+    
+    res.render("patient_info",{heart_points,heart_score,steps,total_steps,Calories,Dates,Move_Mins,Distance});
+})
+
 router.get('/health_risk',async (req,res)=>{
     res.render("health_risk",{"username":myCache.get('username')});
 })
 
 router.post('/health_risk',async (req,res)=>{
     const {age,emer,vent,cancer,diab,hypt,dial,ren,wt,ht} = req.body;
+    const surgery=req.body.surgery; 
     let result = await axios("http://localhost:8000/sur_risk/",{
         method:"POST",
         data:{
@@ -285,7 +459,7 @@ router.post('/health_risk',async (req,res)=>{
         }
     })
     let values = result.data.res;
-    res.render("health_risk_res",{values,"username":myCache.get('username')});
+    res.render("health_risk_res",{values,surgery});
 })
 
 router.get('/review',async (req,res)=>{
@@ -306,18 +480,30 @@ router.get('/physiotherapy',async (req,res)=>{
     res.render('physiotherapy')
 })
 
+router.get('/physiotherapy_res',async (req,res)=>{
+    res.render('physiotherapy_res')
+})
+
 router.get('/profile',async (req,res)=>{
-    res.render('profile')
+    let user = await userdata.findOne({email:res.locals.user.username});
+    res.render('profile',{"user":user});
 })
 
 router.post('/profile',async (req,res)=>{
-    let UserInfo = new UserData(
-        {
-            name:req.body.name,
-            email:req.body.email,
-            prof:req.body.prof
-        }
-    )
+    let UserInfo = await userdata.findOne({email:res.locals.user.username});
+    console.log(UserInfo);
+    UserInfo.name=         req.body.name;
+    UserInfo.prof=         req.body.prof;
+    UserInfo.age=          parseInt(req.body.age);
+    UserInfo.wt=           parseFloat(req.body.wt);
+    UserInfo.ht=           parseFloat(req.body.ht);
+    UserInfo.diabetes=     req.body.diab;
+    UserInfo.hypertension= req.body.hypt;
+    UserInfo.current_med=  req.body.curr_med;
+    UserInfo.allergy=      req.body.all_his;
+    UserInfo.cholestrol=   parseInt(req.body.chol);
+    UserInfo.bp_sys=       parseInt(req.body.bpsys);
+    UserInfo.bp_dia=       parseInt(req.body.bpdia);
     await UserInfo.save();
     res.redirect('/user/dashboard');
 })
